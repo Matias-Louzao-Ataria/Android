@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Hola Personalizado</string>
+    <string name="nombre">Nombre</string>
+    <string name="aceptar">Aceptar</string>
+</resources>

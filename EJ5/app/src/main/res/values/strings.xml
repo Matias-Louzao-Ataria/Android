@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EJ5</string>
+    <string name="app_name">Componentes</string>
     <string name="boton">Botón</string>
     <string name="cosas" translatable="false">ImageButton y un botón con imagen</string>
     <string name="toggle" translatable="false">ToggleButton</string>
@@ -9,4 +9,6 @@
     <string name="checkbox2" translatable="false">Checkbox2</string>
     <string name="checkbox3" translatable="false">Checkbox3</string>
     <string name="seekbar" translatable="false">Seekbar</string>
+    <string name="rating" translatable="false">RatingBar</string>
+    <string name="nombre" translatable="false">Introduce tu nombre</string>
 </resources>

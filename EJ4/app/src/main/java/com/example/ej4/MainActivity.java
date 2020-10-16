@@ -9,24 +9,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    private EditText nombre;
+    private TextView mostrar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Button  b = findViewById(R.id.button);
-        final EditText nombre = findViewById(R.id.editTextTextPersonName);
-        final TextView mostrar = findViewById(R.id.textView2);
+        nombre = findViewById(R.id.editTextTextPersonName);
+        mostrar = findViewById(R.id.textView2);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                b(nombre,mostrar);
+                mostrar.setText(nombre.getText());
             }
         });
-    }
-
-    public void b(EditText nombre,TextView mostrar){
-        mostrar.setText(nombre.getText());
     }
 }

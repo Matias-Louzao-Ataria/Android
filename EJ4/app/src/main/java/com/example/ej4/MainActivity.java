@@ -11,12 +11,13 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private EditText nombre;
     private TextView mostrar;
+    private Button  b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button  b = findViewById(R.id.button);
+        b = findViewById(R.id.button);
         nombre = findViewById(R.id.editTextTextPersonName);
         mostrar = findViewById(R.id.textView2);
         b.setOnClickListener(new View.OnClickListener() {
@@ -25,5 +26,14 @@ public class MainActivity extends AppCompatActivity {
                 mostrar.setText(nombre.getText());
             }
         });
+
+        b.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                nombre.setText("");
+                return false;
+            }
+        });
+
     }
 }

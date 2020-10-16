@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EJ5</string>
+    <string name="boton">Botón</string>
+    <string name="cosas" translatable="false">ImageButton y un botón con imagen</string>
+    <string name="toggle" translatable="false">ToggleButton</string>
+    <string name="activado" translatable="false">Activado</string>
+    <string name="desactivado" translatable="false">Desactivado</string>
+    <string name="checkbox1" translatable="false">Checkbox1</string>
+    <string name="checkbox2" translatable="false">Checkbox2</string>
+    <string name="checkbox3" translatable="false">Checkbox3</string>
+    <string name="seekbar" translatable="false">Seekbar</string>
+</resources>

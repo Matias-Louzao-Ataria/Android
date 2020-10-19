@@ -130,10 +130,11 @@
         style="@android:style/Widget.Material.Light.CompoundButton.Star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="17dp"
         android:layout_marginTop="12dp"
         android:buttonTint="#E91E63"
         android:text="@string/checkbox1"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
@@ -142,7 +143,7 @@
         style="@style/Widget.AppCompat.CompoundButton.RadioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="17dp"
         android:buttonTint="#E91E63"
         android:text="@string/checkbox3"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox"
@@ -156,11 +157,13 @@
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:buttonTint="#FFEB3B"
         android:checked="true"
         android:text="@string/checkbox2"
         app:layout_constraintBottom_toBottomOf="@+id/checkBox"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
         app:layout_constraintTop_toTopOf="@+id/checkBox"
         app:layout_constraintVertical_bias="0.0" />
@@ -274,8 +277,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginEnd="54dp"
         android:text="@string/rating"
         app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ratingBar"
         app:layout_constraintTop_toTopOf="@+id/ratingBar"
         app:layout_constraintVertical_bias="0.578" />
@@ -302,9 +307,12 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/nombre"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.217" />
 
     <TextView
         android:id="@+id/textView5"

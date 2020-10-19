@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 check3.setChecked(false);
                 sw.setChecked(false);
                 seek.setProgress(0);
-                rating.setNumStars(0);
+                rating.setRating(0);
                 edit.setText("");
             }
         });

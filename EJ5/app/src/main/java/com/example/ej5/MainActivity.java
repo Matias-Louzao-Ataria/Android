@@ -1,14 +1,18 @@
 package com.example.ej5;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
@@ -31,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText edit;
     private Button boton3;
     private int cont = 0;
+    private ImageButton imgButton;
+    private TextView buttonView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         rating = findViewById(R.id.ratingBar);
         edit = findViewById(R.id.editTextTextPersonName);
         boton3 = findViewById(R.id.button3);
+        imgButton = findViewById(R.id.imageButton);
+        buttonView = findViewById(R.id.textView3);
 
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -105,5 +113,23 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.boton3.setText(String.valueOf(cont));
             }
         });
+
+        imgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(MainActivity.this,Secundaria.class);
+                it.putExtra("rating",rating.getRating());
+                it.putExtra("nombre",edit.getText().toString());
+                startActivityForResult(it,1);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        buttonView.setText(String.valueOf(data.getFloatExtra("rating",0f)));
+        rating.setRating(data.getFloatExtra("rating",0f));
+        Log.i("MainActivity",String.valueOf(data.getFloatExtra("rating",0f))+" Rating devuelto por la actividad secundaria!");
     }
 }

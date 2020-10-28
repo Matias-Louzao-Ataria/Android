@@ -312,7 +312,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="0.217" />
+        app:layout_constraintVertical_bias="0.217"
+        android:autofillHints="@string/nombre"/>
 
     <TextView
         android:id="@+id/textView5"

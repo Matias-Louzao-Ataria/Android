@@ -11,4 +11,6 @@
     <string name="seekbar" translatable="false">Seekbar</string>
     <string name="rating" translatable="false">RatingBar</string>
     <string name="nombre" translatable="false">Introduce tu nombre</string>
+    <string name="volver" translatable="false">volver</string>
+
 </resources>

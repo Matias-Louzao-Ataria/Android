@@ -12,5 +12,6 @@
     <string name="rating" translatable="false">RatingBar</string>
     <string name="nombre" translatable="false">Introduce tu nombre</string>
     <string name="volver" translatable="false">volver</string>
-
+    <string name="tel" translatable="false">Teléfono</string>
+    <string name="llamar" translatable="false">Llamar</string>
 </resources>

@@ -48,7 +48,7 @@ public class Secundaria extends AppCompatActivity {
         llamar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Intent.ACTION_DIAL);
+                Intent it = new Intent(Intent.ACTION_VIEW);//Valen VIEW y DIAL
                 String uri = String.format("tel:%s",phone.getText().toString());
                 it.setData(Uri.parse(uri));
                 if(it.resolveActivity(getPackageManager()) != null){// Si existe una Activity que es capaz de gestionar los datos

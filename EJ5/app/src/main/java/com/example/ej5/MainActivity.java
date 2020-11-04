@@ -14,10 +14,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
     private int cont = 0;
     private ImageButton imgButton;
     private TextView buttonView;
+    private RadioButton rb1;
+    private RadioButton rb2;
+    private RadioGroup rg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
         boton3 = findViewById(R.id.button3);
         imgButton = findViewById(R.id.imageButton);
         buttonView = findViewById(R.id.textView3);
+        rb1 = findViewById(R.id.radioButton);
+        rb2 = findViewById(R.id.radioButton2);
+        rg = findViewById(R.id.grupo);
 
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -123,6 +131,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(it,1);
             }
         });
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == rb1.getId()){
+                    Toast.makeText(MainActivity.this, "id: "+rb1.getId()+", Texto:"+rb1.getText().toString(), Toast.LENGTH_SHORT).show();
+                }else if(checkedId == rb2.getId()){
+                    Toast.makeText(MainActivity.this, "id: "+rb2.getId()+", Texto:"+rb2.getText().toString(), Toast.LENGTH_SHORT).show();
+                }else{
+
+                }
+            }
+        });
+
     }
 
     @Override

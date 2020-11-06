@@ -2,365 +2,382 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/boton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/boton"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.517" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:drawableStart="?attr/actionModeCopyDrawable"
-        android:text="@string/boton"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:contentDescription="@string/activado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider"
-        app:srcCompat="@android:drawable/ic_menu_save" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/cosas"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="2dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="@string/toggle"
-        app:layout_constraintBottom_toBottomOf="@+id/toggleButton"
-        app:layout_constraintStart_toEndOf="@+id/toggleButton"
-        app:layout_constraintTop_toTopOf="@+id/toggleButton"
-        app:layout_constraintVertical_bias="0.448" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:checked="true"
-        android:text="@string/toggle"
-        android:textOff="@string/desactivado"
-        android:textOn="@string/activado"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-    <View
-        android:id="@+id/divider4"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        style="@android:style/Widget.Material.Light.CompoundButton.Star"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="12dp"
-        android:buttonTint="#E91E63"
-        android:text="@string/checkbox1"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider4" />
-
-    <CheckBox
-        android:id="@+id/checkBox2"
-        style="@style/Widget.AppCompat.CompoundButton.RadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="17dp"
-        android:buttonTint="#E91E63"
-        android:text="@string/checkbox3"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toEndOf="@+id/checkBox3"
-        app:layout_constraintTop_toTopOf="@+id/checkBox"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:buttonTint="#FFEB3B"
-        android:checked="true"
-        android:text="@string/checkbox2"
-        app:layout_constraintBottom_toBottomOf="@+id/checkBox"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="@+id/checkBox"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="279dp"
-        android:layout_marginTop="24dp"
-        android:checked="true"
-        android:shadowColor="#FFFFFF"
-        android:textOff="@string/desactivado"
-        android:textOn="@string/activado"
-        android:thumbTint="#E91E63"
-        android:trackTint="#E91E63"
-        app:layout_constraintEnd_toEndOf="@+id/checkBox2"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5" />
-
-    <View
-        android:id="@+id/divider6"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
-
-    <SeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="152dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:progressTint="#E91E63"
-        android:thumbTint="#E91E63"
-        app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView6"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/seekbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider6" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="45dp"
-        android:text="@string/seekbar"
-        app:layout_constraintBottom_toBottomOf="@+id/seekBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/seekBar"
-        app:layout_constraintTop_toTopOf="@+id/seekBar"
-        app:layout_constraintVertical_bias="0.888" />
-
-    <View
-        android:id="@+id/divider7"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:progressTint="#FFEB3B"
-        android:rating="2.5"
-        android:secondaryProgressTint="#FFEB3B"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider7" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="54dp"
-        android:text="@string/rating"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar"
-        app:layout_constraintVertical_bias="0.578" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="1dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:autofillHints="@string/nombre"
-        android:drawableStart="@android:drawable/ic_menu_my_calendar"
-        android:ems="10"
-        android:hint="@string/nombre"
-        android:inputType="textPersonName"
-        android:password="false"
-        android:phoneNumber="false"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:layout_constraintVertical_bias="0.217" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:text="@string/activado"
-        app:layout_constraintBottom_toBottomOf="@+id/switch1"
-        app:layout_constraintEnd_toStartOf="@+id/switch1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/switch1"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <RadioGroup
-        android:id="@+id/grupo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView5">
-
-        <RadioButton
-            android:id="@+id/radioButton2"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:orientation="vertical"
+            tools:context=".MainActivity">
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="RadioButton 2" />
-    </RadioGroup>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/boton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="@string/mostrar"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/boton"
+                app:layout_constraintBottom_toBottomOf="@+id/button2"
+                app:layout_constraintStart_toEndOf="@+id/button2"
+                app:layout_constraintTop_toTopOf="@+id/button2"
+                app:layout_constraintVertical_bias="0.517" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:drawableStart="?attr/actionModeCopyDrawable"
+                android:text="@string/boton"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/activado"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:srcCompat="@android:drawable/ic_menu_save" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/cosas"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/button3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/button3"
+                app:layout_constraintTop_toTopOf="@+id/button3"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="2dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/toggle"
+                app:layout_constraintBottom_toBottomOf="@+id/toggleButton"
+                app:layout_constraintStart_toEndOf="@+id/toggleButton"
+                app:layout_constraintTop_toTopOf="@+id/toggleButton"
+                app:layout_constraintVertical_bias="0.448" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:checked="true"
+                android:text="@string/toggle"
+                android:textOff="@string/desactivado"
+                android:textOn="@string/activado"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider3" />
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                style="@android:style/Widget.Material.Light.CompoundButton.Star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="12dp"
+                android:buttonTint="#E91E63"
+                android:text="@string/checkbox1"
+                app:layout_constraintEnd_toStartOf="@+id/checkBox3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="17dp"
+                android:buttonTint="#E91E63"
+                android:text="@string/checkbox3"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBox"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.636"
+                app:layout_constraintStart_toEndOf="@+id/checkBox3"
+                app:layout_constraintTop_toTopOf="@+id/checkBox"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:buttonTint="#FFEB3B"
+                android:checked="true"
+                android:text="@string/checkbox2"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBox"
+                app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintTop_toTopOf="@+id/checkBox"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="279dp"
+                android:layout_marginTop="24dp"
+                android:checked="true"
+                android:shadowColor="#FFFFFF"
+                android:textOff="@string/desactivado"
+                android:textOn="@string/activado"
+                android:thumbTint="#E91E63"
+                android:trackTint="#E91E63"
+                app:layout_constraintEnd_toEndOf="@+id/checkBox2"
+                app:layout_constraintHorizontal_bias="0.218"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider5" />
+
+            <View
+                android:id="@+id/divider6"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="152dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:progressTint="#E91E63"
+                android:thumbTint="#E91E63"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:text="@string/seekbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider6" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="45dp"
+                android:text="@string/seekbar"
+                app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/seekBar"
+                app:layout_constraintTop_toTopOf="@+id/seekBar"
+                app:layout_constraintVertical_bias="0.888" />
+
+            <View
+                android:id="@+id/divider7"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:progressTint="#FFEB3B"
+                android:rating="2.5"
+                android:secondaryProgressTint="#FFEB3B"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="54dp"
+                android:text="@string/rating"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ratingBar"
+                app:layout_constraintTop_toTopOf="@+id/ratingBar"
+                app:layout_constraintVertical_bias="0.578" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:autofillHints="@string/nombre"
+                android:drawableStart="@android:drawable/ic_menu_my_calendar"
+                android:ems="10"
+                android:hint="@string/nombre"
+                android:inputType="textPersonName"
+                android:password="true"
+                android:phoneNumber="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2"
+                app:layout_constraintVertical_bias="0.217" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/activado"
+                app:layout_constraintBottom_toBottomOf="@+id/switch1"
+                app:layout_constraintEnd_toStartOf="@+id/switch1"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/switch1"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <RadioGroup
+                android:id="@+id/grupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView5">
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RadioButton" />
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RadioButton 2" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:text="@string/mostrar"
+                app:layout_constraintBottom_toBottomOf="@+id/button2"
+                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintTop_toTopOf="@+id/button2"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

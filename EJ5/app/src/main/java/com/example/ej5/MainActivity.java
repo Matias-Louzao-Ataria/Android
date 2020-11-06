@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton rb1;
     private RadioButton rb2;
     private RadioGroup rg;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
         rg = findViewById(R.id.grupo);
         botonMostrar = findViewById(R.id.button5);
 
+        actionBar = MainActivity.this.getSupportActionBar();
+        actionBar.setSubtitle(seekView.getText().toString());
+
         botonMostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActionBar action = MainActivity.this.getSupportActionBar();
-                action.show();
+                actionBar.show();
             }
         });
 
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 MainActivity.this.seekView.setText(String.valueOf(MainActivity.this.seek.getProgress()));
+                actionBar.setSubtitle(seekView.getText().toString());
             }
 
             @Override
@@ -198,11 +202,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.ocultar:
-                ActionBar action = MainActivity.this.getSupportActionBar();
-
-                action.hide();
-
-
+                actionBar.hide();
                 break;
         }
         return true;

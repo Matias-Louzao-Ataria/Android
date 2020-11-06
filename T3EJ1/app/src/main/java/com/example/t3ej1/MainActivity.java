@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
+    /*@Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.i("MainActivity",String.valueOf(data.getFloatExtra("rating",0f)));
-    }
+    }*/
 }

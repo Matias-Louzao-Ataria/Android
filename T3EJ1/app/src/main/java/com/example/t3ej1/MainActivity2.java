@@ -13,7 +13,6 @@ public class MainActivity2 extends AppCompatActivity {
 
     private TextView textView;
     private Button b;
-    private RatingBar rb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +21,13 @@ public class MainActivity2 extends AppCompatActivity {
         b = findViewById(R.id.button2);
         textView = findViewById(R.id.textViewSec);
         textView.setText(getIntent().getStringExtra("texto"));
-        rb = findViewById(R.id.ratingBar);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent();
+                /*Intent it = new Intent();
                 it.putExtra("rating",rb.getRating());
                 setResult(RESULT_OK,it);
-                finish();
+                finish();*/
             }
         });
     }

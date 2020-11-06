@@ -1,10 +1,13 @@
 package com.example.ej5;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +23,7 @@ public class Secundaria extends AppCompatActivity {
     private Button button;
     private Button llamar;
     private EditText phone;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class Secundaria extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar2);
         button = findViewById(R.id.button);
         phone = findViewById(R.id.editTextPhone);
+        actionBar = Secundaria.this.getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         Intent it = getIntent();
 
         textView.setText(it.getStringExtra("nombre"));
@@ -57,6 +63,12 @@ public class Secundaria extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Secundaria.this.button.callOnClick();
+        return true;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.ej5;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Switch sw;
     private TextView switchtextView;
     private Button boton;
+    private Button botonMostrar;
     private RatingBar rating;
     private EditText edit;
     private Button boton3;
@@ -72,6 +74,15 @@ public class MainActivity extends AppCompatActivity {
         rb1 = findViewById(R.id.radioButton);
         rb2 = findViewById(R.id.radioButton2);
         rg = findViewById(R.id.grupo);
+        botonMostrar = findViewById(R.id.button5);
+
+        botonMostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionBar action = MainActivity.this.getSupportActionBar();
+                action.show();
+            }
+        });
 
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -184,6 +195,14 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.opc2:
                 Toast.makeText(this, "Opc2 pulsado!", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.ocultar:
+                ActionBar action = MainActivity.this.getSupportActionBar();
+
+                action.hide();
+
+
                 break;
         }
         return true;

@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/ocultar"
+        android:title="@string/ocultar" />
+    <item
         android:id="@+id/nuevo"
         android:title="@string/nuevo"
         app:showAsAction="always|withText">

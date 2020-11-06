@@ -19,4 +19,6 @@
     <string name="editar" translatable="false">Editar</string>
     <string name="opc1" translatable="false">opc1</string>
     <string name="opc2" translatable="false">opc2</string>
+    <string name="ocultar" translatable="false">Ocultar</string>
+    <string name="mostrar" translatable="false">Mostrar</string>
 </resources>

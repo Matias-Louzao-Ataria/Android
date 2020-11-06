@@ -14,4 +14,9 @@
     <string name="volver" translatable="false">volver</string>
     <string name="tel" translatable="false">Teléfono</string>
     <string name="llamar" translatable="false">Llamar</string>
+    <string name="borrar" translatable="false">Borrar</string>
+    <string name="nuevo" translatable="false">Nuevo</string>
+    <string name="editar" translatable="false">Editar</string>
+    <string name="opc1" translatable="false">opc1</string>
+    <string name="opc2" translatable="false">opc2</string>
 </resources>

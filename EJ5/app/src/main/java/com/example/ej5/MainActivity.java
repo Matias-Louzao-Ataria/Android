@@ -1,5 +1,6 @@
 package com.example.ej5;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringDef;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,13 +29,13 @@ import android.widget.ToggleButton;
 public class MainActivity extends AppCompatActivity {
 
     private SeekBar seek;
-    private TextView SeekView;
+    private TextView seekView;
     private CheckBox check;
     private CheckBox check2;
     private CheckBox check3;
     private ToggleButton toggle;
     private Switch sw;
-    private TextView SwitchtextView;
+    private TextView switchtextView;
     private Button boton;
     private RatingBar rating;
     private EditText edit;
@@ -39,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private int cont = 0;
     private ImageButton imgButton;
     private TextView buttonView;
+    private TextView button2View;
+    private TextView toggleButtonView;
     private RadioButton rb1;
     private RadioButton rb2;
     private RadioGroup rg;
@@ -48,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         seek = findViewById(R.id.seekBar);
-        SeekView = findViewById(R.id.textView7);
+        seekView = findViewById(R.id.textView7);
         check2 = findViewById(R.id.checkBox2);
         toggle = findViewById(R.id.toggleButton);
         sw = findViewById(R.id.switch1);
-        SwitchtextView = findViewById(R.id.textView5);
+        switchtextView = findViewById(R.id.textView5);
         boton = findViewById(R.id.button2);
         check = findViewById(R.id.checkBox);
         check3 = findViewById(R.id.checkBox3);
@@ -61,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         boton3 = findViewById(R.id.button3);
         imgButton = findViewById(R.id.imageButton);
         buttonView = findViewById(R.id.textView3);
+        toggleButtonView = findViewById(R.id.textView4);
+        button2View = findViewById(R.id.textView2);
         rb1 = findViewById(R.id.radioButton);
         rb2 = findViewById(R.id.radioButton2);
         rg = findViewById(R.id.grupo);
@@ -68,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                MainActivity.this.SeekView.setText(String.valueOf(MainActivity.this.seek.getProgress()));
+                MainActivity.this.seekView.setText(String.valueOf(MainActivity.this.seek.getProgress()));
             }
 
             @Override
@@ -92,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                MainActivity.this.SwitchtextView.setText(MainActivity.this.sw.isChecked() ? "Activado":"Desactivado");
+                MainActivity.this.switchtextView.setText(MainActivity.this.sw.isChecked() ? "Activado":"Desactivado");
             }
         });
 
@@ -145,6 +153,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.nuevo:
+                Intent it = new Intent(MainActivity.this,Terciaria.class);
+                it.putExtra("check1",check.isChecked());
+                it.putExtra("check2",check2.isChecked());
+                it.putExtra("check3",check3.isChecked());
+                startActivity(it);
+                break;
+            case R.id.borrar:
+                seek.setProgress(0);
+                buttonView.setText("");
+                switchtextView.setText("");
+                seekView.setText("");
+                button2View.setText("");
+                toggleButtonView.setText("");
+                break;
+
+            case R.id.editar:
+                edit.setText("");
+                break;
+
+            case R.id.opc1:
+                Toast.makeText(this, "Opc1 pulsado!", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.opc2:
+                Toast.makeText(this, "Opc2 pulsado!", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflador = getMenuInflater();
+        inflador.inflate(R.menu.menu,menu);
+        return true;
     }
 
     @Override

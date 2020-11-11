@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox check3;
     private ToggleButton toggle;
     private Switch sw;
-    private TextView switchtextView;
     private Button boton;
     private Button botonMostrar;
     private RatingBar rating;
@@ -61,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         check2 = findViewById(R.id.checkBox2);
         toggle = findViewById(R.id.toggleButton);
         sw = findViewById(R.id.switch1);
-        switchtextView = findViewById(R.id.textView5);
         boton = findViewById(R.id.button2);
         check = findViewById(R.id.checkBox);
         check3 = findViewById(R.id.checkBox3);
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         actionBar = MainActivity.this.getSupportActionBar();
         actionBar.setSubtitle(seekView.getText().toString());
-
+        sw.setText("Desactivar");
         botonMostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                MainActivity.this.switchtextView.setText(MainActivity.this.sw.isChecked() ? "Activado":"Desactivado");
+                MainActivity.this.sw.setText(MainActivity.this.sw.isChecked() ? "Activado":"Desactivado");
             }
         });
 
@@ -183,8 +181,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.borrar:
                 seek.setProgress(0);
                 buttonView.setText("");
-                switchtextView.setText("");
                 seekView.setText("");
+                sw.setText("");
                 button2View.setText("");
                 toggleButtonView.setText("");
                 break;

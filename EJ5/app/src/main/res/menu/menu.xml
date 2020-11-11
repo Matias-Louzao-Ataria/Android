@@ -8,8 +8,11 @@
     <item
         android:id="@+id/nuevo"
         android:title="@string/nuevo"
-        app:showAsAction="always|withText">
-        <menu >
+        app:showAsAction="always|withText"/>
+    <item
+        android:title="@string/submenu"
+        app:showAsAction="ifRoom" >
+        <menu>
             <item
                 android:id="@+id/opc1"
                 android:title="@string/opc1" />

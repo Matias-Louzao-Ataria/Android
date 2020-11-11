@@ -26,6 +26,12 @@ public class Terciaria extends AppCompatActivity {
         Log.i("msg2",recivido.getBooleanExtra("check2",false) == true ? "CheckBox2 Activado":"CheckBox2 Desactivado");
         Log.i("msg3",recivido.getBooleanExtra("check3",false) == true ? "CheckBox3Activado":"CheckBox3 Desactivado");
 
+        //finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         finish();
     }
 

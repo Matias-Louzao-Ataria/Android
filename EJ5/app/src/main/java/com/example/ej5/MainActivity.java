@@ -81,7 +81,11 @@ public class MainActivity extends AppCompatActivity {
         botonMostrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                actionBar.show();
+                if(actionBar.isShowing()){
+                    actionBar.hide();
+                }else{
+                    actionBar.show();
+                }
             }
         });
 
@@ -200,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.ocultar:
-                actionBar.hide();
+                botonMostrar.callOnClick();
                 break;
         }
         return true;

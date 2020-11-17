@@ -67,7 +67,7 @@ public class Secundaria extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Secundaria.this.button.callOnClick();
+        button.callOnClick();
         return true;
     }
 

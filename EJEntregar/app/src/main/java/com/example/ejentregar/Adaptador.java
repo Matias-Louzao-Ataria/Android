@@ -8,13 +8,17 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 
-public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
+public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> implements View.OnClickListener{
 
     private ArrayList<Pelicula> peliculas;
+    private View.OnClickListener listener;
+    public void setOnClickListener(View.OnClickListener listener) {
+        // el nombre del método es indiferente
+        this.listener = listener;
+    }
 
     public Adaptador(ArrayList<Pelicula> datos) {
         this.peliculas = datos;
@@ -25,6 +29,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View peli = LayoutInflater.from(parent.getContext()).inflate(R.layout.pelicula,parent,false);
         ViewHolder item = new ViewHolder(peli);
+        item.setOnClickListener(this);
         return item;
     }
 
@@ -33,7 +38,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
         Pelicula peli = peliculas.get(position);
         holder.titulo.setText(peli.getTitulo());
         holder.director.setText(peli.getDirector());
-        holder.pegi.setImageResource(peli.getClasi());
+        holder.pegi.setImageResource(peli.getPegi());
         holder.portada.setImageResource(peli.getPortada());
     }
 
@@ -42,10 +47,18 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
         return this.peliculas.size();
     }
 
+    @Override
+    public void onClick(View v) {
+        if
+        (listener != null)
+            listener.onClick(v);
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView titulo;
         private TextView director;
         private ImageView portada;
+        private View.OnClickListener listener;
 
         public TextView getTitulo() {
             return titulo;
@@ -87,6 +100,10 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder> {
             this.director = itemView.findViewById(R.id.director);
             this.pegi = itemView.findViewById(R.id.pegi);
             this.portada = itemView.findViewById(R.id.portada);
+        }
+
+        public void setOnClickListener(View.OnClickListener listener){
+
         }
     }
 

@@ -30,7 +30,7 @@ public class Pelicula implements Serializable{
     public void setIdYoutube(String idYoutube) {
         this.idYoutube=idYoutube;
     }
-    public int getClasi() {
+    public int getPegi() {
         return clasi;
     }
     public void setClasi(int clasi) {

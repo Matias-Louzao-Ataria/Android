@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/listado"
-        android:icon="@android:drawable/btn_star_big_on"
+        android:icon="@android:drawable/arrow_down_float"
         android:title="@string/listado"
         app:showAsAction="always" />
     <item

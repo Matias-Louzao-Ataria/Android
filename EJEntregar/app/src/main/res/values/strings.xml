@@ -4,4 +4,6 @@
     <string name="fav">Favoritos</string>
     <string name="listado">Listado completo</string>
     <string name="Añadir">Añadir estreno</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

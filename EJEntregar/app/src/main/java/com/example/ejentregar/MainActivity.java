@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         b = findViewById(R.id.button);
-        RecyclerView.LayoutManager manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        RecyclerView.LayoutManager manager = new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL);
         datos d = new datos();
         Adaptador adaptador = new Adaptador(d.rellenaPeliculas());
         rw = findViewById(R.id.RecyclerView);
@@ -39,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 }else{
                     ac.show();
                 }
+                Intent i = new Intent(MainActivity.this,favoritos.class);//Prueba de lanzamiento actividad de favoritos.
+                startActivity(i);
             }
         });
 
-    }
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

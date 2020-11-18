@@ -6,10 +6,10 @@ import java.util.Date;
 
 
 public class Pelicula implements Serializable{
-    String titulo, director, sinopsis, sala, idYoutube;
-    int clasi, portada, duracion;
-    Date fecha;
-    boolean favorita;
+    private String titulo, director, sinopsis, sala, idYoutube;
+    private int clasi, portada, duracion;
+    private Date fecha;
+    private boolean favorita;
 
     private SimpleDateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -84,5 +84,10 @@ public class Pelicula implements Serializable{
     }
     public void setDuracion(int duracion) {
         this.duracion=duracion;
+    }
+
+    @Override
+    public String toString() {
+        return getTitulo();
     }
 }

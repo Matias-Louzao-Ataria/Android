@@ -42,7 +42,7 @@ public class Pelicula implements Serializable{
     public void setDirector(String director) {
         this.director=director;
     }
-    public boolean getFavorita() {
+    public boolean isFavorita() {
         return favorita;
     }
     public void setFavorita(Boolean favorita) {

@@ -36,8 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="TextView"
-                android:textSize="24sp" />
+                android:text="TextView" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,6 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/pg13" />
 
                 <CheckBox

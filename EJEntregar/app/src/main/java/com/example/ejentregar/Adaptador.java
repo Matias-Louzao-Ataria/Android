@@ -44,8 +44,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.ViewHolder>{
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView titulo;
-        private TextView director;
+        private TextView titulo,director;
         private ImageView portada;
         private ItemClickListener itemClickListener;
 

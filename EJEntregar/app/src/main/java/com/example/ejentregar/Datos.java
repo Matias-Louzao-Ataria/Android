@@ -4,21 +4,20 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class datos{
-    /*public  void watchYoutubeVideo(String id){
+public class Datos {
+    public Intent[] watchYoutubeVideo(String id){
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
-        try {
-            startActivity(appIntent);
-        } catch (ActivityNotFoundException ex) {
-            startActivity(webIntent);
-        }
-    }*/
+        Intent[] intents = {appIntent,webIntent};
+        return intents;
+    }
 
-    public datos(){
+    public Datos(){
 
     }
 
@@ -27,7 +26,7 @@ public class datos{
         ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
 
         Calendar cal = Calendar.getInstance();
-        cal.set(1982,12,3);
+        cal.set(1982,11,3);
         Pelicula dune=new Pelicula("Dune","Lynch",180,cal.getTime(),"Gran vía",R.drawable.g,R.drawable.dune );
         dune.setSinopsis("Por orden imperial, la familia Atreides deberá hacerse cargo de la explotación del desértico planeta de Arrakis, conocido también como \"Dune\" " +
                 "que es el único planeta donde se encuentra la especia, una potente droga que, además, es necesaria para los vuelos espaciales. Anteriormente, el planeta " +
@@ -38,7 +37,7 @@ public class datos{
         dune.setIdYoutube("KwPTIEWTYEI");
         peliculas.add(dune);
 
-        cal.set(1972,3,5);
+        cal.set(1972,2,5);
         Pelicula a2001=new Pelicula("2001","Kubric",130,cal.getTime(),"Plaza elíptica",R.drawable.pg,R.drawable.d2001 );
         a2001.setSinopsis("La secuencia inicial del filme se inicia con la imagen de la Tierra ascendiendo sobre la Luna, mientras que el Sol asciende a su vez sobre la " +
                 "Tierra, todos en alineación. En este momento comienza a escucharse la composición musical Así habló Zaratustra de Richard Strauss, la misma que acompaña, " +
@@ -64,7 +63,7 @@ public class datos{
         a2001.setIdYoutube("XHjIqQBsPjk");
         peliculas.add(a2001);
 
-        cal.set(1984,11,2);
+        cal.set(1984,10,2);
         Pelicula akira=new Pelicula("Akira","Otomo",170,cal.getTime(),"Gran vía",R.drawable.pg13,R.drawable.akira );
         akira.setSinopsis("Neo-Tokyo, 2019. Shotaro Kaneda sale junto con su pandilla de motociclistas (\"Los Cápsulas\") a pelear contra un pandilla rival conocida como Los" +
                 " Payasos. Sin embargo, el mejor amigo de Kaneda Tetsuo Shima sufre un accidente cuando choca su motocicleta contra Takashi, un niño esper que fue liberado " +
@@ -82,7 +81,7 @@ public class datos{
         akira.setFavorita(true);
         peliculas.add(akira);
 
-        cal.set(1995,1,2);
+        cal.set(1995,0,2);
         Pelicula ia=new Pelicula("IA","Spielberg",140,cal.getTime(),"Travesia",R.drawable.r,R.drawable.ia );
         ia.setSinopsis("A mediados del siglo XXI, el calentamiento global provocó que las capas de hielo de los polos se derritieran, inundaran las costas y se redujera " +
                 "drásticamente los recursos del mundo. Hay una nueva clase de robots llamados Mecas, humanoides avanzados capaces de emular pensamientos y emociones. " +
@@ -96,7 +95,7 @@ public class datos{
         ia.setIdYoutube("vN_Hx_It3r0");
         peliculas.add(ia);
 
-        cal.set(1999,6,23);
+        cal.set(1999,5,23);
         Pelicula matrix=new Pelicula("Matrix","Lana Wachowski, Lilly Wachowski",136,cal.getTime(),"Gran vía",R.drawable.pg13,R.drawable.matrix );
         matrix.setSinopsis("La película plantea que en el futuro, casi todos los seres humanos han sido esclavizados, tras una dura guerra, por las máquinas y las " +
                 "inteligencias artificiales creadas. Estas los tienen en suspensión, y con sus mentes conectadas a una simulación social que representa el final del siglo " +
@@ -117,7 +116,7 @@ public class datos{
         matrix.setIdYoutube("vN_Hx_It3r0");
         peliculas.add(matrix);
 
-        cal.set(1982,8,21);
+        cal.set(1982,7,21);
         Pelicula br=new Pelicula("Blade Runner","Ridley Scott",117,cal.getTime(),"Plaza elíptica",R.drawable.pg,R.drawable.blade );
         br.setSinopsis("En la ciudad de Los Ángeles, en noviembre de 2019, Rick Deckard (Harrison Ford) es llamado de su retiro cuando un Blade Runner excesivamente " +
                 "confiado —Holden (Morgan Paull)— recibe un tiro mientras llevaba a cabo la prueba Voight-Kampff a Leon (Brion James), un replicante fugitivo.\n" +
@@ -162,13 +161,13 @@ public class datos{
         br.setIdYoutube("LBbDxYuvdm4");
         peliculas.add(br);
 
-        cal.set(1995,1,2);
+        cal.set(1995,0,2);
         Pelicula inte=new Pelicula("Interstellar","Christopher Nolan ",169,cal.getTime(),"Travesia",R.drawable.g,R.drawable.interstellar );
         inte.setSinopsis("Al ver que la vida en la Tierra está llegando a su fin, un grupo de exploradores dirigidos por el piloto Cooper (McConaughey) y la científica Amelia (Hathaway) emprenden una misión que puede ser la más importante de la historia de la humanidad, Viajan más allá de nuestra galaxia para descubrir otra que pueda garantizar el futuro de la raza humana.");
         inte.setIdYoutube("UoSSbmD9vqc");
         peliculas.add(inte);
 
-        cal.set(1995,1,2);
+        cal.set(1995,0,2);
         Pelicula alien=new Pelicula("Alien","Ridley Scott",117,cal.getTime(),"Plaza elíptica",R.drawable.pg13,R.drawable.alien );
         alien.setSinopsis("La nave espacial de transporte comercial U.S.C.S.S. Nostromo regresa a la Tierra proveniente del planeta ficticio Thedus,nota 1 con un remolque " +
                 "de veinte millones de toneladas de mena.nota 2 Los siete miembros de la tripulación están en un estado de sueño criogénico. Al recibir una transmisión de " +
@@ -218,7 +217,7 @@ public class datos{
         alien.setIdYoutube("LjLamj-b0I8");
         peliculas.add(alien);
 
-        cal.set(1995,1,2);
+        cal.set(1995,0,2);
         Pelicula st=new Pelicula("Star Trek","J. J. Abrams",128,cal.getTime(),"Travesia",R.drawable.pg,R.drawable.startrek);
         st.setSinopsis("La nave espacial de la Federación USS Kelvin explora un fenómeno astrofísico similar a una tormenta eléctrica, que produce un agujero negro. De este" +
                 " sale una inmensa y monstruosa nave negra, que dispara contra los exploradores impidiéndoles alejarse. Luego les envía un mensaje que le ordena a su " +
@@ -260,7 +259,7 @@ public class datos{
         st.setIdYoutube("pKFUZ10Wmbw");
         peliculas.add(st);
 
-        cal.set(2015,9,24);
+        cal.set(2015,8,24);
         Pelicula martian=new Pelicula("The Martian","Ridley Scotts",151,cal.getTime(),"Gran vía",R.drawable.pg13,R.drawable.martian);
         martian.setSinopsis("Durante una misión a Marte de la nave tripulada Ares III, una fuerte tormenta se desata, por lo que, tras haber dado por desaparecido y muerto al astronauta Mark Watney (Matt Damon), sus compañeros toman la decisión de irse; sin embargo, ha sobrevivido, pero está solo y sin apenas recursos en el planeta. Con muy pocos medios, deberá recurrir a sus conocimientos, su sentido del humor y un gran instinto de supervivencia para lograr sobrevivir y comunicar a la Tierra que todavía está vivo, esperando que acudan en su rescate.");
         martian.setIdYoutube("OS23SmNlE3Y");

@@ -24,7 +24,6 @@ public class ListaCompleta extends AppCompatActivity implements AdaptadorListaCo
         AdaptadorListaCompleta adaptadorListaCompleta = new AdaptadorListaCompleta(MainActivity.peliculas,this);
         rv.setAdapter(adaptadorListaCompleta);
         rv.setLayoutManager(manager);
-
     }
 
     @Override

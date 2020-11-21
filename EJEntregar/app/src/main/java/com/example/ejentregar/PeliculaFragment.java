@@ -17,25 +17,12 @@ public class PeliculaFragment extends Fragment {
     private TextView fecha;
     private TextView duracion;
     public PeliculaFragment() {
-        // Required empty public constructor
-        /*View view = getView();
-        this.peliculaAMostrar = pelicula;
-        this.titulo = view.findViewById(R.id.titulo);
-        this.titulo.setText(pelicula.getTitulo());
-        this.director = view.findViewById(R.id.director);
-        this.director.setText(pelicula.getDirector());
-        this.sala = view.findViewById(R.id.sala);
-        this.sala.setText(pelicula.getSala());
-        this.fecha = view.findViewById(R.id.fecha);
-        this.fecha.setText(pelicula.getFecha().toString());
-        this.duracion = view.findViewById(R.id.duracion);
-        this.duracion.setText(pelicula.getDuracion());*/
+
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pelicula, container, false);
     }

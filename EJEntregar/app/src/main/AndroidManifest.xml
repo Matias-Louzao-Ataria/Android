@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PeliculaSinopsis"></activity>
+        <activity android:name=".Calendario"></activity>
+        <activity android:name=".CrearPelicula" />
+        <activity android:name=".PeliculaSinopsis" />
         <activity android:name=".ListaCompleta" />
-        <activity android:name=".favoritos" />
+        <activity android:name=".Favoritos" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

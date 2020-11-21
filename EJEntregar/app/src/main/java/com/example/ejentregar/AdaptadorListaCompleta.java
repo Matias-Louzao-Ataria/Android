@@ -1,16 +1,23 @@
 package com.example.ejentregar;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.time.LocalDate;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class AdaptadorListaCompleta extends RecyclerView.Adapter<AdaptadorListaCompleta.ViewHolder>{
 
@@ -30,6 +37,7 @@ public class AdaptadorListaCompleta extends RecyclerView.Adapter<AdaptadorListaC
         return item;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Pelicula peli = peliculas.get(position);
@@ -37,7 +45,11 @@ public class AdaptadorListaCompleta extends RecyclerView.Adapter<AdaptadorListaC
         holder.director.setText(peli.getDirector());
         holder.pegi.setImageResource(peli.getPegi());
         holder.portada.setImageResource(peli.getPortada());
-        holder.fecha.setText(MainActivity.parseFecha(peli.getFecha().toString()));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(peli.getFecha());
+        LocalDate d = LocalDateTime.ofInstant(peli.getFecha().toInstant(), ZoneId.systemDefault()).toLocalDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        holder.fecha.setText(d.format(formatter));
         holder.sala.setText(peli.getSala());
         holder.duracion.setText(peli.getDuracion()+" minutos");
         holder.fav.setChecked(peli.isFavorita());
@@ -57,14 +69,9 @@ public class AdaptadorListaCompleta extends RecyclerView.Adapter<AdaptadorListaC
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView titulo;
-        private TextView director;
-        private TextView sala;
-        private TextView duracion;
-        private TextView fecha;
-        private ImageView portada;
+        private TextView titulo,director,sala,duracion,fecha;
+        private ImageView portada,pegi;
         private ItemClickListener itemClickListener;
-        private ImageView pegi;
         private CheckBox fav;
 
         public ViewHolder(@NonNull View itemView,ItemClickListener itemClickListener) {

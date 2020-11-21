@@ -3,12 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/listado"
-        android:icon="@android:drawable/arrow_down_float"
+        android:icon="@android:drawable/ic_menu_gallery"
         android:title="@string/listado"
-        app:showAsAction="always" />
+        app:showAsAction="always|withText" />
     <item
         android:id="@+id/fav"
-        android:title="@string/fav" />
+        android:icon="@android:drawable/btn_star_big_on"
+        android:title="@string/fav"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/estreno"
         android:title="@string/Añadir" />

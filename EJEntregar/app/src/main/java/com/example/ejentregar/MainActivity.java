@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements Adaptador.ItemCli
     private CheckBox fav;
     private static Datos d = new Datos();
     public static ArrayList<Pelicula> peliculas = d.rellenaPeliculas();
+
+    public Adaptador getAdaptador() {
+        return adaptador;
+    }
+
     private Adaptador adaptador;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -93,9 +98,9 @@ public class MainActivity extends AppCompatActivity implements Adaptador.ItemCli
         director.setText(pelicula.getDirector());
         sala.setText(pelicula.getSala());
         Calendar cal = Calendar.getInstance();
-        cal.setTime(pelicula.getFecha());
-        LocalDate d = LocalDateTime.ofInstant(pelicula.getFecha().toInstant(), ZoneId.systemDefault()).toLocalDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate d = LocalDateTime.ofInstant(pelicula.getFecha().toInstant(), ZoneId.systemDefault()).toLocalDate();
+        cal.setTime(pelicula.getFecha());
         fecha.setText(d.format(formatter));
         duracion.setText(pelicula.getDuracion()+" minutos");
         portada.setImageResource(pelicula.getPortada());

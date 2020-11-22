@@ -32,6 +32,10 @@ public class Calendario extends AppCompatActivity {
             }
         });
 
+        dia = date.getDayOfMonth();
+        mes = date.getMonth();
+        anho = date.getYear();
+
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

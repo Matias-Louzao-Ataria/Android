@@ -9,3 +9,11 @@ v2:
 Las balas se mueven.
 Añadida la posibilidad de cambiar donde aparece cada bala.
 Cambiado el constructor de la clase Bala.
+
+07/01
+v3:
+Añadido fondo.
+Añadidas las colisiones entre balas.
+Añadida hitboxs de las balas.
+Añadida estructura básica del personaje.
+Añadido el personaje en la pantalla.

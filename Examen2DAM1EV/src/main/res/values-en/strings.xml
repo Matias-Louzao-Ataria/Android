@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Matias Louzao Ataria</string>
+    <string name="verActores">Show Actors</string>
+    <string name="grid">Grid</string>
+    <string name="modificar">Modify Character</string>
+    <string name="borrar">Remove Character</string>
+    <string name="mensaje">If you accept, you\'d leave the application!</string>
+    <string name="titulo">¿Would you like to leave?</string>
+    <string name="aceptar">Accept</string>
+    <string name="rechazar">Deny</string>
+    <string name="neutral">Neutral</string>
+    <string name="nombre">Name</string>
+    <string name="guardar">Save</string>
+    <string name="hotel">Hotel Transilvania</string>
+</resources>

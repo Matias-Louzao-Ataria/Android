@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">T4EJ1</string>
+    <string name="Suma">+</string>
+    <string name="Resta">-</string>
+    <string name="Multiplicación">*</string>
+    <string name="Reset">Reset</string>
+    <string name="Division">/</string>
+    <string name="Cuadrado">²</string>
+    <string name="Raiz_cuadrada">Raíz cuadrada</string>
+    <string name="Factorial">Factorial</string>
+    <string name="Seno">Sen()</string>
+    <string name="Coseno">Cos()</string>
+    <string name="Tangente">Tan()</string>
+    <string name="Inverso">1/x</string>
+    <string name="Coma">,</string>
+</resources>

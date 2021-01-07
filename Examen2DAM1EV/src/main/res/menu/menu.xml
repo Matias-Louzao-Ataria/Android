@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/grid"
+        android:icon="?attr/actionModeSelectAllDrawable"
+        android:title="@string/grid"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/actores"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="@string/verActores"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/modifica"
+        android:icon="@android:drawable/ic_popup_disk_full"
+        android:title="@string/modificar"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/borrar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/borrar" />
+</menu>

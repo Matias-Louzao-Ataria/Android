@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Matias Louzao Ataria</string>
+    <string name="verActores">Ver Actores</string>
+    <string name="grid">Tablero</string>
+    <string name="modificar">Modificar Personaje</string>
+    <string name="borrar">Borrar Personaje</string>
+    <string name="mensaje">Si le das a aceptar saldrás de la applicación!</string>
+    <string name="titulo">¿Quieres salir?</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="rechazar">Rechazar</string>
+    <string name="neutral">Neutral</string>
+    <string name="nombre">Nombre de personaje</string>
+    <string name="guardar">Guardar</string>
+    <string name="hotel">Hotel Transilvania</string>
+</resources>

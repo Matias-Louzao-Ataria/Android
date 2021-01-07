@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PracticaExamen</string>
+    <string name="titulo">Elije una opción</string>
+    <string name="op1">cerrar</string>
+    <string name="op2">no cerrar</string>
+    <string name="op3">opc3</string>
+    <string name="mensaje">Eso</string>
+</resources>

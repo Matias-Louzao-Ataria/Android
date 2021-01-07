@@ -1,0 +1,11 @@
+CHANGELOG
+
+06/01
+v1:
+Estructura básica del juego.
+Estructura básica de las balas, sin la lógica detras de si movimiento.
+
+v2:
+Las balas se mueven.
+Añadida la posibilidad de cambiar donde aparece cada bala.
+Cambiado el constructor de la clase Bala.

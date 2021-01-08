@@ -73,6 +73,7 @@ public class PantallaPrincipal extends SurfaceView implements SurfaceHolder.Call
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        this.hilo.getPersonaje().setPosicion(this.hilo.getPersonaje().getPosicion().x+5,this.hilo.getPersonaje().getPosicion().y+5);
         return true;
     }
 

@@ -91,4 +91,8 @@ public class MiHilo extends Thread{
             }
         }
     }
+
+    public Personaje getPersonaje() {
+        return personaje;
+    }
 }

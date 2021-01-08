@@ -16,8 +16,8 @@ public class Personaje {
         this.hp = hp;
         this.img = img;
         this.velocidad = velocidad;
-        this.posicion.x = this.img.getWidth();
-        this.posicion.y = this.img.getHeight();
+        //this.posicion.x = this.img.getWidth();
+        //this.posicion.y = this.img.getHeight();
         this.alto = alto;
         this.ancho = ancho;
     }
@@ -93,5 +93,10 @@ public class Personaje {
         if((this.posicion.y+(this.velocidad.y*this.direccion.y))-this.img.getHeight() < 0){
             this.direccion.y *= -1;
         }
+    }
+
+    public void setPosicion(int x, int y) {
+        this.posicion.x = x;
+        this.posicion.y = y;
     }
 }

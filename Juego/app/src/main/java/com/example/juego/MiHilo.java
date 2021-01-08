@@ -66,7 +66,8 @@ public class MiHilo extends Thread{
                 synchronized (this.holder){
                     if(this.personaje == null){
                         Bitmap cuadrado = BitmapFactory.decodeResource(this.parent.getResources(),R.drawable.cuadrado);
-                        this.personaje = new Personaje(3,cuadrado,new Point(5,5),this.parent.getAltoPantalla(),this.parent.getAnchoPantalla());
+                        cuadrado = Bitmap.createScaledBitmap(cuadrado,100,100,true);
+                        this.personaje = new Personaje(3,cuadrado,new Point(50,50),this.parent.getAltoPantalla(),this.parent.getAnchoPantalla());
                     }
                     if(this.balas == null){
                         initBalas(10);

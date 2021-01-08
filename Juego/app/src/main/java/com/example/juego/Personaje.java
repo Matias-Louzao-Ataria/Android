@@ -2,6 +2,7 @@ package com.example.juego;
 
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.Rect;
 
 public class Personaje {
     private int hp;
@@ -11,6 +12,7 @@ public class Personaje {
     private Point velocidad;
     private Point direccion = new Point();
     private int alto,ancho;
+    private Rect hitbox = null;
 
     public Personaje(int hp, Bitmap img, Point velocidad,int alto,int ancho) {
         this.hp = hp;
@@ -20,6 +22,7 @@ public class Personaje {
         //this.posicion.y = this.img.getHeight();
         this.alto = alto;
         this.ancho = ancho;
+        setHitbox();
     }
 
     public int getHp() {
@@ -69,34 +72,18 @@ public class Personaje {
         if(y > 0){
             this.velocidad.y = y;
         }
-
-        mover(alto,ancho);
-    }
-
-    public void mover(int alto, int ancho){
-        if(Math.abs((this.posicion.x+(this.velocidad.x*this.direccion.x))) < ancho){
-            this.posicion.x += this.velocidad.x*this.direccion.x;
-        }else{
-            this.direccion.x *= -1;
-        }
-
-        if((this.posicion.x+(this.velocidad.x*this.direccion.x))-this.img.getWidth() < 0){
-            this.direccion.x *= -1;
-        }
-
-        if(Math.abs((this.posicion.y+(this.velocidad.y*this.direccion.y))) < alto){
-            this.posicion.y += (this.velocidad.y*this.direccion.y);
-        }else{
-            this.direccion.y *= -1;
-        }
-
-        if((this.posicion.y+(this.velocidad.y*this.direccion.y))-this.img.getHeight() < 0){
-            this.direccion.y *= -1;
-        }
     }
 
     public void setPosicion(int x, int y) {
         this.posicion.x = x;
         this.posicion.y = y;
+    }
+
+    public void setHitbox(){
+        this.hitbox = new Rect(this.posicion.x,this.posicion.y,this.posicion.x+this.img.getWidth(),this.posicion.y+this.img.getHeight());
+    }
+
+    public Rect getHitbox() {
+        return hitbox;
     }
 }

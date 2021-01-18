@@ -6,14 +6,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    public static int altopantalla,anchopantalla;
+public class JuegoActivitie extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MenuPrincipal pantalla = new MenuPrincipal(this);
+        PantallaPrincipal pantalla = new PantallaPrincipal(this);
         pantalla.setKeepScreenOn(true);
         setContentView(pantalla);
     }

@@ -2,11 +2,11 @@ CHANGELOG
 
 06/01
 v1:
-Estructura básica del juego.
-Estructura básica de las balas, sin la lógica detras de si movimiento.
+Añadida la estructura básica del juego.
+Añadida la estructura básica de las balas, sin la lógica detras de su movimiento.
 
 v2:
-Las balas se mueven.
+Añadido movimiento a las balas.
 Añadida la posibilidad de cambiar donde aparece cada bala.
 Cambiado el constructor de la clase Bala.
 
@@ -17,3 +17,19 @@ Añadidas las colisiones entre balas.
 Añadida hitboxs de las balas.
 Añadida estructura básica del personaje.
 Añadido el personaje en la pantalla.
+
+v4:
+Añadido el movimiento del personaje.
+Añadida la hitbox del personaje mediante gestos.
+Añadida clase para la gestión de gestos.
+
+v5:
+Añadida la pantalla de menú principal.
+Añadida funcionalidad al botón de jugar.
+Cambiada las coordenadas de aparición de las balas.
+Cambiada la posición de inicio del personaje.
+
+v6:
+Añadido control por movimientos.
+Añadido control temporal con límite de 60 FPS.
+Añadido timer que se usará para mostrar la puntuación del jugador.

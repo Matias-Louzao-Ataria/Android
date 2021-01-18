@@ -1,0 +1,23 @@
+{
+	"name": "Mapa test",
+	"rocas": [{
+		"x": 50,
+		"y": 50
+	}, {
+		"x": 120,
+		"y": 70
+	}],
+	"paredes": [{
+			"left": 0,
+			"top": 20,
+			"right": 40,
+			"botom": 40
+		}, 
+		{
+			"left": 120,
+			"top": 200,
+			"right": 150,
+			"botom": 210
+		}
+	]
+}

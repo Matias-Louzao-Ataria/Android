@@ -8,7 +8,7 @@ public class Personaje {
     private int hp;
     private int invencivilidad = 3;
     private Bitmap img;
-    private Point posicion = new Point(0,0);
+    private Point posicion = null;
     private Point velocidad;
     private Point direccion = new Point();
     private int alto,ancho;
@@ -22,6 +22,7 @@ public class Personaje {
         //this.posicion.y = this.img.getHeight();
         this.alto = alto;
         this.ancho = ancho;
+         this.posicion = new Point(MainActivity.anchopantalla/2-this.img.getWidth(),MainActivity.altopantalla/2-this.img.getHeight());
         setHitbox();
     }
 

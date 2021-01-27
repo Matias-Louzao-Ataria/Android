@@ -28,7 +28,7 @@ import com.badlogic.gdx.utils.viewport.*;
 
 public class MainGameScreen extends BaseScreen{
     //El texto del cronometro es de 2 de alto.
-    public static final float PAREDWIDTH = 0.01f;
+    public static final float PAREDWIDTH = 1f;
     private static final float aspectRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
     private static final float WORLD_HEIGHT = 20;
     private static final float WORLD_WIDTH = WORLD_HEIGHT*aspectRatio;
@@ -61,7 +61,7 @@ public class MainGameScreen extends BaseScreen{
     @Override
     public void show() {
         this.world = new World(new Vector2(0,0),true);
-        this.stage = new Stage(new ScalingViewport(Scaling.fillY,WORLD_WIDTH,WORLD_HEIGHT));
+        this.stage = new Stage(new ScalingViewport(Scaling.fit,WORLD_WIDTH,WORLD_HEIGHT));
         this.camera = (OrthographicCamera) this.stage.getCamera();
         this.textRenderer = new BitmapFont();
         this.batch = new SpriteBatch();
@@ -129,7 +129,7 @@ public class MainGameScreen extends BaseScreen{
         PolygonShape paredShapeDcha = new PolygonShape();
         paredShapeDcha.setAsBox(PAREDWIDTH,WORLD_HEIGHT*2);
         BodyDef paredBodyDefDcha = new BodyDef();
-        paredBodyDefDcha.position.set(new Vector2(WORLD_WIDTH-PAREDWIDTH,WORLD_HEIGHT));
+        paredBodyDefDcha.position.set(new Vector2(WORLD_WIDTH+PAREDWIDTH,WORLD_HEIGHT));
         paredBodyDefDcha.type = BodyDef.BodyType.StaticBody;
         Body paredBodyDcha = world.createBody(paredBodyDefDcha);
         Fixture paredFixtureDcha = paredBodyDcha.createFixture(paredShapeDcha,1);
@@ -151,7 +151,7 @@ public class MainGameScreen extends BaseScreen{
         PolygonShape paredShapeArr = new PolygonShape();
         paredShapeArr.setAsBox(WORLD_WIDTH, PAREDWIDTH);
         BodyDef paredBodyDefArr = new BodyDef();
-        paredBodyDefArr.position.set(new Vector2(0,WORLD_HEIGHT-2));
+        paredBodyDefArr.position.set(new Vector2(0,WORLD_HEIGHT+PAREDWIDTH-2));
         paredBodyDefArr.type = BodyDef.BodyType.StaticBody;
         Body paredBodyArr = world.createBody(paredBodyDefArr);
         Fixture paredFixtureArr = paredBodyArr.createFixture(paredShapeArr,1);
@@ -161,7 +161,7 @@ public class MainGameScreen extends BaseScreen{
 
         //Abajo de la pantalla
         BodyDef paredBodyDefAbj = new BodyDef();
-        paredBodyDefAbj.position.set(new Vector2(0,0));
+        paredBodyDefAbj.position.set(new Vector2(0,0-PAREDWIDTH));
         paredBodyDefAbj.type = BodyDef.BodyType.StaticBody;
         Body paredBodyAbj = world.createBody(paredBodyDefAbj);
         Fixture paredFixtureAbj = paredBodyAbj.createFixture(paredShapeArr,1);

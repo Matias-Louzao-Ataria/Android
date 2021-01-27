@@ -1,0 +1,56 @@
+CHANGELOG
+
+06/01
+v1:
+Añadida la estructura básica del juego.
+Añadida la estructura básica de las balas, sin la lógica detras de su movimiento.
+
+v2:
+Añadido movimiento a las balas.
+Añadida la posibilidad de cambiar donde aparece cada bala.
+Cambiado el constructor de la clase Bala.
+
+07/01
+v3:
+Añadido fondo.
+Añadidas las colisiones entre balas.
+Añadida hitboxs de las balas.
+Añadida estructura básica del personaje.
+Añadido el personaje en la pantalla.
+
+v4:
+Añadido el movimiento del personaje.
+Añadida la hitbox del personaje mediante gestos.
+Añadida clase para la gestión de gestos.
+
+v5:
+Añadida la pantalla de menú principal.
+Añadida funcionalidad al botón de jugar.
+Cambiada las coordenadas de aparición de las balas.
+Cambiada la posición de inicio del personaje.
+
+v6:
+Añadido control por movimientos.
+Añadido control temporal con límite de 60 FPS.
+Añadido timer que se usará para mostrar la puntuación del jugador.
+
+20/01 Fecha aproximada
+v7:
+Paso del proyecto a libgdx.
+Añadidas las físicas de las balas usando box2d.
+Añadidas las paredes que sirven para delimitar el movimiento de las balas.
+Añadido modelo básico del juego y modelo de referencia para las pantallas como una clase abstracta.
+
+25/01 Fecha aproximada
+v8:
+Añadido timer al proyecto en libgdx.
+Añadido código del jugador sin lógica de movimiento.
+Añadida la estructura básica del código de las rocas.
+
+26/01
+V9:
+Añadido contador de FPS.
+Añadidos límites de movimiento para el jugador.
+Arreglado fallo en el metodo resize.
+Arreglado fallo con el viewport del juego.
+Cambiado estilo de viewport de FitViewport a ScalingViewport.

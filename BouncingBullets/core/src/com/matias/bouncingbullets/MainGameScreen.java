@@ -1,10 +1,13 @@
 package com.matias.bouncingbullets;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -14,10 +17,14 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.*;
 
 public class MainGameScreen extends BaseScreen{
     //El texto del cronometro es de 2 de alto.
@@ -31,6 +38,7 @@ public class MainGameScreen extends BaseScreen{
     private Float[] velocidadesY = {0f,VELBALAY};
     private World world;
     private Stage stage;
+    private OrthographicCamera camera;
     private BalaBox2D bala;
     private JugadorBox2D jugador;
     private MainGameContactListener contactListener;
@@ -42,8 +50,9 @@ public class MainGameScreen extends BaseScreen{
     private int numBalas = 15;
     private Batch batch;
     private int min = 0,seg = 0;
-    //private Touchpad touchpad;TODO:Implementar touchpad
     private Texture textura = new Texture(Gdx.files.internal("circulo.png"));
+    private Texture mapa = new Texture(Gdx.files.internal("cuadrado.png"));
+
 
     public MainGameScreen(Main parent) {
         super(parent);
@@ -52,12 +61,12 @@ public class MainGameScreen extends BaseScreen{
     @Override
     public void show() {
         this.world = new World(new Vector2(0,0),true);
-        this.stage = new Stage(new FitViewport(WORLD_WIDTH,WORLD_HEIGHT));
+        this.stage = new Stage(new ScalingViewport(Scaling.fillY,WORLD_WIDTH,WORLD_HEIGHT));
+        this.camera = (OrthographicCamera) this.stage.getCamera();
         this.textRenderer = new BitmapFont();
         this.batch = new SpriteBatch();
         this.batch.setProjectionMatrix(this.stage.getCamera().combined);
         this.contactListener = new MainGameContactListener();
-        //this.touchpad = new Touchpad(0.01f,);
         this.lastSpawnedBala = TimeUtils.nanoTime();
         this.balas  = new Array<BalaBox2D>();
         this.paredesBody  = new Array<Body>();
@@ -77,9 +86,9 @@ public class MainGameScreen extends BaseScreen{
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0,0.7f,0.3f,1f);
+        //Gdx.gl.glClearColor(0,0.7f,0.3f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        this.camera.lookAt(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
         if(this.balas.size < this.numBalas && TimeUtils.nanoTime()-this.lastSpawnedBala >= 1000000000){
             this.lastSpawnedBala = TimeUtils.nanoTime();
             this.bala = new BalaBox2D(this.world,this.textura,new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2));
@@ -97,13 +106,18 @@ public class MainGameScreen extends BaseScreen{
             }
         }
 
+        //this.touchpad.setColor(Color.BLACK);
         if(this.jugador.getBody().getPosition().x >= WORLD_WIDTH - 0.5f || this.jugador.getBody().getPosition().y >= WORLD_HEIGHT - 2.5f || this.jugador.getBody().getPosition().x <= 0 + 0.5f || this.jugador.getBody().getPosition().y <= 0 + 0.5f){
             this.jugador.getBody().setLinearVelocity(0,0);
         }//TODO:Cambiar la condición con constantes para que este mas claro.
 
         this.batch.begin();
+        this.batch.setColor(Color.BLUE);
+        this.batch.draw(this.mapa,0,0,WORLD_WIDTH,WORLD_HEIGHT);
+        this.textRenderer.setColor(Color.WHITE);
         this.textRenderer.getData().setScale(0.2f,0.2f);
-        this.textRenderer.draw(this.batch,String.format("%d: %d",this.min,this.seg),WORLD_WIDTH/2 -2,WORLD_HEIGHT);
+        this.textRenderer.draw(this.batch,String.format("%d: %d",this.min,this.seg),WORLD_WIDTH/2 -3,WORLD_HEIGHT);
+        this.textRenderer.draw(this.batch,String.format("%d",Gdx.graphics.getFramesPerSecond()),WORLD_WIDTH-4,WORLD_HEIGHT);
         this.batch.end();
         this.world.step(delta,6,2);
         this.stage.act();
@@ -175,9 +189,10 @@ public class MainGameScreen extends BaseScreen{
         }
 
         destruirParedes();
+
         this.batch.dispose();
         this.textRenderer.dispose();
-
+        this.mapa.dispose();
         this.world.dispose();
         this.stage.dispose();
     }
@@ -185,7 +200,7 @@ public class MainGameScreen extends BaseScreen{
     @Override
     public void resize(int width, int height) {//TODO:Destruir paredes y generar unas nuevas
         //System.out.println(aspectRatio != Gdx.graphics.getWidth()/Gdx.graphics.getHeight() && this.paredesBody != null && this.paredesFixture != null && this.paredesFixture.size > 0 && this.paredesBody.size > 0);
-        this.stage.getViewport().update((int)(height*aspectRatio),height);
+        this.stage.getViewport().update(width,height);
         /*if(aspectRatio != Gdx.graphics.getWidth()/Gdx.graphics.getHeight() && this.paredesBody != null && this.paredesFixture != null && this.paredesFixture.size > 0 && this.paredesBody.size > 0){
             destruirParedes();
             generarParedes(this.world);

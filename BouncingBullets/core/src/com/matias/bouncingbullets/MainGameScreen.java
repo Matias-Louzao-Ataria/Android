@@ -16,10 +16,11 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -34,6 +35,8 @@ public class MainGameScreen extends BaseScreen{
     private static final float WORLD_WIDTH = WORLD_HEIGHT*aspectRatio;
     public static  final  float VELBALAX = 35;
     public static  final  float VELBALAY = 35;
+    public static final int BOTON_WIDTH = 1;
+    public static final int BOTON_HEIGHT = 1;
     private Float[] velocidadesX = {0f,VELBALAX};
     private Float[] velocidadesY = {0f,VELBALAY};
     private World world;
@@ -49,6 +52,7 @@ public class MainGameScreen extends BaseScreen{
     private BitmapFont textRenderer;
     private int numBalas = 15;
     private Batch batch;
+    private Button botonIzq,botonDcha,botonArr,botonAbj;
     private int min = 0,seg = 0;
     private Texture textura = new Texture(Gdx.files.internal("circulo.png"));
     private Texture mapa = new Texture(Gdx.files.internal("cuadrado.png"));
@@ -73,15 +77,72 @@ public class MainGameScreen extends BaseScreen{
         this.paredesFixture = new Array<Fixture>();
         this.bala = new BalaBox2D(this.world,textura,new Vector2( 3,3));
         this.jugador = new JugadorBox2D(this.world,textura,new Vector2(5,5));
-
+        generarBotones();
         this.world.setContactListener(this.contactListener);
         generarParedes(this.world);
         this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
         this.balas.add(bala);
         this.stage.addActor(bala);
         this.stage.addActor(this.jugador);
-        Gdx.input.setInputProcessor(new ProcesadorInput(this));
+        Gdx.input.setInputProcessor(stage);
         this.first = TimeUtils.nanoTime();
+    }
+
+    private void generarBotones() {
+        this.botonIzq = new Button(new SpriteDrawable(new Sprite(mapa)));
+        this.botonIzq.setPosition(1,3);
+        this.botonIzq.setWidth(BOTON_WIDTH);
+        this.botonIzq.setHeight(BOTON_HEIGHT);
+        this.botonIzq.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                System.out.println("Y");
+                return true;
+            }
+        });
+
+        this.stage.addActor(this.botonIzq);
+
+        this.botonDcha = new Button(new SpriteDrawable(new Sprite(mapa)));
+        this.botonDcha.setPosition(this.botonIzq.getX()+3,this.botonIzq.getY());
+        this.botonDcha.setWidth(BOTON_WIDTH);
+        this.botonDcha.setHeight(BOTON_HEIGHT);
+        this.botonDcha.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                System.out.println("A");
+                return true;
+            }
+        });
+
+        this.stage.addActor(this.botonDcha);
+
+        this.botonArr = new Button(new SpriteDrawable(new Sprite(mapa)));
+        this.botonArr.setPosition(this.botonIzq.getX()+1.5f,this.botonIzq.getY()+1.5f);
+        this.botonArr.setWidth(BOTON_WIDTH);
+        this.botonArr.setHeight(BOTON_HEIGHT);
+        this.botonArr.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                System.out.println("X");
+                return true;
+            }
+        });
+
+        this.stage.addActor(this.botonArr);
+
+        this.botonAbj = new Button(new SpriteDrawable(new Sprite(mapa)));
+        this.botonAbj.setPosition(this.botonIzq.getX()+1.5f,this.botonIzq.getY()-1.5f);
+        this.botonAbj.setWidth(BOTON_WIDTH);
+        this.botonAbj.setHeight(BOTON_HEIGHT);
+        this.botonAbj.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                System.out.println("B");
+                return true;
+            }
+        });
+        this.stage.addActor(this.botonAbj);
     }
 
     @Override

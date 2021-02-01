@@ -6,12 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class BalaBox2D extends Actor {
+public class BalaBox2D extends BaseActor {
     public static final float RADIO_BALA = 1f;
-    private World world;
-    private Body body;
-    private Fixture fixture;
-    private Texture texture;
 
     public BalaBox2D(World world, Texture texture, Vector2 posicion) {
         this.world = world;
@@ -22,10 +18,15 @@ public class BalaBox2D extends Actor {
         bodyDef.bullet = true;
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         this.body = this.world.createBody(bodyDef);
-        Shape shape = new CircleShape();
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.density = 1;
+        fixtureDef.filter.categoryBits = CategoryBits.BALA;//Es
+        fixtureDef.filter.maskBits = CategoryBits.JUGADOR | CategoryBits.PARED | CategoryBits.ROCA | CategoryBits.BATE;//Choca con...
+        CircleShape shape = new CircleShape();
         shape.setRadius(RADIO_BALA);
-        this.fixture = this.body.createFixture(shape,1);
-        this.fixture.setUserData("bala");
+        fixtureDef.shape = shape;
+        this.fixture = this.body.createFixture(fixtureDef);
+        this.fixture.setUserData(this);
         shape.dispose();
         this.setSize(RADIO_BALA*2,RADIO_BALA*2);
     }

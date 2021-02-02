@@ -54,3 +54,11 @@ Añadidos límites de movimiento para el jugador.
 Arreglado fallo en el metodo resize.
 Arreglado fallo con el viewport del juego.
 Cambiado estilo de viewport de FitViewport a ScalingViewport.
+
+v10:
+Añadido nuevo sistema de movimiento para el jugador.
+Añadidos controles para el jugador.
+Añadida la base de los objetos.
+Añadida forma de usar objetos. 
+Arreglado bug con las colisiones del jugador.
+Ahora las balas desaparecen al chocar con el jugador y se genera una nueva en su lugar.

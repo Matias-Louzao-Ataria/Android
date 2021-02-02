@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class JugadorBox2D extends BaseActor {
     private PowerUpObject.TipoObj powerUp;
+    private int hp = 5;
 
     public JugadorBox2D(World world, Texture texture, Vector2 posicion) {
         this.world = world;
@@ -52,9 +53,17 @@ public class JugadorBox2D extends BaseActor {
         this.powerUp = powerUp;
     }
 
+    public int getHp(){
+        return this.hp;
+    }
+
+    public void addHp(int hp){
+        this.hp += hp;
+    }
+
     public void dispose(){
         this.body.destroyFixture(this.fixture);
         this.world.destroyBody(this.body);
-        this.texture.dispose();
+        //this.texture.dispose();
     }
 }

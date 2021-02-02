@@ -1,5 +1,6 @@
 com/matias/bouncingbullets/JBox2DTest.java
  com.matias.bouncingbullets.JBox2DTest
+ com.matias.bouncingbullets.JBox2DTest$1
 com/matias/bouncingbullets/RocaBox2D.java
  com.matias.bouncingbullets.RocaBox2D
 com/matias/bouncingbullets/BaseActor.java
@@ -15,18 +16,6 @@ com/matias/bouncingbullets/PowerUpObject.java
  com.matias.bouncingbullets.PowerUpObject$TipoObj
 com/matias/bouncingbullets/oldActors/Personaje.java
  com.matias.bouncingbullets.oldActors.Personaje
-com/matias/bouncingbullets/TransparentTouchpad.java
- com.matias.bouncingbullets.TransparentTouchpad
-com/matias/bouncingbullets/BalaBox2D.java
- com.matias.bouncingbullets.BalaBox2D
-com/matias/bouncingbullets/CategoryBits.java
- com.matias.bouncingbullets.CategoryBits
-com/matias/bouncingbullets/ProcesadorInput.java
- com.matias.bouncingbullets.ProcesadorInput
-com/matias/bouncingbullets/BaseScreen.java
- com.matias.bouncingbullets.BaseScreen
-com/matias/bouncingbullets/Main.java
- com.matias.bouncingbullets.Main
 com/matias/bouncingbullets/MainGameScreen.java
  com.matias.bouncingbullets.MainGameScreen
  com.matias.bouncingbullets.MainGameScreen$1
@@ -37,5 +26,17 @@ com/matias/bouncingbullets/MainGameScreen.java
  com.matias.bouncingbullets.MainGameScreen$6
 com/matias/bouncingbullets/MainGameContactListener.java
  com.matias.bouncingbullets.MainGameContactListener
+com/matias/bouncingbullets/CategoryBits.java
+ com.matias.bouncingbullets.CategoryBits
+com/matias/bouncingbullets/ProcesadorInput.java
+ com.matias.bouncingbullets.ProcesadorInput
+com/matias/bouncingbullets/BaseScreen.java
+ com.matias.bouncingbullets.BaseScreen
+com/matias/bouncingbullets/Main.java
+ com.matias.bouncingbullets.Main
 com/matias/bouncingbullets/Bate.java
  com.matias.bouncingbullets.Bate
+com/matias/bouncingbullets/BalaBox2D.java
+ com.matias.bouncingbullets.BalaBox2D
+com/matias/bouncingbullets/TransparentTouchpad.java
+ com.matias.bouncingbullets.TransparentTouchpad

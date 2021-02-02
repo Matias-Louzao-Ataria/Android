@@ -4,18 +4,28 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.TimeUtils;
+
+import java.util.Objects;
 
 public class PowerUpObject extends BaseActor{
 
     public static enum TipoObj{
         Bate,
         BateDorado,
-        Boton
+        Boton,
+        Chaleco
     };
 
-    public PowerUpObject(World world, Texture texture, Vector2 posicion, TipoObj objType) {
+    private int timer = 10;
+    private long segSpawn = 0;
+    private boolean desaparecer = false;
+
+    public PowerUpObject(World world, Texture texture, Vector2 posicion, TipoObj objType,long nanoseconds) {
         this.world = world;
         this.texture = texture;
+
+        this.segSpawn = nanoseconds;
 
         WIDTH = 1f;
         HEIGHT = 1f;
@@ -40,24 +50,49 @@ public class PowerUpObject extends BaseActor{
 
     @Override
     public void act(float delta) {
-
+        if(TimeUtils.nanoTime() - segSpawn >= timer* 1000000000L){
+            desaparecer = true;
+        }
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        if(TimeUtils.nanoTime() - segSpawn > 4){
+            dibujuar(batch);
+        }else{
+            if(TimeUtils.nanoTime()/1000000000 % 2 == 0){
+                dibujuar(batch);
+            }
+        }
+    }
+
+    private void dibujuar(Batch batch) {
         this.setPosition(this.body.getPosition().x- WIDTH,this.body.getPosition().y- HEIGHT);
         batch.draw(this.texture,getX(),getY(),getWidth(),getHeight());
+    }
+
+    public int getTimer() {
+        return timer;
+    }
+
+    public long getSegSpawn() {
+        return segSpawn;
+    }
+
+    public boolean isDesaparecer() {
+        return desaparecer;
     }
 
     public Body getBody() {
         return body;
     }
 
-    public void dispose(){
-        this.body.destroyFixture(this.fixture);
-        this.world.destroyBody(this.body);
-        //TODO Eliminar la textura,(descomentar la linea de abajo).
-        this.texture.dispose();
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || this.getClass() != o.getClass()){
+            return false;
+        }
+        PowerUpObject powerUp = (PowerUpObject) o;
+        return this.body == powerUp.body && this.fixture == powerUp.fixture;
     }
-
 }

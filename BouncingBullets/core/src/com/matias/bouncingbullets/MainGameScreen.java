@@ -9,13 +9,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
@@ -24,35 +24,36 @@ import com.badlogic.gdx.utils.viewport.*;
 
 public class MainGameScreen extends BaseScreen{
     //El texto del cronometro es de 2 de alto.
+    private OrthographicCamera camera;
     public static boolean deletePowerUp;
     public static final float PAREDWIDTH = 1f;
-    private static final float aspectRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
+    private static final int aspectRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
     private static final float WORLD_HEIGHT = 20;
     private static final float WORLD_WIDTH = WORLD_HEIGHT*aspectRatio;
     public static  final  float VELBALAX = 40;
     public static  final  float VELBALAY = 40;
     public static final int BOTON_WIDTH = 1;
     public static final int BOTON_HEIGHT = 1;
-    private Float[] velocidadesX = {0f,VELBALAX};
-    private Float[] velocidadesY = {0f,VELBALAY};
+    private final Float[] velocidadesX = {0f,VELBALAX};
+    private final Float[] velocidadesY = {0f,VELBALAY};
     private World world;
     private Stage stage;
-    private OrthographicCamera camera;
     private BalaBox2D bala;
     private JugadorBox2D jugador;
     private MainGameContactListener contactListener;
     private Array<BalaBox2D> balas;
+    public static Array<BalaBox2D> borrarBalas = new Array<BalaBox2D>();
     private Array<Body> paredesBody;
     private Array<Fixture> paredesFixture;
     private long lastSpawnedBala,first;
     private BitmapFont textRenderer;
-    private int numBalas = 10;
+    private int numBalas = 10,min = 0,seg = 0;
     private PowerUpObject powerUp;
     private Batch batch;
-    private Bate bate;
-    private Touchpad touchpad;
+//    private Bate bate;
+    //private Touchpad touchpad;
     private Button botonIzq,botonDcha,botonArr,botonAbj,botonObj;
-    private int min = 0,seg = 0;
+    private float lastX = 0,lastY = 0,offset = 10;
     private Texture textura = new Texture(Gdx.files.internal("circulo.png"));
     private Texture mapa = new Texture(Gdx.files.internal("cuadrado.png"));
 
@@ -64,64 +65,153 @@ public class MainGameScreen extends BaseScreen{
     @Override
     public void show() {
         this.world = new World(new Vector2(0,0),true);
-        this.stage = new Stage(new ScalingViewport(Scaling.fit,WORLD_WIDTH,WORLD_HEIGHT));
-        this.camera = (OrthographicCamera) this.stage.getCamera();
-        this.textRenderer = new BitmapFont();
-        this.batch = new SpriteBatch();
-        this.batch.setProjectionMatrix(this.stage.getCamera().combined);
+
+            this.stage = new Stage(new ScalingViewport(Scaling.fit,WORLD_WIDTH,WORLD_HEIGHT));
+            this.camera = (OrthographicCamera) this.stage.getCamera();
+            this.textRenderer = new BitmapFont();
+            this.batch = new SpriteBatch();
+            this.batch.setProjectionMatrix(this.stage.getCamera().combined);
+//            this.botonObj = new Button(new SpriteDrawable(new Sprite(mapa)));
+//            this.botonObj.setPosition(WORLD_WIDTH-BOTON_WIDTH,WORLD_HEIGHT/2-BOTON_HEIGHT);
+//            this.botonObj.setWidth(BOTON_WIDTH);
+//            this.botonObj.setHeight(BOTON_HEIGHT);
+//            this.botonObj.addListener(new EventListener() {
+//                @Override
+//                public boolean handle(Event event) {
+//                    if(jugador.getPowerUp() != null){
+//                        //TODO Programar los objetos
+//                        switch (jugador.getPowerUp()){
+//                            case Bate:
+//
+//                                break;
+//
+//                            case BateDorado:
+//                                break;
+//
+//                            case Boton:
+//                                for (BalaBox2D bala : balas) {
+//                                    Body body = bala.getBody();
+//                                    body.setLinearVelocity(body.getLinearVelocity().x*-1,body.getLinearVelocity().y*-1);
+//                                }
+//                                break;
+//                        }
+//                        jugador.setPowerUp(null);
+//                    }
+//                    return true;
+//                }
+//            });
+//            this.stage.addActor(this.botonObj);
         this.jugador = new JugadorBox2D(this.world,mapa,new Vector2(5,5));
         this.contactListener = new MainGameContactListener(this.jugador,this.world);
         this.lastSpawnedBala = TimeUtils.nanoTime();
         this.balas  = new Array<BalaBox2D>();
         this.paredesBody  = new Array<Body>();
         this.paredesFixture = new Array<Fixture>();
-        this.bala = new BalaBox2D(this.world,textura,new Vector2( 3,3));
-        this.powerUp = new PowerUpObject(this.world,new Texture(Gdx.files.internal("bate.png")),new Vector2(15,15), PowerUpObject.TipoObj.Bate);
+//        this.bala = new BalaBox2D(this.world,textura,new Vector2( 3,3));
+        this.powerUp = new PowerUpObject(this.world,new Texture(Gdx.files.internal("bate.png")),new Vector2(15,15), PowerUpObject.TipoObj.Boton,TimeUtils.nanoTime());
         //generarBotones();
 
-        this.botonObj = new Button(new SpriteDrawable(new Sprite(mapa)));
-        this.botonObj.setPosition(WORLD_WIDTH-BOTON_WIDTH,WORLD_HEIGHT/2-BOTON_HEIGHT);
-        this.botonObj.setWidth(BOTON_WIDTH);
-        this.botonObj.setHeight(BOTON_HEIGHT);
-        this.botonObj.addListener(new EventListener() {
+        RocaBox2D roca = new RocaBox2D(world,mapa,new Vector2(10,10));
+//        SpriteDrawable fondo = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("fondostick.png"))));
+//        SpriteDrawable palanca = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("palanca.png"))));
+//        Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle(fondo,palanca);
+//        this.touchpad = new Touchpad(0.1f, touchpadStyle);
+//        this.touchpad.setBounds(1, 1, 7, 7);
+        this.world.setContactListener(this.contactListener);
+        generarParedes(this.world);
+//        this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
+//        this.stage.addActor(touchpad);
+//        this.balas.add(bala);
+//        this.stage.addActor(bala);
+            this.stage.addActor(roca);
+            this.stage.addActor(this.powerUp);
+            this.stage.addActor(this.jugador);
+        Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureListener() {
             @Override
-            public boolean handle(Event event) {
-                if(jugador.getPowerUp() != null){
-                    //TODO Programar los objetos
-                    switch (jugador.getPowerUp()){
-                        case Bate:
+            public boolean touchDown(float x, float y, int pointer, int button) {
+                if(pointer == 1){
+                    if(jugador.getPowerUp() != null){
+                        //TODO Programar los objetos
+                        switch (jugador.getPowerUp()){
+                            case Bate:
 
-                            break;
+                                break;
 
-                        case BateDorado:
-                            break;
+                            case BateDorado:
+                                break;
 
-                        case Boton:
-                            break;
+                            case Boton:
+                                for (BalaBox2D bala : balas) {
+                                    Body body = bala.getBody();
+                                    body.setLinearVelocity(body.getLinearVelocity().x*-1,body.getLinearVelocity().y*-1);
+                                }
+
+                            case Chaleco:
+                                if(jugador.getHp() < 5){
+                                    jugador.addHp(1);
+                                }
+                                break;
+                            default:
+                        }
+                        jugador.setPowerUp(null);
                     }
-                    jugador.setPowerUp(null);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean tap(float x, float y, int count, int button) {
+                return false;
+            }
+
+            @Override
+            public boolean longPress(float x, float y) {
+                return false;
+            }
+
+            @Override
+            public boolean fling(float velocityX, float velocityY, int button) {
+                return false;
+            }
+
+            @Override
+            public boolean pan(float x, float y, float deltaX, float deltaY) {
+                System.out.println(String.format("x: %f,y: %f,deltaX: %f,deltaY: %f",x,y,deltaX,deltaY));
+                //body.setLinearVelocity(deltaX+20,-deltaY+20);
+                if(x != lastX && y != lastY && (Math.abs(deltaX) > offset || Math.abs(deltaY) > offset)){
+                    if(Math.abs(deltaX) > offset && Math.abs(deltaY) > offset){
+                        jugador.getBody().setLinearVelocity(new Vector2(Math.signum(deltaX)*7,Math.signum(-deltaY)*7));
+                    }else if(Math.abs(deltaY) > offset){
+                        jugador.getBody().setLinearVelocity(new Vector2(0,Math.signum(-deltaY)*7));
+                    }else if(Math.abs(deltaX) > offset){
+                        jugador.getBody().setLinearVelocity(new Vector2(Math.signum(deltaX)*7,0));
+                    }
+                    lastX = x;
+                    lastY = y;
                 }
                 return true;
             }
-        });
-        this.stage.addActor(this.botonObj);
 
-        RocaBox2D roca = new RocaBox2D(world,mapa,new Vector2(10,10));
-        this.stage.addActor(roca);
-        SpriteDrawable fondo = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("fondostick.png"))));
-        SpriteDrawable palanca = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("palanca.png"))));
-        Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle(fondo,palanca);
-        this.touchpad = new Touchpad(0.1f, touchpadStyle);
-        this.touchpad.setBounds(1, 1, 7, 7);
-        this.world.setContactListener(this.contactListener);
-        generarParedes(this.world);
-        this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
-        this.stage.addActor(touchpad);
-        this.balas.add(bala);
-        this.stage.addActor(bala);
-        this.stage.addActor(this.powerUp);
-        this.stage.addActor(this.jugador);
-        Gdx.input.setInputProcessor(stage);
+            @Override
+            public boolean panStop(float x, float y, int pointer, int button) {
+                return false;
+            }
+
+            @Override
+            public boolean zoom(float initialDistance, float distance) {
+                return false;
+            }
+
+            @Override
+            public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+                return false;
+            }
+
+            @Override
+            public void pinchStop() {
+
+            }
+        }));
         this.first = TimeUtils.nanoTime();
     }
 
@@ -131,11 +221,7 @@ public class MainGameScreen extends BaseScreen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.camera.lookAt(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
         if(this.balas.size < this.numBalas && TimeUtils.nanoTime()-this.lastSpawnedBala >= 1000000000){
-            this.lastSpawnedBala = TimeUtils.nanoTime();
-            this.bala = new BalaBox2D(this.world,this.textura,new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2));
-            this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
-            this.balas.add(this.bala);
-            this.stage.addActor(this.bala);
+            generarBala();
         }
 
         if(TimeUtils.nanoTime() - this.first >= 1000000000){
@@ -147,32 +233,39 @@ public class MainGameScreen extends BaseScreen{
             }
         }
 
-        this.jugador.getBody().setLinearVelocity(new Vector2(this.touchpad.getKnobPercentX()*velocidadesX[1]*0.3f,this.touchpad.getKnobPercentY()*velocidadesY[1]*0.3f));
-
-        if(this.bate != null && this.bate.vecesGolpeado >= 3){
-            this.bate.dispose();
+        if(this.powerUp != null && this.powerUp.isDesaparecer()){
+            deletePowerUp = true;
         }
 
-        if(this.jugador.getPowerUp() != null && this.bate == null){
-            switch (jugador.getPowerUp()){
-                case Bate:
-                    this.bate = new Bate(world,new Texture(Gdx.files.internal("bate.png")),this.jugador,new Vector2(this.jugador.getBody().getPosition().x+1,this.jugador.getBody().getPosition().y));
-                    DistanceJointDef jointDef = new DistanceJointDef();
-                    jointDef.bodyA = this.jugador.getBody();
-                    jointDef.bodyB = this.bate.getBody();
-                    jointDef.collideConnected = false;
-                    jointDef.localAnchorA.set(0.6f,0);
-                    this.bate.joint = this.world.createJoint(jointDef);
-                    this.stage.addActor(this.bate);
-                    break;
+//        this.jugador.getBody().setLinearVelocity(new Vector2(this.touchpad.getKnobPercentX()*velocidadesX[1]*0.3f,this.touchpad.getKnobPercentY()*velocidadesY[1]*0.3f));
 
-                case BateDorado:
-                    break;
+//        if(this.bate != null && this.bate.vecesGolpeado >= 3){
+//            this.world.destroyJoint(this.bate.joint);
+//            this.bate.remove();
+//            this.bate.dispose();
+//            this.stage.getActors().removeIndex(this.stage.getActors().indexOf(this.bate, true));
+//        }
 
-                case Boton:
-                    break;
-            }
-        }
+//        if(this.jugador.getPowerUp() != null){
+//            switch (jugador.getPowerUp()){
+//                case Bate:
+//                    this.bate = new Bate(world,new Texture(Gdx.files.internal("bate.png")),this.jugador,new Vector2(this.jugador.getBody().getPosition().x+1,this.jugador.getBody().getPosition().y));
+//                    DistanceJointDef jointDef = new DistanceJointDef();
+//                    jointDef.bodyA = this.jugador.getBody();
+//                    jointDef.bodyB = this.bate.getBody();
+//                    jointDef.collideConnected = false;
+//                    jointDef.localAnchorA.set(0.6f,0);
+//                    this.bate.joint = this.world.createJoint(jointDef);
+//                    this.stage.addActor(this.bate);
+//                    break;
+//
+//                case BateDorado:
+//                    break;
+//
+//                case Boton:
+//                    break;
+//            }
+//        }
 
         if(deletePowerUp){
             for (Actor a:this.stage.getActors()) {
@@ -184,17 +277,38 @@ public class MainGameScreen extends BaseScreen{
             deletePowerUp = false;
         }
 
-        this.batch.begin();
-        this.batch.setColor(Color.BLUE);
-        this.batch.draw(this.mapa,0,0,WORLD_WIDTH,WORLD_HEIGHT);
-        this.textRenderer.setColor(Color.WHITE);
-        this.textRenderer.getData().setScale(0.2f,0.2f);
-        this.textRenderer.draw(this.batch,String.format("%d: %d",this.min,this.seg),WORLD_WIDTH/2 -3,WORLD_HEIGHT);
-        this.textRenderer.draw(this.batch,String.format("%d",Gdx.graphics.getFramesPerSecond()),WORLD_WIDTH-4,WORLD_HEIGHT);
-        this.batch.end();
+        if(borrarBalas.size > 0){
+            eliminarBala();
+        }
+
+            this.batch.begin();
+            this.batch.setColor(Color.BLUE);
+            this.batch.draw(this.mapa,0,0,WORLD_WIDTH,WORLD_HEIGHT);
+            this.textRenderer.setColor(Color.WHITE);
+            this.textRenderer.getData().setScale(0.2f,0.2f);
+            this.textRenderer.draw(this.batch,String.format("%d: %d",this.min,this.seg),WORLD_WIDTH/2 -3,WORLD_HEIGHT);
+            this.textRenderer.draw(this.batch,String.format("%d",Gdx.graphics.getFramesPerSecond()),WORLD_WIDTH-4,WORLD_HEIGHT);
+            this.batch.end();
         this.world.step(delta,6,2);
-        this.stage.act(delta);
-        this.stage.draw();
+            this.stage.act(delta);
+            this.stage.draw();
+    }
+
+    private void generarBala() {
+        this.lastSpawnedBala = TimeUtils.nanoTime();
+        this.bala = new BalaBox2D(this.world,this.textura,new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2));
+        this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
+        this.balas.add(this.bala);
+        this.stage.addActor(this.bala);
+    }
+
+    private void eliminarBala() {
+        for (BalaBox2D bala : borrarBalas) {
+            this.stage.getActors().removeIndex(this.stage.getActors().indexOf(bala,true));
+            this.balas.removeIndex(this.balas.indexOf(bala,true));
+            borrarBalas.removeIndex(borrarBalas.indexOf(bala,true));
+            bala.dispose();
+        }
     }
 
     private void generarBotones() {
@@ -257,7 +371,7 @@ public class MainGameScreen extends BaseScreen{
     public void generarParedes(World world){
         //Derecha de la pantalla
         PolygonShape paredShapeDcha = new PolygonShape();
-        paredShapeDcha.setAsBox(PAREDWIDTH,WORLD_HEIGHT*2);
+        paredShapeDcha.setAsBox(PAREDWIDTH,WORLD_HEIGHT);
         BodyDef paredBodyDefDcha = new BodyDef();
         paredBodyDefDcha.position.set(new Vector2(WORLD_WIDTH+PAREDWIDTH,WORLD_HEIGHT));
         paredBodyDefDcha.type = BodyDef.BodyType.StaticBody;
@@ -320,12 +434,14 @@ public class MainGameScreen extends BaseScreen{
 
         destruirParedes();
 
-        if(this.bate != null){
-            this.bate.dispose();
-        }
+//        if(this.bate != null){
+//            this.bate.dispose();
+//        }
+
         this.batch.dispose();
         this.textRenderer.dispose();
         this.mapa.dispose();
+        this.textura.dispose();
         this.world.dispose();
         this.stage.dispose();
     }

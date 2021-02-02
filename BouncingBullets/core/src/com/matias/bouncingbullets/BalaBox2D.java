@@ -49,6 +49,6 @@ public class BalaBox2D extends BaseActor {
     public void dispose(){
         this.body.destroyFixture(this.fixture);
         this.world.destroyBody(this.body);
-        this.texture.dispose();
+        //this.texture.dispose();
     }
 }

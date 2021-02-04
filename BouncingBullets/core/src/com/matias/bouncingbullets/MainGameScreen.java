@@ -1,10 +1,7 @@
 package com.matias.bouncingbullets;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -13,7 +10,6 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
@@ -25,13 +21,12 @@ import com.badlogic.gdx.utils.viewport.*;
 public class MainGameScreen extends BaseScreen{
     //El texto del cronometro es de 2 de alto.
     private OrthographicCamera camera;
-    public static boolean deletePowerUp;
     public static final float PAREDWIDTH = 1f;
-    private static final int aspectRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
-    private static final float WORLD_HEIGHT = 20;
-    private static final float WORLD_WIDTH = WORLD_HEIGHT*aspectRatio;
-    public static  final  float VELBALAX = 40;
-    public static  final  float VELBALAY = 40;
+    private static float aspectRatio = Gdx.graphics.getWidth()/Gdx.graphics.getHeight();
+    private static float WORLD_HEIGHT = 20;
+    private static float WORLD_WIDTH = WORLD_HEIGHT*16/9;
+    public static  final  float VELBALAX = 30;
+    public static  final  float VELBALAY = 30;
     public static final int BOTON_WIDTH = 1;
     public static final int BOTON_HEIGHT = 1;
     private final Float[] velocidadesX = {0f,VELBALAX};
@@ -45,13 +40,12 @@ public class MainGameScreen extends BaseScreen{
     public static Array<BalaBox2D> borrarBalas = new Array<BalaBox2D>();
     private Array<Body> paredesBody;
     private Array<Fixture> paredesFixture;
-    private long lastSpawnedBala,first;
+    private long  cronometro = 0;
+    private int lastSpawnedBala = 0, lastSpawnedPowerUp = 0,cronometroInvencible = 0;
     private BitmapFont textRenderer;
-    private int numBalas = 10,min = 0,seg = 0;
-    private PowerUpObject powerUp;
+    private int numBalas = 5,min = 0,seg = 0;
+    private Array<PowerUpObject> powerUps;
     private Batch batch;
-//    private Bate bate;
-    //private Touchpad touchpad;
     private Button botonIzq,botonDcha,botonArr,botonAbj,botonObj;
     private float lastX = 0,lastY = 0,offset = 10;
     private Texture textura = new Texture(Gdx.files.internal("circulo.png"));
@@ -64,81 +58,49 @@ public class MainGameScreen extends BaseScreen{
 
     @Override
     public void show() {
+//        if(aspectRatio < 16/9){
+//            aspectRatio = 16/9;
+//            WORLD_WIDTH = WORLD_HEIGHT*aspectRatio;
+//        }
         this.world = new World(new Vector2(0,0),true);
 
-            this.stage = new Stage(new ScalingViewport(Scaling.fit,WORLD_WIDTH,WORLD_HEIGHT));
-            this.camera = (OrthographicCamera) this.stage.getCamera();
-            this.textRenderer = new BitmapFont();
-            this.batch = new SpriteBatch();
-            this.batch.setProjectionMatrix(this.stage.getCamera().combined);
-//            this.botonObj = new Button(new SpriteDrawable(new Sprite(mapa)));
-//            this.botonObj.setPosition(WORLD_WIDTH-BOTON_WIDTH,WORLD_HEIGHT/2-BOTON_HEIGHT);
-//            this.botonObj.setWidth(BOTON_WIDTH);
-//            this.botonObj.setHeight(BOTON_HEIGHT);
-//            this.botonObj.addListener(new EventListener() {
-//                @Override
-//                public boolean handle(Event event) {
-//                    if(jugador.getPowerUp() != null){
-//                        //TODO Programar los objetos
-//                        switch (jugador.getPowerUp()){
-//                            case Bate:
-//
-//                                break;
-//
-//                            case BateDorado:
-//                                break;
-//
-//                            case Boton:
-//                                for (BalaBox2D bala : balas) {
-//                                    Body body = bala.getBody();
-//                                    body.setLinearVelocity(body.getLinearVelocity().x*-1,body.getLinearVelocity().y*-1);
-//                                }
-//                                break;
-//                        }
-//                        jugador.setPowerUp(null);
-//                    }
-//                    return true;
-//                }
-//            });
-//            this.stage.addActor(this.botonObj);
+        this.stage = new Stage(new ScalingViewport(Scaling.fit,WORLD_WIDTH,WORLD_HEIGHT));
+        this.camera = (OrthographicCamera) this.stage.getCamera();
+        this.textRenderer = new BitmapFont(Gdx.files.internal("fuente.fnt"));
+        this.batch = new SpriteBatch();
+        this.powerUps = new Array<PowerUpObject>();
+        this.batch.setProjectionMatrix(this.stage.getCamera().combined);
+
         this.jugador = new JugadorBox2D(this.world,mapa,new Vector2(5,5));
         this.contactListener = new MainGameContactListener(this.jugador,this.world);
-        this.lastSpawnedBala = TimeUtils.nanoTime();
+        this.lastSpawnedBala = getInstanteEnJuego();
         this.balas  = new Array<BalaBox2D>();
         this.paredesBody  = new Array<Body>();
         this.paredesFixture = new Array<Fixture>();
-//        this.bala = new BalaBox2D(this.world,textura,new Vector2( 3,3));
-        this.powerUp = new PowerUpObject(this.world,new Texture(Gdx.files.internal("bate.png")),new Vector2(15,15), PowerUpObject.TipoObj.Boton,TimeUtils.nanoTime());
-        //generarBotones();
 
         RocaBox2D roca = new RocaBox2D(world,mapa,new Vector2(10,10));
-//        SpriteDrawable fondo = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("fondostick.png"))));
-//        SpriteDrawable palanca = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("palanca.png"))));
-//        Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle(fondo,palanca);
-//        this.touchpad = new Touchpad(0.1f, touchpadStyle);
-//        this.touchpad.setBounds(1, 1, 7, 7);
+
         this.world.setContactListener(this.contactListener);
         generarParedes(this.world);
-//        this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
-//        this.stage.addActor(touchpad);
-//        this.balas.add(bala);
-//        this.stage.addActor(bala);
+
             this.stage.addActor(roca);
-            this.stage.addActor(this.powerUp);
             this.stage.addActor(this.jugador);
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureListener() {
             @Override
             public boolean touchDown(float x, float y, int pointer, int button) {
+                System.out.println(pointer);
                 if(pointer == 1){
                     if(jugador.getPowerUp() != null){
                         //TODO Programar los objetos
                         switch (jugador.getPowerUp()){
-                            case Bate:
-
+                            case Corazon:
+                                if(jugador.getHp() < JugadorBox2D.maxHP){
+                                    jugador.addHp(1);
+                                }
                                 break;
 
-                            case BateDorado:
-                                break;
+//                            case C:
+//                                break;
 
                             case Boton:
                                 for (BalaBox2D bala : balas) {
@@ -147,9 +109,8 @@ public class MainGameScreen extends BaseScreen{
                                 }
 
                             case Chaleco:
-                                if(jugador.getHp() < 5){
-                                    jugador.addHp(1);
-                                }
+                                cronometroInvencible = getInstanteEnJuego();
+                                jugador.setInvencible(true);
                                 break;
                             default:
                         }
@@ -212,7 +173,7 @@ public class MainGameScreen extends BaseScreen{
 
             }
         }));
-        this.first = TimeUtils.nanoTime();
+        this.cronometro = TimeUtils.nanoTime();
     }
 
     @Override
@@ -220,12 +181,12 @@ public class MainGameScreen extends BaseScreen{
         //Gdx.gl.glClearColor(0,0.7f,0.3f,1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.camera.lookAt(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
-        if(this.balas.size < this.numBalas && TimeUtils.nanoTime()-this.lastSpawnedBala >= 1000000000){
+        if(this.balas.size < this.numBalas && getInstanteEnJuego() - this.lastSpawnedBala >= 1){
             generarBala();
         }
 
-        if(TimeUtils.nanoTime() - this.first >= 1000000000){
-            this.first = TimeUtils.nanoTime();
+        if(TimeUtils.nanoTime() - this.cronometro >= 1000000000){
+            this.cronometro = TimeUtils.nanoTime();
             this.seg++;
             if(this.seg >= 60){
                 this.seg = 0;
@@ -233,69 +194,68 @@ public class MainGameScreen extends BaseScreen{
             }
         }
 
-        if(this.powerUp != null && this.powerUp.isDesaparecer()){
-            deletePowerUp = true;
-        }
-
-//        this.jugador.getBody().setLinearVelocity(new Vector2(this.touchpad.getKnobPercentX()*velocidadesX[1]*0.3f,this.touchpad.getKnobPercentY()*velocidadesY[1]*0.3f));
-
-//        if(this.bate != null && this.bate.vecesGolpeado >= 3){
-//            this.world.destroyJoint(this.bate.joint);
-//            this.bate.remove();
-//            this.bate.dispose();
-//            this.stage.getActors().removeIndex(this.stage.getActors().indexOf(this.bate, true));
-//        }
-
-//        if(this.jugador.getPowerUp() != null){
-//            switch (jugador.getPowerUp()){
-//                case Bate:
-//                    this.bate = new Bate(world,new Texture(Gdx.files.internal("bate.png")),this.jugador,new Vector2(this.jugador.getBody().getPosition().x+1,this.jugador.getBody().getPosition().y));
-//                    DistanceJointDef jointDef = new DistanceJointDef();
-//                    jointDef.bodyA = this.jugador.getBody();
-//                    jointDef.bodyB = this.bate.getBody();
-//                    jointDef.collideConnected = false;
-//                    jointDef.localAnchorA.set(0.6f,0);
-//                    this.bate.joint = this.world.createJoint(jointDef);
-//                    this.stage.addActor(this.bate);
-//                    break;
-//
-//                case BateDorado:
-//                    break;
-//
-//                case Boton:
-//                    break;
-//            }
-//        }
-
-        if(deletePowerUp){
-            for (Actor a:this.stage.getActors()) {
-                if(a == this.powerUp){
-                    a.remove();
-                    this.powerUp.dispose();
+        for (PowerUpObject powerUp:this.powerUps) {
+            if(powerUp.isDesaparecer()){
+                for (Actor a:this.stage.getActors()) {
+                    if(a == powerUp){
+                        a.remove();
+                        powerUp.dispose();
+                    }
                 }
             }
-            deletePowerUp = false;
         }
+        if(getInstanteEnJuego() - this.lastSpawnedPowerUp >= 5){
+            if(MathUtils.random(1,100) > 60){
+                generarPowerUp();
+            }
+        }
+
+        if(this.jugador.isInvencible() && getInstanteEnJuego() - this.cronometroInvencible >= 7){
+            this.jugador.setInvencible(false);
+        }
+
+
 
         if(borrarBalas.size > 0){
             eliminarBala();
         }
 
-            this.batch.begin();
-            this.batch.setColor(Color.BLUE);
-            this.batch.draw(this.mapa,0,0,WORLD_WIDTH,WORLD_HEIGHT);
-            this.textRenderer.setColor(Color.WHITE);
-            this.textRenderer.getData().setScale(0.2f,0.2f);
-            this.textRenderer.draw(this.batch,String.format("%d: %d",this.min,this.seg),WORLD_WIDTH/2 -3,WORLD_HEIGHT);
-            this.textRenderer.draw(this.batch,String.format("%d",Gdx.graphics.getFramesPerSecond()),WORLD_WIDTH-4,WORLD_HEIGHT);
-            this.batch.end();
+        this.batch.begin();
+        //this.batch.setColor(Color.BLUE);
+        this.batch.draw(this.mapa,0,0,WORLD_WIDTH,WORLD_HEIGHT);
+        this.textRenderer.setColor(Color.WHITE);
+        this.textRenderer.getData().setScale(0.2f,0.2f);
+        this.textRenderer.draw(this.batch,String.format("%d : %d",this.min,this.seg),WORLD_WIDTH/2 -3,WORLD_HEIGHT);
+        this.textRenderer.draw(this.batch,String.format("%d",Gdx.graphics.getFramesPerSecond()),WORLD_WIDTH-4,WORLD_HEIGHT);
+        Pixmap pixmap = new Pixmap(Gdx.files.internal("corazon.png"));
+        Pixmap pixmapScalado = new Pixmap(5,5,pixmap.getFormat());
+        pixmapScalado.drawPixmap(pixmap,0,0,pixmap.getWidth(),pixmap.getHeight(),0,0,pixmapScalado.getWidth(),pixmapScalado.getHeight());
+        Texture tex = new Texture(pixmapScalado);
+
+        for (int i = 0; i < this.jugador.getHp(); i++) {
+
+            this.batch.draw(tex,10,0);
+        }
+        this.batch.end();
         this.world.step(delta,6,2);
-            this.stage.act(delta);
-            this.stage.draw();
+        this.stage.act(delta);
+        this.stage.draw();
+    }
+
+    private void generarPowerUp() {
+        int max = PowerUpObject.TipoObj.values().length;
+        lastSpawnedPowerUp = getInstanteEnJuego();
+        PowerUpObject powerUp = new PowerUpObject(this.world,new Texture(Gdx.files.internal("boton2.png")),new Vector2(MathUtils.random(PowerUpObject.WIDTH,WORLD_WIDTH-PowerUpObject.WIDTH),MathUtils.random(PowerUpObject.HEIGHT,WORLD_HEIGHT -2 -PowerUpObject.HEIGHT)), PowerUpObject.TipoObj.values()[MathUtils.random(0,max-1)],TimeUtils.nanoTime());
+        this.powerUps.add(powerUp);
+        this.stage.addActor(powerUp);
+    }
+
+    public int getInstanteEnJuego() {
+        return (this.min*60)+this.seg;
     }
 
     private void generarBala() {
-        this.lastSpawnedBala = TimeUtils.nanoTime();
+        this.lastSpawnedBala = getInstanteEnJuego();
         this.bala = new BalaBox2D(this.world,this.textura,new Vector2(WORLD_WIDTH/2,WORLD_HEIGHT/2));
         this.bala.getBody().applyLinearImpulse(new Vector2(velocidadesX[MathUtils.random(1)], velocidadesY[MathUtils.random(1)]),new Vector2(0,0),true);
         this.balas.add(this.bala);
@@ -431,12 +391,7 @@ public class MainGameScreen extends BaseScreen{
         for (BalaBox2D balaActual : balas) {
             balaActual.dispose();
         }
-
         destruirParedes();
-
-//        if(this.bate != null){
-//            this.bate.dispose();
-//        }
 
         this.batch.dispose();
         this.textRenderer.dispose();
@@ -447,13 +402,8 @@ public class MainGameScreen extends BaseScreen{
     }
 
     @Override
-    public void resize(int width, int height) {//TODO:Destruir paredes y generar unas nuevas
-        //System.out.println(aspectRatio != Gdx.graphics.getWidth()/Gdx.graphics.getHeight() && this.paredesBody != null && this.paredesFixture != null && this.paredesFixture.size > 0 && this.paredesBody.size > 0);
+    public void resize(int width, int height) {
         this.stage.getViewport().update(width,height);
-        /*if(aspectRatio != Gdx.graphics.getWidth()/Gdx.graphics.getHeight() && this.paredesBody != null && this.paredesFixture != null && this.paredesFixture.size > 0 && this.paredesBody.size > 0){
-            destruirParedes();
-            generarParedes(this.world);
-        }*/
     }
 
     public World getWorld() {
@@ -463,6 +413,94 @@ public class MainGameScreen extends BaseScreen{
     public JugadorBox2D getJugador() {
         return jugador;
     }
+
+
+//            this.botonObj = new Button(new SpriteDrawable(new Sprite(mapa)));
+//            this.botonObj.setPosition(WORLD_WIDTH-BOTON_WIDTH,WORLD_HEIGHT/2-BOTON_HEIGHT);
+//            this.botonObj.setWidth(BOTON_WIDTH);
+//            this.botonObj.setHeight(BOTON_HEIGHT);
+//            this.botonObj.addListener(new EventListener() {
+//                @Override
+//                public boolean handle(Event event) {
+//                    if(jugador.getPowerUp() != null){
+//
+//                        switch (jugador.getPowerUp()){
+//                            case Bate:
+//
+//                                break;
+//
+//                            case BateDorado:
+//                                break;
+//
+//                            case Boton:
+//                                for (BalaBox2D bala : balas) {
+//                                    Body body = bala.getBody();
+//                                    body.setLinearVelocity(body.getLinearVelocity().x*-1,body.getLinearVelocity().y*-1);
+//                                }
+//                                break;
+//                        }
+//                        jugador.setPowerUp(null);
+//                    }
+//                    return true;
+//                }
+//            });
+//            this.stage.addActor(this.botonObj);
+
+
+//        if(this.bate != null){
+//            this.bate.dispose();
+
+//        }
+
+
+    //System.out.println(aspectRatio != Gdx.graphics.getWidth()/Gdx.graphics.getHeight() && this.paredesBody != null && this.paredesFixture != null && this.paredesFixture.size > 0 && this.paredesBody.size > 0);
+
+/*if(aspectRatio != Gdx.graphics.getWidth()/Gdx.graphics.getHeight() && this.paredesBody != null && this.paredesFixture != null && this.paredesFixture.size > 0 && this.paredesBody.size > 0){
+            destruirParedes();
+            generarParedes(this.world);
+        }*/
+
+
+    //        this.bala = new BalaBox2D(this.world,textura,new Vector2( 3,3));
+//        generarPowerUp();
+    //generarBotones();
+
+    //        SpriteDrawable fondo = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("fondostick.png"))));
+//        SpriteDrawable palanca = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("palanca.png"))));
+//        Touchpad.TouchpadStyle touchpadStyle = new Touchpad.TouchpadStyle(fondo,palanca);
+//        this.touchpad = new Touchpad(0.1f, touchpadStyle);
+//        this.touchpad.setBounds(1, 1, 7, 7);
+
+//        this.jugador.getBody().setLinearVelocity(new Vector2(this.touchpad.getKnobPercentX()*velocidadesX[1]*0.3f,this.touchpad.getKnobPercentY()*velocidadesY[1]*0.3f));
+
+//        if(this.bate != null && this.bate.vecesGolpeado >= 3){
+//            this.world.destroyJoint(this.bate.joint);
+//            this.bate.remove();
+//            this.bate.dispose();
+//            this.stage.getActors().removeIndex(this.stage.getActors().indexOf(this.bate, true));
+//        }
+
+//        if(this.jugador.getPowerUp() != null){
+//            switch (jugador.getPowerUp()){
+//                case Bate:
+//                    this.bate = new Bate(world,new Texture(Gdx.files.internal("bate.png")),this.jugador,new Vector2(this.jugador.getBody().getPosition().x+1,this.jugador.getBody().getPosition().y));
+//                    DistanceJointDef jointDef = new DistanceJointDef();
+//                    jointDef.bodyA = this.jugador.getBody();
+//                    jointDef.bodyB = this.bate.getBody();
+//                    jointDef.collideConnected = false;
+//                    jointDef.localAnchorA.set(0.6f,0);
+//                    this.bate.joint = this.world.createJoint(jointDef);
+//                    this.stage.addActor(this.bate);
+//                    break;
+//
+//                case BateDorado:
+//                    break;
+//
+//                case Boton:
+//                    break;
+//            }
+//        }
+
 
 
 

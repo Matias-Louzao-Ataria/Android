@@ -7,4 +7,5 @@ public class CategoryBits {
     public static final short BALA = 4;
     public static final short ROCA = 5;
     public static final short OBJETO = 6;
+    public static final short TRAMPA = 7;
 }

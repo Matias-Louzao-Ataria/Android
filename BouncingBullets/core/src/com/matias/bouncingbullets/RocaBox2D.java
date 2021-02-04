@@ -12,6 +12,9 @@ public class RocaBox2D extends BaseActor {
         this.world = world;
         this.texture = texture;
 
+        WIDTH = 1f;
+        HEIGHT = 1f;
+
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(posicion);
         bodyDef.type = BodyDef.BodyType.StaticBody;

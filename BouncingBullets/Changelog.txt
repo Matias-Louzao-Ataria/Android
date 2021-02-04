@@ -71,3 +71,8 @@ Añadida cantidad de puntos de salud para el jugador.
 Añadida capacidad de ser invencible para el jugador.
 Modificado el código de aparición de los objetos de forma que aparece un objeto aleatorio en un lugar del mapa aleatorio.
 Arreglado bug con las dimensiones de las rocas.
+
+v12:
+Corregido error por el que el jugador no podía recoger los objetos.
+Ahora los eventos temporales están controlados por el cronómetro interno de la partida.
+

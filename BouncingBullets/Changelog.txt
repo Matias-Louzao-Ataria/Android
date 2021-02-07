@@ -76,3 +76,13 @@ v12:
 Corregido error por el que el jugador no podía recoger los objetos.
 Ahora los eventos temporales están controlados por el cronómetro interno de la partida.
 
+v13:
+Añadida barra de vida del jugador.
+Añadido icono del objeto obtenido por el jugador.
+Ahora los iconos de los objetos son los correspondientes en el mapa.
+Corregida inconsistencia con el atributo hp del jugador el cual no se inicializaba al valor máximo si este cambiaba.
+
+v14:
+Añadido el meú principal.
+Añadida estructura básica de la pantalla de opciones.
+Cambiada la clase "BaseScreen" a la que se le añade un "Stage".

@@ -1,0 +1,43 @@
+{
+	"name": "Mapa test",
+	"difficulty":"from 1 to 3 1 beeing easy and 3 beeing hard",
+	"backgroundColor":"if not texture",
+	"BackgroundTexture":"if not color",
+	"powerUpSpawnPoint":
+	{
+	"x":1,
+	"y":1
+	},
+	"rocas": [{
+		"x": 50,
+		"y": 50
+	}, {
+		"x": 120,
+		"y": 70
+	}],
+	"paredes": "These could be emulated with an array of rocas",
+	"paredesTest":[
+	{
+		"x":1,
+		"y":1
+	},
+	{
+		"x":2,
+		"y":2
+	}
+	]
+}
+
+[{
+			"left": 0,
+			"top": 20,
+			"right": 40,
+			"botom": 40
+		}, 
+		{
+			"left": 120,
+			"top": 200,
+			"right": 150,
+			"botom": 210
+		}
+	]

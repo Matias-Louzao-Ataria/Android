@@ -2,10 +2,13 @@ package com.matias.bouncingbullets;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public abstract class BaseScreen implements Screen {
 
-    protected Main parent;
+    private Main parent;
+    private Stage stage;
 
     public BaseScreen(Main parent) {
         this.parent = parent;
@@ -18,6 +21,18 @@ public abstract class BaseScreen implements Screen {
     @Override
     public void render(float delta) {
 
+    }
+
+    public Main getParent() {
+        return parent;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     @Override

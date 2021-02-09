@@ -11,21 +11,22 @@ import java.util.Objects;
 public class PowerUpObject extends BaseActor{
 
     public static enum TipoObj{
-        Bate,
-        BateDorado,
+        Corazon,
         Boton,
         Chaleco
     };
 
-    private int timer = 10;
+    private final int timer = 10;
     private long segSpawn = 0;
     private boolean desaparecer = false;
+    private PowerUpObject.TipoObj tipo;
 
     public PowerUpObject(World world, Texture texture, Vector2 posicion, TipoObj objType,long nanoseconds) {
         this.world = world;
         this.texture = texture;
 
         this.segSpawn = nanoseconds;
+        this.tipo = objType;
 
         WIDTH = 1f;
         HEIGHT = 1f;
@@ -43,24 +44,25 @@ public class PowerUpObject extends BaseActor{
         shape.setAsBox(WIDTH, HEIGHT);
         fixtureDef.shape = shape;
         this.fixture = this.body.createFixture(fixtureDef);
-        this.fixture.setUserData(objType);
+        this.fixture.setUserData(this);
         shape.dispose();
         this.setSize(WIDTH *2, HEIGHT *2);
     }
 
     @Override
     public void act(float delta) {
-        if(TimeUtils.nanoTime() - segSpawn >= timer* 1000000000L){
+        if(TimeUtils.nanoTime() - segSpawn >= timer * 1000000000L){
             desaparecer = true;
         }
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if(TimeUtils.nanoTime() - segSpawn > 4){
+        int a = timer-3;
+        if(TimeUtils.nanoTime() - segSpawn < a * 1000000000L){
             dibujuar(batch);
         }else{
-            if(TimeUtils.nanoTime()/1000000000 % 2 == 0){
+            if(TimeUtils.nanoTime() % 2 == 0){
                 dibujuar(batch);
             }
         }
@@ -81,6 +83,14 @@ public class PowerUpObject extends BaseActor{
 
     public boolean isDesaparecer() {
         return desaparecer;
+    }
+
+    public TipoObj getTipo() {
+        return tipo;
+    }
+
+    public void setDesaparecer(boolean desaparecer) {
+        this.desaparecer = desaparecer;
     }
 
     public Body getBody() {

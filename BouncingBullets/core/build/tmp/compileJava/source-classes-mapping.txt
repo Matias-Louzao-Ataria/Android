@@ -7,6 +7,8 @@ com/matias/bouncingbullets/BaseActor.java
  com.matias.bouncingbullets.BaseActor
 com/matias/bouncingbullets/JugadorBox2D.java
  com.matias.bouncingbullets.JugadorBox2D
+com/matias/bouncingbullets/oldActors/Bate.java
+ com.matias.bouncingbullets.oldActors.Bate
 com/matias/bouncingbullets/oldActors/Bala.java
  com.matias.bouncingbullets.oldActors.Bala
 com/matias/bouncingbullets/Generators.java
@@ -34,8 +36,6 @@ com/matias/bouncingbullets/BaseScreen.java
  com.matias.bouncingbullets.BaseScreen
 com/matias/bouncingbullets/Main.java
  com.matias.bouncingbullets.Main
-com/matias/bouncingbullets/Bate.java
- com.matias.bouncingbullets.Bate
 com/matias/bouncingbullets/BalaBox2D.java
  com.matias.bouncingbullets.BalaBox2D
 com/matias/bouncingbullets/TransparentTouchpad.java

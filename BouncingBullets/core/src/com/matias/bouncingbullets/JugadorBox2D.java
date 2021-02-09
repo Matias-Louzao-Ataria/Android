@@ -6,8 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 public class JugadorBox2D extends BaseActor {
+    public static final int maxHP = 7;
     private PowerUpObject.TipoObj powerUp;
-    private int hp = 5;
+    private int hp = 7;
+    private boolean invencible = false;
 
     public JugadorBox2D(World world, Texture texture, Vector2 posicion) {
         this.world = world;
@@ -59,6 +61,14 @@ public class JugadorBox2D extends BaseActor {
 
     public void addHp(int hp){
         this.hp += hp;
+    }
+
+    public boolean isInvencible() {
+        return invencible;
+    }
+
+    public void setInvencible(boolean invencible) {
+        this.invencible = invencible;
     }
 
     public void dispose(){

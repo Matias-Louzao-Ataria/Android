@@ -62,3 +62,17 @@ Añadida la base de los objetos.
 Añadida forma de usar objetos. 
 Arreglado bug con las colisiones del jugador.
 Ahora las balas desaparecen al chocar con el jugador y se genera una nueva en su lugar.
+
+v11:
+Ahora los objetos desaparecen al cabo de 10 segundos.
+Cada 15 segundos si no existe ningún objeto en el mapa ahora se intenta generar uno con un 40% de probabilidades de éxito.
+Añadida forma de usar los objetos con el segundo dedo encima de la pantalla.
+Añadida cantidad de puntos de salud para el jugador.
+Añadida capacidad de ser invencible para el jugador.
+Modificado el código de aparición de los objetos de forma que aparece un objeto aleatorio en un lugar del mapa aleatorio.
+Arreglado bug con las dimensiones de las rocas.
+
+v12:
+Corregido error por el que el jugador no podía recoger los objetos.
+Ahora los eventos temporales están controlados por el cronómetro interno de la partida.
+

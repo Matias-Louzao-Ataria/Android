@@ -1,14 +1,16 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 14
-# pg_map_id: 346744b
+# pg_map_id: 920e89e
 com.badlogic.gdx.Application -> a.a.a.a:
+    void addLifecycleListener(com.badlogic.gdx.LifecycleListener) -> a
     void error(java.lang.String,java.lang.String) -> a
     com.badlogic.gdx.Application$ApplicationType getType() -> a
     void log(java.lang.String,java.lang.String,java.lang.Throwable) -> a
     void postRunnable(java.lang.Runnable) -> a
     com.badlogic.gdx.Graphics getGraphics() -> b
     void log(java.lang.String,java.lang.String) -> b
+    void removeLifecycleListener(com.badlogic.gdx.LifecycleListener) -> b
     com.badlogic.gdx.ApplicationListener getApplicationListener() -> c
 com.badlogic.gdx.Application$ApplicationType -> a.a.a.a$a:
     com.badlogic.gdx.Application$ApplicationType Android -> a
@@ -85,9 +87,11 @@ com.badlogic.gdx.Graphics$DisplayMode -> a.a.a.h$b:
     int refreshRate -> c
     int width -> a
 com.badlogic.gdx.Input -> a.a.a.i:
+    boolean isTouched(int) -> a
     void setInputProcessor(com.badlogic.gdx.InputProcessor) -> a
-    int getX() -> d
-    int getY() -> e
+    long getCurrentEventTime() -> d
+    int getX() -> e
+    int getY() -> f
 com.badlogic.gdx.Input$OnscreenKeyboardType -> a.a.a.i$a:
     com.badlogic.gdx.Input$OnscreenKeyboardType Default -> a
     com.badlogic.gdx.Input$OnscreenKeyboardType URI -> f
@@ -104,6 +108,7 @@ com.badlogic.gdx.InputAdapter -> a.a.a.j:
     boolean keyDown(int) -> a
     boolean keyTyped(char) -> a
     boolean mouseMoved(int,int) -> a
+    boolean scrolled(float,float) -> a
     boolean keyUp(int) -> b
 com.badlogic.gdx.InputProcessor -> a.a.a.k:
     boolean keyDown(int) -> a
@@ -164,6 +169,7 @@ com.badlogic.gdx.backends.android.AndroidApplication -> a.a.a.q.a.a:
     void createWakeLock(boolean) -> b
     com.badlogic.gdx.Graphics getGraphics() -> b
     void log(java.lang.String,java.lang.String) -> b
+    void removeLifecycleListener(com.badlogic.gdx.LifecycleListener) -> b
     com.badlogic.gdx.ApplicationListener getApplicationListener() -> c
     void hideStatusBar(boolean) -> c
     com.badlogic.gdx.utils.Array getExecutedRunnables() -> d
@@ -303,8 +309,9 @@ com.badlogic.gdx.backends.android.AndroidGL20 -> a.a.a.q.a.j:
     void glDisable(int) -> m
     void glDisableVertexAttribArray(int) -> n
     int glCreateShader(int) -> o
-    void glCompileShader(int) -> q
-    void glDeleteBuffer(int) -> r
+    void glDeleteTexture(int) -> q
+    void glCompileShader(int) -> r
+    void glDeleteBuffer(int) -> s
 com.badlogic.gdx.backends.android.AndroidGL30 -> a.a.a.q.a.k:
     void glDrawArraysInstanced(int,int,int,int) -> a
     void glDrawBuffers(int,java.nio.IntBuffer) -> a
@@ -423,9 +430,10 @@ com.badlogic.gdx.backends.android.DefaultAndroidAudio -> a.a.a.q.a.t:
     void pause() -> c
 com.badlogic.gdx.backends.android.DefaultAndroidInput -> a.a.a.q.a.u:
     int keyCount -> n
+    long currentEventTimeStamp -> J
     com.badlogic.gdx.utils.Pool usedTouchEvents -> b
-    boolean requestFocus -> P
     com.badlogic.gdx.Input$Orientation nativeOrientation -> I
+    com.badlogic.gdx.backends.android.AndroidMouseHandler mouseHandler -> P
     com.badlogic.gdx.utils.IntSet keysToCatch -> A
     boolean[] justPressedKeys -> q
     float[] rotationVectorValues -> E
@@ -434,10 +442,8 @@ com.badlogic.gdx.backends.android.DefaultAndroidInput -> a.a.a.q.a.u:
     java.util.ArrayList keyListeners -> c
     int[] touchX -> f
     boolean[] touched -> j
-    java.util.ArrayList genericMotionListeners -> N
     int[] deltaX -> h
-    android.hardware.SensorEventListener accelerometerListener -> J
-    android.hardware.SensorEventListener compassListener -> L
+    android.hardware.SensorEventListener gyroscopeListener -> L
     float[] gyroscopeValues -> v
     com.badlogic.gdx.backends.android.AndroidApplicationConfiguration config -> H
     int[] realId -> l
@@ -448,38 +454,42 @@ com.badlogic.gdx.backends.android.DefaultAndroidInput -> a.a.a.q.a.u:
     com.badlogic.gdx.backends.android.AndroidTouchHandler touchHandler -> y
     boolean keyJustPressed -> p
     com.badlogic.gdx.InputProcessor processor -> G
-    com.badlogic.gdx.backends.android.AndroidMouseHandler mouseHandler -> O
+    android.hardware.SensorEventListener rotationVectorListener -> N
     boolean[] justPressedButtons -> r
     java.util.ArrayList keyEvents -> d
     float[] magneticFieldValues -> D
+    boolean requestFocus -> Q
     boolean accelerometerAvailable -> t
+    java.util.ArrayList genericMotionListeners -> O
     int[] touchY -> g
     int[] deltaY -> i
     int sleepTime -> z
-    android.hardware.SensorEventListener gyroscopeListener -> K
+    android.hardware.SensorEventListener accelerometerListener -> K
     android.hardware.SensorManager manager -> s
-    android.hardware.SensorEventListener rotationVectorListener -> M
+    android.hardware.SensorEventListener compassListener -> M
     float[] accelerometerValues -> u
     android.content.Context context -> x
     boolean justTouched -> F
     int[] button -> k
     boolean compassAvailable -> B
     int getAndroidInputType(com.badlogic.gdx.Input$OnscreenKeyboardType) -> a
-    int lookUpPointerIndex(int) -> a
+    boolean isTouched(int) -> a
     void onPause() -> a
     float[] resize(float[]) -> a
     int[] resize(int[]) -> a
     boolean[] resize(boolean[]) -> a
     void setInputProcessor(com.badlogic.gdx.InputProcessor) -> a
     void setKeyboardAvailable(boolean) -> a
+    int lookUpPointerIndex(int) -> b
     void processEvents() -> b
     void onResume() -> c
-    int getX() -> d
-    int getY() -> e
-    int getFreePointerIndex() -> f
-    int getRotation() -> g
-    void registerSensorListeners() -> h
-    void unregisterSensorListeners() -> i
+    long getCurrentEventTime() -> d
+    int getX() -> e
+    int getY() -> f
+    int getFreePointerIndex() -> g
+    int getRotation() -> h
+    void registerSensorListeners() -> i
+    void unregisterSensorListeners() -> j
 com.badlogic.gdx.backends.android.DefaultAndroidInput$1 -> a.a.a.q.a.u$a:
     com.badlogic.gdx.backends.android.DefaultAndroidInput$KeyEvent newObject() -> a
     java.lang.Object newObject() -> a
@@ -644,9 +654,9 @@ com.badlogic.gdx.graphics.Cubemap -> a.a.a.s.d:
     void clearAllCubemaps(com.badlogic.gdx.Application) -> a
     void load(com.badlogic.gdx.graphics.CubemapData) -> a
     void invalidateAllCubemaps(com.badlogic.gdx.Application) -> b
-    boolean isManaged() -> t
-    void reload() -> u
-    java.lang.String getManagedStatus() -> v
+    boolean isManaged() -> u
+    void reload() -> v
+    java.lang.String getManagedStatus() -> w
 com.badlogic.gdx.graphics.CubemapData -> a.a.a.s.e:
     void prepare() -> d
     boolean isManaged() -> e
@@ -708,8 +718,9 @@ com.badlogic.gdx.graphics.GL20 -> a.a.a.s.f:
     void glDisable(int) -> m
     void glDisableVertexAttribArray(int) -> n
     int glCreateShader(int) -> o
-    void glCompileShader(int) -> q
-    void glDeleteBuffer(int) -> r
+    void glDeleteTexture(int) -> q
+    void glCompileShader(int) -> r
+    void glDeleteBuffer(int) -> s
 com.badlogic.gdx.graphics.GL30 -> a.a.a.s.g:
     void glDrawArraysInstanced(int,int,int,int) -> a
     void glDrawBuffers(int,java.nio.IntBuffer) -> a
@@ -734,8 +745,9 @@ com.badlogic.gdx.graphics.GLTexture -> a.a.a.s.h:
     void uploadImageData(int,com.badlogic.gdx.graphics.TextureData) -> a
     void uploadImageData(int,com.badlogic.gdx.graphics.TextureData,int) -> a
     void bind() -> k
-    int getTextureObjectHandle() -> r
-    float getMaxAnisotropicFilterLevel() -> s
+    void delete() -> r
+    int getTextureObjectHandle() -> s
+    float getMaxAnisotropicFilterLevel() -> t
 com.badlogic.gdx.graphics.Mesh -> a.a.a.s.i:
     com.badlogic.gdx.graphics.glutils.VertexData vertices -> a
     com.badlogic.gdx.graphics.glutils.IndexData indices -> b
@@ -823,13 +835,14 @@ com.badlogic.gdx.graphics.Texture -> a.a.a.s.m:
     com.badlogic.gdx.graphics.TextureData data -> i
     void addManagedTexture(com.badlogic.gdx.Application,com.badlogic.gdx.graphics.Texture) -> a
     void clearAllTextures(com.badlogic.gdx.Application) -> a
+    void dispose() -> a
     void load(com.badlogic.gdx.graphics.TextureData) -> a
     void invalidateAllTextures(com.badlogic.gdx.Application) -> b
-    int getHeight() -> t
-    int getWidth() -> u
-    boolean isManaged() -> v
-    void reload() -> w
-    java.lang.String getManagedStatus() -> x
+    int getHeight() -> u
+    int getWidth() -> v
+    boolean isManaged() -> w
+    void reload() -> x
+    java.lang.String getManagedStatus() -> y
 com.badlogic.gdx.graphics.Texture$TextureFilter -> a.a.a.s.m$a:
     com.badlogic.gdx.graphics.Texture$TextureFilter Nearest -> b
     com.badlogic.gdx.graphics.Texture$TextureFilter MipMapLinearLinear -> h
@@ -854,8 +867,8 @@ com.badlogic.gdx.graphics.TextureArray -> a.a.a.s.n:
     void clearAllTextureArrays(com.badlogic.gdx.Application) -> a
     void load(com.badlogic.gdx.graphics.TextureArrayData) -> a
     void invalidateAllTextureArrays(com.badlogic.gdx.Application) -> b
-    boolean isManaged() -> t
-    void reload() -> u
+    boolean isManaged() -> u
+    void reload() -> v
 com.badlogic.gdx.graphics.TextureArrayData -> a.a.a.s.o:
     int getDepth() -> a
     int getWidth() -> b
@@ -915,6 +928,7 @@ com.badlogic.gdx.graphics.VertexAttributes$ReadonlyIterator -> a.a.a.s.r$b:
     int index -> b
     boolean valid -> c
 com.badlogic.gdx.graphics.g2d.Batch -> com.badlogic.gdx.graphics.g2d.a:
+    void draw(com.badlogic.gdx.graphics.Texture,float,float) -> a
     void draw(com.badlogic.gdx.graphics.Texture,float,float,float,float) -> a
     void draw(com.badlogic.gdx.graphics.Texture,float,float,float,float,float,float,float,float) -> a
     void draw(com.badlogic.gdx.graphics.Texture,float[],int,int) -> a
@@ -1084,6 +1098,7 @@ com.badlogic.gdx.graphics.g2d.SpriteBatch -> com.badlogic.gdx.graphics.g2d.g:
     int renderCalls -> r
     com.badlogic.gdx.graphics.Color color -> p
     int totalRenderCalls -> s
+    void draw(com.badlogic.gdx.graphics.Texture,float,float) -> a
     void draw(com.badlogic.gdx.graphics.Texture,float,float,float,float) -> a
     void draw(com.badlogic.gdx.graphics.Texture,float,float,float,float,float,float,float,float) -> a
     void draw(com.badlogic.gdx.graphics.Texture,float[],int,int) -> a
@@ -1355,7 +1370,24 @@ com.badlogic.gdx.graphics.glutils.MipMapGenerator -> com.badlogic.gdx.graphics.g
     void generateMipMapGLES20(int,com.badlogic.gdx.graphics.Pixmap) -> a
     void generateMipMapCPU(int,com.badlogic.gdx.graphics.Pixmap,int,int) -> b
     void generateMipMapDesktop(int,com.badlogic.gdx.graphics.Pixmap,int,int) -> c
-com.badlogic.gdx.graphics.glutils.ShaderProgram -> com.badlogic.gdx.graphics.glutils.p:
+com.badlogic.gdx.graphics.glutils.PixmapTextureData -> com.badlogic.gdx.graphics.glutils.p:
+    com.badlogic.gdx.graphics.Pixmap$Format format -> b
+    com.badlogic.gdx.graphics.Pixmap pixmap -> a
+    boolean managed -> e
+    boolean useMipMaps -> c
+    boolean disposePixmap -> d
+    void consumeCustomData(int) -> a
+    com.badlogic.gdx.graphics.TextureData$TextureDataType getType() -> a
+    int getWidth() -> b
+    int getHeight() -> c
+    void prepare() -> d
+    boolean isManaged() -> e
+    boolean isPrepared() -> f
+    boolean disposePixmap() -> g
+    com.badlogic.gdx.graphics.Pixmap consumePixmap() -> h
+    com.badlogic.gdx.graphics.Pixmap$Format getFormat() -> i
+    boolean useMipMaps() -> j
+com.badlogic.gdx.graphics.glutils.ShaderProgram -> com.badlogic.gdx.graphics.glutils.q:
     com.badlogic.gdx.utils.ObjectIntMap attributeSizes -> i
     int vertexShaderHandle -> l
     int fragmentShaderHandle -> m
@@ -1405,7 +1437,7 @@ com.badlogic.gdx.graphics.glutils.ShaderProgram -> com.badlogic.gdx.graphics.glu
     void fetchAttributes() -> v
     void fetchUniforms() -> w
     java.lang.String getManagedStatus() -> x
-com.badlogic.gdx.graphics.glutils.ShapeRenderer -> com.badlogic.gdx.graphics.glutils.q:
+com.badlogic.gdx.graphics.glutils.ShapeRenderer -> com.badlogic.gdx.graphics.glutils.r:
     com.badlogic.gdx.math.Matrix4 projectionMatrix -> c
     com.badlogic.gdx.math.Matrix4 transformMatrix -> d
     com.badlogic.gdx.graphics.Color color -> f
@@ -1428,14 +1460,14 @@ com.badlogic.gdx.graphics.glutils.ShapeRenderer -> com.badlogic.gdx.graphics.glu
     com.badlogic.gdx.math.Matrix4 getTransformMatrix() -> o
     void begin() -> p
     boolean isDrawing() -> r
-com.badlogic.gdx.graphics.glutils.ShapeRenderer$ShapeType -> com.badlogic.gdx.graphics.glutils.q$a:
+com.badlogic.gdx.graphics.glutils.ShapeRenderer$ShapeType -> com.badlogic.gdx.graphics.glutils.r$a:
     com.badlogic.gdx.graphics.glutils.ShapeRenderer$ShapeType[] $VALUES -> e
     com.badlogic.gdx.graphics.glutils.ShapeRenderer$ShapeType Filled -> d
     com.badlogic.gdx.graphics.glutils.ShapeRenderer$ShapeType Line -> c
     com.badlogic.gdx.graphics.glutils.ShapeRenderer$ShapeType Point -> b
     int glType -> a
     int getGlType() -> a
-com.badlogic.gdx.graphics.glutils.VertexArray -> com.badlogic.gdx.graphics.glutils.r:
+com.badlogic.gdx.graphics.glutils.VertexArray -> com.badlogic.gdx.graphics.glutils.s:
     java.nio.FloatBuffer buffer -> b
     java.nio.ByteBuffer byteBuffer -> c
     com.badlogic.gdx.graphics.VertexAttributes attributes -> a
@@ -1445,7 +1477,7 @@ com.badlogic.gdx.graphics.glutils.VertexArray -> com.badlogic.gdx.graphics.gluti
     void invalidate() -> d
     int getNumVertices() -> e
     com.badlogic.gdx.graphics.VertexAttributes getAttributes() -> f
-com.badlogic.gdx.graphics.glutils.VertexBufferObject -> com.badlogic.gdx.graphics.glutils.s:
+com.badlogic.gdx.graphics.glutils.VertexBufferObject -> com.badlogic.gdx.graphics.glutils.t:
     java.nio.FloatBuffer buffer -> b
     int usage -> f
     boolean isDirty -> g
@@ -1463,7 +1495,7 @@ com.badlogic.gdx.graphics.glutils.VertexBufferObject -> com.badlogic.gdx.graphic
     void invalidate() -> d
     int getNumVertices() -> e
     com.badlogic.gdx.graphics.VertexAttributes getAttributes() -> f
-com.badlogic.gdx.graphics.glutils.VertexBufferObjectSubData -> com.badlogic.gdx.graphics.glutils.t:
+com.badlogic.gdx.graphics.glutils.VertexBufferObjectSubData -> com.badlogic.gdx.graphics.glutils.u:
     java.nio.FloatBuffer buffer -> b
     boolean isDirect -> e
     int usage -> f
@@ -1480,7 +1512,7 @@ com.badlogic.gdx.graphics.glutils.VertexBufferObjectSubData -> com.badlogic.gdx.
     void invalidate() -> d
     int getNumVertices() -> e
     com.badlogic.gdx.graphics.VertexAttributes getAttributes() -> f
-com.badlogic.gdx.graphics.glutils.VertexBufferObjectWithVAO -> com.badlogic.gdx.graphics.glutils.u:
+com.badlogic.gdx.graphics.glutils.VertexBufferObjectWithVAO -> com.badlogic.gdx.graphics.glutils.v:
     java.nio.FloatBuffer buffer -> b
     java.nio.IntBuffer tmpHandle -> j
     int vaoHandle -> h
@@ -1502,13 +1534,75 @@ com.badlogic.gdx.graphics.glutils.VertexBufferObjectWithVAO -> com.badlogic.gdx.
     void invalidate() -> d
     int getNumVertices() -> e
     com.badlogic.gdx.graphics.VertexAttributes getAttributes() -> f
-com.badlogic.gdx.graphics.glutils.VertexData -> com.badlogic.gdx.graphics.glutils.v:
+com.badlogic.gdx.graphics.glutils.VertexData -> com.badlogic.gdx.graphics.glutils.w:
     void setVertices(float[],int,int) -> a
     void unbind(com.badlogic.gdx.graphics.glutils.ShaderProgram,int[]) -> a
     void bind(com.badlogic.gdx.graphics.glutils.ShaderProgram,int[]) -> b
     void invalidate() -> d
     int getNumVertices() -> e
     com.badlogic.gdx.graphics.VertexAttributes getAttributes() -> f
+com.badlogic.gdx.input.GestureDetector -> a.a.a.t.a:
+    long lastTapTime -> i
+    float lastTapY -> k
+    int lastTapButton -> l
+    boolean pinching -> o
+    int tapCount -> h
+    float longPressSeconds -> e
+    float tapRectangleHeight -> c
+    com.badlogic.gdx.utils.Timer$Task longPressTask -> y
+    float tapRectangleCenterY -> s
+    com.badlogic.gdx.math.Vector2 initialPointer2 -> x
+    com.badlogic.gdx.math.Vector2 pointer2 -> v
+    boolean longPressFired -> n
+    float lastTapX -> j
+    int lastTapPointer -> m
+    boolean panning -> p
+    long maxFlingDelay -> f
+    float tapRectangleWidth -> b
+    long tapCountInterval -> d
+    boolean inTapRectangle -> g
+    float tapRectangleCenterX -> r
+    long touchDownTime -> t
+    com.badlogic.gdx.input.GestureDetector$GestureListener listener -> a
+    com.badlogic.gdx.input.GestureDetector$VelocityTracker tracker -> q
+    com.badlogic.gdx.math.Vector2 initialPointer1 -> w
+    com.badlogic.gdx.math.Vector2 pointer1 -> u
+    boolean touchDown(float,float,int,int) -> a
+    boolean touchDown(int,int,int,int) -> a
+    boolean touchDragged(float,float,int) -> a
+    boolean touchDragged(int,int,int) -> a
+    boolean isWithinTapRectangle(float,float,float,float) -> b
+    boolean touchUp(float,float,int,int) -> b
+    boolean touchUp(int,int,int,int) -> b
+com.badlogic.gdx.input.GestureDetector$1 -> a.a.a.t.a$a:
+    com.badlogic.gdx.input.GestureDetector this$0 -> f
+com.badlogic.gdx.input.GestureDetector$GestureListener -> a.a.a.t.a$b:
+    boolean fling(float,float,int) -> a
+    boolean pan(float,float,float,float) -> a
+    boolean panStop(float,float,int,int) -> a
+    boolean pinch(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2) -> a
+    void pinchStop() -> a
+    boolean zoom(float,float) -> a
+    boolean longPress(float,float) -> b
+    boolean touchDown(float,float,int,int) -> b
+    boolean tap(float,float,int,int) -> c
+com.badlogic.gdx.input.GestureDetector$VelocityTracker -> a.a.a.t.a$c:
+    long lastTime -> f
+    float[] meanY -> i
+    float deltaY -> e
+    float[] meanX -> h
+    float deltaX -> d
+    float lastY -> c
+    int numSamples -> g
+    float lastX -> b
+    int sampleSize -> a
+    long[] meanTime -> j
+    float getAverage(float[],int) -> a
+    long getAverage(long[],int) -> a
+    float getVelocityX() -> a
+    void start(float,float,long) -> a
+    float getVelocityY() -> b
+    void update(float,float,long) -> b
 com.badlogic.gdx.math.Affine2 -> com.badlogic.gdx.math.a:
     float m12 -> f
     float m11 -> e
@@ -1531,6 +1625,8 @@ com.badlogic.gdx.math.MathUtils -> com.badlogic.gdx.math.c:
     float cosDeg(float) -> a
     boolean isEqual(float,float,float) -> a
     boolean isPowerOfTwo(int) -> a
+    float random(float,float) -> a
+    int random(int,int) -> a
     int nextPowerOfTwo(int) -> b
     float sinDeg(float) -> b
     int random(int) -> c
@@ -1585,8 +1681,9 @@ com.badlogic.gdx.math.Vector -> com.badlogic.gdx.math.k:
 com.badlogic.gdx.math.Vector2 -> com.badlogic.gdx.math.i:
     float y -> b
     float x -> a
+    float dst(com.badlogic.gdx.math.Vector2) -> a
     com.badlogic.gdx.math.Vector2 set(float,float) -> a
-    com.badlogic.gdx.math.Vector2 set(com.badlogic.gdx.math.Vector2) -> a
+    com.badlogic.gdx.math.Vector2 set(com.badlogic.gdx.math.Vector2) -> b
 com.badlogic.gdx.math.Vector3 -> com.badlogic.gdx.math.j:
     float z -> c
     float y -> b
@@ -1609,8 +1706,8 @@ com.badlogic.gdx.math.Vector3 -> com.badlogic.gdx.math.j:
 com.badlogic.gdx.math.collision.Ray -> com.badlogic.gdx.math.l.a:
     com.badlogic.gdx.math.Vector3 direction -> b
     com.badlogic.gdx.math.Vector3 origin -> a
-com.badlogic.gdx.net.NetJavaImpl -> a.a.a.t.a:
-com.badlogic.gdx.net.NetJavaImpl$1 -> a.a.a.t.a$a:
+com.badlogic.gdx.net.NetJavaImpl -> a.a.a.u.a:
+com.badlogic.gdx.net.NetJavaImpl$1 -> a.a.a.u.a$a:
     java.util.concurrent.atomic.AtomicInteger threadID -> a
 com.badlogic.gdx.physics.box2d.Body -> com.badlogic.gdx.physics.box2d.Body:
     com.badlogic.gdx.utils.Array joints -> e
@@ -1621,12 +1718,17 @@ com.badlogic.gdx.physics.box2d.Body -> com.badlogic.gdx.physics.box2d.Body:
     float[] tmp -> b
     com.badlogic.gdx.math.Vector2 position -> f
     void applyLinearImpulse(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,boolean) -> a
+    com.badlogic.gdx.physics.box2d.Fixture createFixture(com.badlogic.gdx.physics.box2d.FixtureDef) -> a
     com.badlogic.gdx.physics.box2d.Fixture createFixture(com.badlogic.gdx.physics.box2d.Shape,float) -> a
-    com.badlogic.gdx.math.Vector2 getLinearVelocity() -> a
+    void destroyFixture(com.badlogic.gdx.physics.box2d.Fixture) -> a
+    com.badlogic.gdx.utils.Array getFixtureList() -> a
     void reset(long) -> a
     void setLinearVelocity(float,float) -> a
     void setLinearVelocity(com.badlogic.gdx.math.Vector2) -> a
-    com.badlogic.gdx.math.Vector2 getPosition() -> b
+    void setUserData(java.lang.Object) -> a
+    com.badlogic.gdx.utils.Array getJointList() -> b
+    com.badlogic.gdx.math.Vector2 getLinearVelocity() -> c
+    com.badlogic.gdx.math.Vector2 getPosition() -> d
 com.badlogic.gdx.physics.box2d.BodyDef -> com.badlogic.gdx.physics.box2d.a:
     boolean awake -> i
     float angularDamping -> g
@@ -1677,6 +1779,21 @@ com.badlogic.gdx.physics.box2d.Fixture -> com.badlogic.gdx.physics.box2d.Fixture
     void setUserData(java.lang.Object) -> a
     com.badlogic.gdx.physics.box2d.Filter getFilterData() -> b
     java.lang.Object getUserData() -> c
+com.badlogic.gdx.physics.box2d.FixtureDef -> com.badlogic.gdx.physics.box2d.e:
+    com.badlogic.gdx.physics.box2d.Filter filter -> f
+    com.badlogic.gdx.physics.box2d.Shape shape -> a
+    float density -> d
+    boolean isSensor -> e
+    float restitution -> c
+    float friction -> b
+com.badlogic.gdx.physics.box2d.Joint -> com.badlogic.gdx.physics.box2d.Joint:
+    com.badlogic.gdx.physics.box2d.JointEdge jointEdgeB -> c
+    com.badlogic.gdx.physics.box2d.JointEdge jointEdgeA -> b
+    long addr -> a
+    void setUserData(java.lang.Object) -> a
+com.badlogic.gdx.physics.box2d.JointEdge -> com.badlogic.gdx.physics.box2d.f:
+    com.badlogic.gdx.physics.box2d.Joint joint -> b
+    com.badlogic.gdx.physics.box2d.Body other -> a
 com.badlogic.gdx.physics.box2d.Manifold -> com.badlogic.gdx.physics.box2d.Manifold:
     long addr -> a
 com.badlogic.gdx.physics.box2d.Manifold$ManifoldPoint -> com.badlogic.gdx.physics.box2d.Manifold$a:
@@ -1684,37 +1801,41 @@ com.badlogic.gdx.physics.box2d.Manifold$ManifoldPoint -> com.badlogic.gdx.physic
     float tangentImpulse -> c
     float normalImpulse -> b
     int contactID -> d
-com.badlogic.gdx.physics.box2d.MassData -> com.badlogic.gdx.physics.box2d.e:
+com.badlogic.gdx.physics.box2d.MassData -> com.badlogic.gdx.physics.box2d.g:
 com.badlogic.gdx.physics.box2d.PolygonShape -> com.badlogic.gdx.physics.box2d.PolygonShape:
     void setAsBox(float,float) -> a
-com.badlogic.gdx.physics.box2d.QueryCallback -> com.badlogic.gdx.physics.box2d.f:
+com.badlogic.gdx.physics.box2d.QueryCallback -> com.badlogic.gdx.physics.box2d.h:
     boolean reportFixture(com.badlogic.gdx.physics.box2d.Fixture) -> a
-com.badlogic.gdx.physics.box2d.RayCastCallback -> com.badlogic.gdx.physics.box2d.g:
+com.badlogic.gdx.physics.box2d.RayCastCallback -> com.badlogic.gdx.physics.box2d.i:
     float reportRayFixture(com.badlogic.gdx.physics.box2d.Fixture,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,float) -> a
 com.badlogic.gdx.physics.box2d.Shape -> com.badlogic.gdx.physics.box2d.Shape:
     long addr -> a
     void dispose() -> a
     void setRadius(float) -> a
-com.badlogic.gdx.physics.box2d.Transform -> com.badlogic.gdx.physics.box2d.h:
+com.badlogic.gdx.physics.box2d.Transform -> com.badlogic.gdx.physics.box2d.j:
 com.badlogic.gdx.physics.box2d.World -> com.badlogic.gdx.physics.box2d.World:
     com.badlogic.gdx.utils.Pool freeBodies -> a
     com.badlogic.gdx.utils.Pool freeFixtures -> b
-    com.badlogic.gdx.math.Vector2 rayNormal -> q
-    com.badlogic.gdx.math.Vector2 rayPoint -> p
-    com.badlogic.gdx.physics.box2d.ContactFilter contactFilter -> f
+    com.badlogic.gdx.math.Vector2 rayPoint -> q
+    com.badlogic.gdx.math.Vector2 rayNormal -> r
+    com.badlogic.gdx.physics.box2d.ContactFilter contactFilter -> g
     com.badlogic.gdx.utils.LongMap fixtures -> e
+    com.badlogic.gdx.utils.LongMap joints -> f
     long addr -> c
-    com.badlogic.gdx.physics.box2d.RayCastCallback rayCastCallback -> o
-    com.badlogic.gdx.physics.box2d.ContactListener contactListener -> g
-    com.badlogic.gdx.physics.box2d.Manifold manifold -> m
-    com.badlogic.gdx.physics.box2d.QueryCallback queryCallback -> h
-    long[] contactAddrs -> i
+    com.badlogic.gdx.physics.box2d.RayCastCallback rayCastCallback -> p
+    com.badlogic.gdx.physics.box2d.QueryCallback queryCallback -> i
+    com.badlogic.gdx.physics.box2d.Manifold manifold -> n
     com.badlogic.gdx.utils.LongMap bodies -> d
-    com.badlogic.gdx.utils.Array freeContacts -> k
-    com.badlogic.gdx.utils.Array contacts -> j
-    com.badlogic.gdx.physics.box2d.ContactImpulse impulse -> n
-    com.badlogic.gdx.physics.box2d.Contact contact -> l
+    com.badlogic.gdx.physics.box2d.ContactListener contactListener -> h
+    long[] contactAddrs -> j
+    com.badlogic.gdx.utils.Array freeContacts -> l
+    com.badlogic.gdx.utils.Array contacts -> k
+    com.badlogic.gdx.physics.box2d.ContactImpulse impulse -> o
+    com.badlogic.gdx.physics.box2d.Contact contact -> m
     com.badlogic.gdx.physics.box2d.Body createBody(com.badlogic.gdx.physics.box2d.BodyDef) -> a
+    void destroyBody(com.badlogic.gdx.physics.box2d.Body) -> a
+    void destroyFixture(com.badlogic.gdx.physics.box2d.Body,com.badlogic.gdx.physics.box2d.Fixture) -> a
+    void destroyJoint(com.badlogic.gdx.physics.box2d.Joint) -> a
     void setContactListener(com.badlogic.gdx.physics.box2d.ContactListener) -> a
     void step(float,int,int) -> a
 com.badlogic.gdx.physics.box2d.World$1 -> com.badlogic.gdx.physics.box2d.World$a:
@@ -1724,8 +1845,8 @@ com.badlogic.gdx.physics.box2d.World$1 -> com.badlogic.gdx.physics.box2d.World$a
 com.badlogic.gdx.physics.box2d.World$2 -> com.badlogic.gdx.physics.box2d.World$b:
     com.badlogic.gdx.physics.box2d.Fixture newObject() -> a
     java.lang.Object newObject() -> a
-com.badlogic.gdx.physics.box2d.WorldManifold -> com.badlogic.gdx.physics.box2d.i:
-com.badlogic.gdx.scenes.scene2d.Action -> a.a.a.u.a.a:
+com.badlogic.gdx.physics.box2d.WorldManifold -> com.badlogic.gdx.physics.box2d.k:
+com.badlogic.gdx.scenes.scene2d.Action -> a.a.a.v.a.a:
     com.badlogic.gdx.utils.Pool pool -> b
     com.badlogic.gdx.scenes.scene2d.Actor target -> a
     boolean act(float) -> a
@@ -1733,7 +1854,7 @@ com.badlogic.gdx.scenes.scene2d.Action -> a.a.a.u.a.a:
     void setActor(com.badlogic.gdx.scenes.scene2d.Actor) -> a
     void restart() -> b
     void setTarget(com.badlogic.gdx.scenes.scene2d.Actor) -> b
-com.badlogic.gdx.scenes.scene2d.Actor -> a.a.a.u.a.b:
+com.badlogic.gdx.scenes.scene2d.Actor -> a.a.a.v.a.b:
     float width -> l
     java.lang.String name -> f
     float y -> k
@@ -1784,8 +1905,9 @@ com.badlogic.gdx.scenes.scene2d.Actor -> a.a.a.u.a.b:
     float getY() -> r
     boolean isVisible() -> s
     void positionChanged() -> t
-    void sizeChanged() -> u
-com.badlogic.gdx.scenes.scene2d.Event -> a.a.a.u.a.c:
+    boolean remove() -> u
+    void sizeChanged() -> v
+com.badlogic.gdx.scenes.scene2d.Event -> a.a.a.v.a.c:
     com.badlogic.gdx.scenes.scene2d.Actor targetActor -> b
     com.badlogic.gdx.scenes.scene2d.Stage stage -> a
     boolean stopped -> e
@@ -1804,9 +1926,9 @@ com.badlogic.gdx.scenes.scene2d.Event -> a.a.a.u.a.c:
     boolean isCancelled() -> f
     boolean isHandled() -> g
     boolean isStopped() -> h
-com.badlogic.gdx.scenes.scene2d.EventListener -> a.a.a.u.a.d:
+com.badlogic.gdx.scenes.scene2d.EventListener -> a.a.a.v.a.d:
     boolean handle(com.badlogic.gdx.scenes.scene2d.Event) -> a
-com.badlogic.gdx.scenes.scene2d.Group -> a.a.a.u.a.e:
+com.badlogic.gdx.scenes.scene2d.Group -> a.a.a.v.a.e:
     com.badlogic.gdx.utils.SnapshotArray children -> t
     com.badlogic.gdx.math.Matrix4 oldTransform -> w
     com.badlogic.gdx.math.Rectangle cullingArea -> y
@@ -1814,6 +1936,7 @@ com.badlogic.gdx.scenes.scene2d.Group -> a.a.a.u.a.e:
     com.badlogic.gdx.math.Affine2 worldTransform -> u
     com.badlogic.gdx.math.Vector2 tmp -> z
     boolean transform -> x
+    boolean isTransform() -> A
     void act(float) -> a
     void applyTransform(com.badlogic.gdx.graphics.g2d.Batch,com.badlogic.gdx.math.Matrix4) -> a
     void applyTransform(com.badlogic.gdx.graphics.glutils.ShapeRenderer,com.badlogic.gdx.math.Matrix4) -> a
@@ -1831,12 +1954,11 @@ com.badlogic.gdx.scenes.scene2d.Group -> a.a.a.u.a.e:
     void setTransform(boolean) -> b
     void drawDebugChildren(com.badlogic.gdx.graphics.glutils.ShapeRenderer) -> c
     void resetTransform(com.badlogic.gdx.graphics.glutils.ShapeRenderer) -> d
-    void childrenChanged() -> v
-    com.badlogic.gdx.math.Matrix4 computeTransform() -> w
-    com.badlogic.gdx.scenes.scene2d.Group debugAll() -> x
-    com.badlogic.gdx.utils.SnapshotArray getChildren() -> y
-    boolean isTransform() -> z
-com.badlogic.gdx.scenes.scene2d.InputEvent -> a.a.a.u.a.f:
+    void childrenChanged() -> w
+    com.badlogic.gdx.math.Matrix4 computeTransform() -> x
+    com.badlogic.gdx.scenes.scene2d.Group debugAll() -> y
+    com.badlogic.gdx.utils.SnapshotArray getChildren() -> z
+com.badlogic.gdx.scenes.scene2d.InputEvent -> a.a.a.v.a.f:
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type type -> g
     void reset() -> a
     void setButton(int) -> a
@@ -1849,7 +1971,7 @@ com.badlogic.gdx.scenes.scene2d.InputEvent -> a.a.a.u.a.f:
     void setRelatedActor(com.badlogic.gdx.scenes.scene2d.Actor) -> c
     void setStageX(float) -> c
     void setStageY(float) -> d
-com.badlogic.gdx.scenes.scene2d.InputEvent$Type -> a.a.a.u.a.f$a:
+com.badlogic.gdx.scenes.scene2d.InputEvent$Type -> a.a.a.v.a.f$a:
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type touchDown -> a
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type touchUp -> b
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type scrolled -> g
@@ -1861,7 +1983,7 @@ com.badlogic.gdx.scenes.scene2d.InputEvent$Type -> a.a.a.u.a.f$a:
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type enter -> e
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type[] $VALUES -> k
     com.badlogic.gdx.scenes.scene2d.InputEvent$Type exit -> f
-com.badlogic.gdx.scenes.scene2d.Stage -> a.a.a.u.a.g:
+com.badlogic.gdx.scenes.scene2d.Stage -> a.a.a.v.a.g:
     boolean actionsRequestRendering -> o
     int mouseScreenY -> j
     com.badlogic.gdx.graphics.glutils.ShapeRenderer debugShapes -> p
@@ -1905,29 +2027,29 @@ com.badlogic.gdx.scenes.scene2d.Stage -> a.a.a.u.a.g:
     boolean setKeyboardFocus(com.badlogic.gdx.scenes.scene2d.Actor) -> c
     boolean setScrollFocus(com.badlogic.gdx.scenes.scene2d.Actor) -> d
     void unfocus(com.badlogic.gdx.scenes.scene2d.Actor) -> e
-    void act() -> r
-    void draw() -> s
-    boolean getActionsRequestRendering() -> t
+    void draw() -> r
+    boolean getActionsRequestRendering() -> s
+    com.badlogic.gdx.utils.Array getActors() -> t
     com.badlogic.gdx.graphics.Camera getCamera() -> u
     com.badlogic.gdx.graphics.Color getDebugColor() -> v
     float getHeight() -> w
     com.badlogic.gdx.scenes.scene2d.Group getRoot() -> x
     com.badlogic.gdx.utils.viewport.Viewport getViewport() -> y
     float getWidth() -> z
-com.badlogic.gdx.scenes.scene2d.Stage$TouchFocus -> a.a.a.u.a.g$a:
+com.badlogic.gdx.scenes.scene2d.Stage$TouchFocus -> a.a.a.v.a.g$a:
     com.badlogic.gdx.scenes.scene2d.Actor target -> c
     com.badlogic.gdx.scenes.scene2d.Actor listenerActor -> b
     int pointer -> d
     int button -> e
     com.badlogic.gdx.scenes.scene2d.EventListener listener -> a
     void reset() -> a
-com.badlogic.gdx.scenes.scene2d.Touchable -> a.a.a.u.a.h:
+com.badlogic.gdx.scenes.scene2d.Touchable -> a.a.a.v.a.h:
     com.badlogic.gdx.scenes.scene2d.Touchable[] $VALUES -> d
     com.badlogic.gdx.scenes.scene2d.Touchable disabled -> b
     com.badlogic.gdx.scenes.scene2d.Touchable childrenOnly -> c
     com.badlogic.gdx.scenes.scene2d.Touchable enabled -> a
-com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle -> a.a.a.u.a.i.a:
-com.badlogic.gdx.scenes.scene2d.ui.Cell -> a.a.a.u.a.i.b:
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle -> a.a.a.v.a.i.a:
+com.badlogic.gdx.scenes.scene2d.ui.Cell -> a.a.a.v.a.i.b:
     com.badlogic.gdx.scenes.scene2d.ui.Value minWidth -> a
     com.badlogic.gdx.scenes.scene2d.ui.Value prefWidth -> c
     float computedPadBottom -> H
@@ -1973,19 +2095,19 @@ com.badlogic.gdx.scenes.scene2d.ui.Cell -> a.a.a.u.a.i.b:
     void set(com.badlogic.gdx.scenes.scene2d.ui.Cell) -> a
     void setTable(com.badlogic.gdx.scenes.scene2d.ui.Table) -> a
     com.badlogic.gdx.scenes.scene2d.ui.Cell defaults() -> b
-com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle -> a.a.a.u.a.i.c:
-com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle -> a.a.a.u.a.i.d:
-com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle -> a.a.a.u.a.i.e:
-com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle -> a.a.a.u.a.i.f:
-com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle -> a.a.a.u.a.i.g:
-com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle -> a.a.a.u.a.i.h:
-com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle -> a.a.a.u.a.i.i:
-com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle -> a.a.a.u.a.i.j:
-com.badlogic.gdx.scenes.scene2d.ui.Skin -> a.a.a.u.a.i.k:
-com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable -> a.a.a.u.a.i.k$a:
-com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle -> a.a.a.u.a.i.l:
-com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle -> a.a.a.u.a.i.m:
-com.badlogic.gdx.scenes.scene2d.ui.Table -> a.a.a.u.a.i.n:
+com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle -> a.a.a.v.a.i.c:
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle -> a.a.a.v.a.i.d:
+com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle -> a.a.a.v.a.i.e:
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle -> a.a.a.v.a.i.f:
+com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle -> a.a.a.v.a.i.g:
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle -> a.a.a.v.a.i.h:
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle -> a.a.a.v.a.i.i:
+com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle -> a.a.a.v.a.i.j:
+com.badlogic.gdx.scenes.scene2d.ui.Skin -> a.a.a.v.a.i.k:
+com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable -> a.a.a.v.a.i.k$a:
+com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle -> a.a.a.v.a.i.l:
+com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle -> a.a.a.v.a.i.m:
+com.badlogic.gdx.scenes.scene2d.ui.Table -> a.a.a.v.a.i.n:
     float tableMinWidth -> L
     float[] rowPrefHeight -> K
     com.badlogic.gdx.scenes.scene2d.ui.Value backgroundRight -> m0
@@ -2022,12 +2144,12 @@ com.badlogic.gdx.scenes.scene2d.ui.Table -> a.a.a.u.a.i.n:
     com.badlogic.gdx.utils.Array cells -> F
     float tableMinHeight -> M
     float[] columnWidth -> P
-    void invalidate() -> A
-    void layout() -> B
-    void clearDebugRects() -> C
-    void computeSize() -> D
-    void endRow() -> E
-    com.badlogic.gdx.scenes.scene2d.ui.Cell obtainCell() -> F
+    void invalidate() -> B
+    void layout() -> C
+    void clearDebugRects() -> D
+    void computeSize() -> E
+    void endRow() -> F
+    com.badlogic.gdx.scenes.scene2d.ui.Cell obtainCell() -> G
     void addDebugRect(float,float,float,float,com.badlogic.gdx.graphics.Color) -> a
     com.badlogic.gdx.scenes.scene2d.ui.Table debug(com.badlogic.gdx.scenes.scene2d.ui.Table$Debug) -> a
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a
@@ -2046,35 +2168,35 @@ com.badlogic.gdx.scenes.scene2d.ui.Table -> a.a.a.u.a.i.n:
     void drawDebugRects(com.badlogic.gdx.graphics.glutils.ShapeRenderer) -> e
     float getPrefHeight() -> g
     float getPrefWidth() -> h
-    com.badlogic.gdx.scenes.scene2d.Group debugAll() -> x
-    com.badlogic.gdx.scenes.scene2d.ui.Table debugAll() -> x
-com.badlogic.gdx.scenes.scene2d.ui.Table$1 -> a.a.a.u.a.i.n$a:
+    com.badlogic.gdx.scenes.scene2d.Group debugAll() -> y
+    com.badlogic.gdx.scenes.scene2d.ui.Table debugAll() -> y
+com.badlogic.gdx.scenes.scene2d.ui.Table$1 -> a.a.a.v.a.i.n$a:
     com.badlogic.gdx.scenes.scene2d.ui.Cell newObject() -> a
     java.lang.Object newObject() -> a
-com.badlogic.gdx.scenes.scene2d.ui.Table$2 -> a.a.a.u.a.i.n$b:
+com.badlogic.gdx.scenes.scene2d.ui.Table$2 -> a.a.a.v.a.i.n$b:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Table$3 -> a.a.a.u.a.i.n$c:
+com.badlogic.gdx.scenes.scene2d.ui.Table$3 -> a.a.a.v.a.i.n$c:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Table$4 -> a.a.a.u.a.i.n$d:
+com.badlogic.gdx.scenes.scene2d.ui.Table$4 -> a.a.a.v.a.i.n$d:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Table$5 -> a.a.a.u.a.i.n$e:
+com.badlogic.gdx.scenes.scene2d.ui.Table$5 -> a.a.a.v.a.i.n$e:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Table$Debug -> a.a.a.u.a.i.n$f:
+com.badlogic.gdx.scenes.scene2d.ui.Table$Debug -> a.a.a.v.a.i.n$f:
     com.badlogic.gdx.scenes.scene2d.ui.Table$Debug[] $VALUES -> f
     com.badlogic.gdx.scenes.scene2d.ui.Table$Debug actor -> e
     com.badlogic.gdx.scenes.scene2d.ui.Table$Debug cell -> d
     com.badlogic.gdx.scenes.scene2d.ui.Table$Debug none -> a
     com.badlogic.gdx.scenes.scene2d.ui.Table$Debug table -> c
     com.badlogic.gdx.scenes.scene2d.ui.Table$Debug all -> b
-com.badlogic.gdx.scenes.scene2d.ui.Table$DebugRect -> a.a.a.u.a.i.n$g:
+com.badlogic.gdx.scenes.scene2d.ui.Table$DebugRect -> a.a.a.v.a.i.n$g:
     com.badlogic.gdx.graphics.Color color -> f
     com.badlogic.gdx.utils.Pool pool -> g
-com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle -> a.a.a.u.a.i.o:
-com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle -> a.a.a.u.a.i.p:
-com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle -> a.a.a.u.a.i.q:
-com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle -> a.a.a.u.a.i.r:
-com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle -> a.a.a.u.a.i.s:
-com.badlogic.gdx.scenes.scene2d.ui.Value -> a.a.a.u.a.i.t:
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle -> a.a.a.v.a.i.o:
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle -> a.a.a.v.a.i.p:
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle -> a.a.a.v.a.i.q:
+com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle -> a.a.a.v.a.i.r:
+com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle -> a.a.a.v.a.i.s:
+com.badlogic.gdx.scenes.scene2d.ui.Value -> a.a.a.v.a.i.t:
     com.badlogic.gdx.scenes.scene2d.ui.Value$Fixed zero -> a
     com.badlogic.gdx.scenes.scene2d.ui.Value minHeight -> c
     com.badlogic.gdx.scenes.scene2d.ui.Value minWidth -> b
@@ -2083,36 +2205,36 @@ com.badlogic.gdx.scenes.scene2d.ui.Value -> a.a.a.u.a.i.t:
     com.badlogic.gdx.scenes.scene2d.ui.Value maxHeight -> g
     com.badlogic.gdx.scenes.scene2d.ui.Value maxWidth -> f
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$1 -> a.a.a.u.a.i.t$a:
+com.badlogic.gdx.scenes.scene2d.ui.Value$1 -> a.a.a.v.a.i.t$a:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$2 -> a.a.a.u.a.i.t$b:
+com.badlogic.gdx.scenes.scene2d.ui.Value$2 -> a.a.a.v.a.i.t$b:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$3 -> a.a.a.u.a.i.t$c:
+com.badlogic.gdx.scenes.scene2d.ui.Value$3 -> a.a.a.v.a.i.t$c:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$4 -> a.a.a.u.a.i.t$d:
+com.badlogic.gdx.scenes.scene2d.ui.Value$4 -> a.a.a.v.a.i.t$d:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$5 -> a.a.a.u.a.i.t$e:
+com.badlogic.gdx.scenes.scene2d.ui.Value$5 -> a.a.a.v.a.i.t$e:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$6 -> a.a.a.u.a.i.t$f:
+com.badlogic.gdx.scenes.scene2d.ui.Value$6 -> a.a.a.v.a.i.t$f:
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.Value$Fixed -> a.a.a.u.a.i.t$g:
+com.badlogic.gdx.scenes.scene2d.ui.Value$Fixed -> a.a.a.v.a.i.t$g:
     float value -> h
     float get(com.badlogic.gdx.scenes.scene2d.Actor) -> a
-com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup -> a.a.a.u.a.i.u:
+com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup -> a.a.a.v.a.i.u:
     boolean needsLayout -> A
     boolean fillParent -> B
     boolean layoutEnabled -> C
-    void invalidate() -> A
-    void layout() -> B
+    void invalidate() -> B
+    void layout() -> C
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a
     float getMaxHeight() -> c
     void invalidateHierarchy() -> d
     float getMaxWidth() -> e
     void validate() -> f
-    void sizeChanged() -> u
-    void childrenChanged() -> v
-com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle -> a.a.a.u.a.i.v:
-com.badlogic.gdx.scenes.scene2d.utils.BaseDrawable -> a.a.a.u.a.j.a:
+    void sizeChanged() -> v
+    void childrenChanged() -> w
+com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle -> a.a.a.v.a.i.v:
+com.badlogic.gdx.scenes.scene2d.utils.BaseDrawable -> a.a.a.v.a.j.a:
     float minHeight -> g
     float minWidth -> f
     float bottomHeight -> e
@@ -2126,8 +2248,8 @@ com.badlogic.gdx.scenes.scene2d.utils.BaseDrawable -> a.a.a.u.a.j.a:
     float getLeftWidth() -> d
     float getBottomHeight() -> e
     float getTopHeight() -> f
-com.badlogic.gdx.scenes.scene2d.utils.Cullable -> a.a.a.u.a.j.b:
-com.badlogic.gdx.scenes.scene2d.utils.Drawable -> a.a.a.u.a.j.c:
+com.badlogic.gdx.scenes.scene2d.utils.Cullable -> a.a.a.v.a.j.b:
+com.badlogic.gdx.scenes.scene2d.utils.Drawable -> a.a.a.v.a.j.c:
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float,float,float,float) -> a
     float getMinHeight() -> a
     float getMinWidth() -> b
@@ -2135,16 +2257,16 @@ com.badlogic.gdx.scenes.scene2d.utils.Drawable -> a.a.a.u.a.j.c:
     float getLeftWidth() -> d
     float getBottomHeight() -> e
     float getTopHeight() -> f
-com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent -> a.a.a.u.a.j.d:
+com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent -> a.a.a.v.a.j.d:
     void reset() -> a
     void setType(com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent$Type) -> a
     void setFocused(boolean) -> b
     void setRelatedActor(com.badlogic.gdx.scenes.scene2d.Actor) -> c
-com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent$Type -> a.a.a.u.a.j.d$a:
+com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent$Type -> a.a.a.v.a.j.d$a:
     com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent$Type keyboard -> a
     com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent$Type scroll -> b
     com.badlogic.gdx.scenes.scene2d.utils.FocusListener$FocusEvent$Type[] $VALUES -> c
-com.badlogic.gdx.scenes.scene2d.utils.Layout -> a.a.a.u.a.j.e:
+com.badlogic.gdx.scenes.scene2d.utils.Layout -> a.a.a.v.a.j.e:
     float getMinHeight() -> a
     float getMinWidth() -> b
     float getMaxHeight() -> c
@@ -2153,28 +2275,28 @@ com.badlogic.gdx.scenes.scene2d.utils.Layout -> a.a.a.u.a.j.e:
     void validate() -> f
     float getPrefHeight() -> g
     float getPrefWidth() -> h
-com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable -> a.a.a.u.a.j.f:
+com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable -> a.a.a.v.a.j.f:
     com.badlogic.gdx.graphics.g2d.NinePatch patch -> h
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float,float,float,float) -> a
-com.badlogic.gdx.scenes.scene2d.utils.ScissorStack -> a.a.a.u.a.j.g:
+com.badlogic.gdx.scenes.scene2d.utils.ScissorStack -> a.a.a.v.a.j.g:
     com.badlogic.gdx.math.Vector3 tmp -> b
     com.badlogic.gdx.utils.Array scissors -> a
     void calculateScissors(com.badlogic.gdx.graphics.Camera,float,float,float,float,com.badlogic.gdx.math.Matrix4,com.badlogic.gdx.math.Rectangle,com.badlogic.gdx.math.Rectangle) -> a
     void fix(com.badlogic.gdx.math.Rectangle) -> a
     com.badlogic.gdx.math.Rectangle popScissors() -> a
     boolean pushScissors(com.badlogic.gdx.math.Rectangle) -> b
-com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable -> a.a.a.u.a.j.h:
+com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable -> a.a.a.v.a.j.h:
     com.badlogic.gdx.graphics.g2d.Sprite sprite -> h
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float,float,float,float) -> a
-com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable -> a.a.a.u.a.j.i:
+com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable -> a.a.a.v.a.j.i:
     com.badlogic.gdx.graphics.g2d.TextureRegion region -> h
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float,float,float,float) -> a
     com.badlogic.gdx.graphics.g2d.TextureRegion getRegion() -> g
-com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable -> a.a.a.u.a.j.j:
+com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable -> a.a.a.v.a.j.j:
     float scale -> j
     com.badlogic.gdx.graphics.Color color -> i
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float,float,float,float) -> a
-com.badlogic.gdx.scenes.scene2d.utils.TransformDrawable -> a.a.a.u.a.j.k:
+com.badlogic.gdx.scenes.scene2d.utils.TransformDrawable -> a.a.a.v.a.j.k:
 com.badlogic.gdx.utils.Array -> com.badlogic.gdx.utils.a:
     com.badlogic.gdx.utils.Array$ArrayIterable iterable -> d
     java.lang.Object[] items -> a
@@ -2297,8 +2419,9 @@ com.badlogic.gdx.utils.LongMap -> com.badlogic.gdx.utils.k:
     void resize(int) -> a
     int place(long) -> b
     java.lang.Object put(long,java.lang.Object) -> b
-    int locateKey(long) -> c
     void putResize(long,java.lang.Object) -> c
+    java.lang.Object remove(long) -> c
+    int locateKey(long) -> d
 com.badlogic.gdx.utils.LongMap$Entries -> com.badlogic.gdx.utils.k$a:
     com.badlogic.gdx.utils.LongMap$Entry entry -> f
     void reset() -> b
@@ -2489,22 +2612,51 @@ com.badlogic.gdx.utils.StringBuilder -> com.badlogic.gdx.utils.w:
     int numChars(int,int) -> c
 com.badlogic.gdx.utils.TimeUtils -> com.badlogic.gdx.utils.x:
     long nanoTime() -> a
-com.badlogic.gdx.utils.reflect.ArrayReflection -> com.badlogic.gdx.utils.y.a:
+com.badlogic.gdx.utils.Timer -> com.badlogic.gdx.utils.y:
+    com.badlogic.gdx.utils.Timer$TimerThread thread -> c
+    com.badlogic.gdx.utils.Array tasks -> a
+    java.lang.Object threadLock -> b
+    void delay(long) -> a
+    com.badlogic.gdx.utils.Timer$Task scheduleTask(com.badlogic.gdx.utils.Timer$Task,float) -> a
+    com.badlogic.gdx.utils.Timer$Task scheduleTask(com.badlogic.gdx.utils.Timer$Task,float,float,int) -> a
+    void start() -> a
+    long update(long,long) -> a
+    com.badlogic.gdx.utils.Timer instance() -> b
+    com.badlogic.gdx.utils.Timer$Task schedule(com.badlogic.gdx.utils.Timer$Task,float) -> b
+    com.badlogic.gdx.utils.Timer$TimerThread thread() -> c
+com.badlogic.gdx.utils.Timer$Task -> com.badlogic.gdx.utils.y$a:
+    com.badlogic.gdx.utils.Timer timer -> e
+    long executeTimeMillis -> b
+    int repeatCount -> d
+    com.badlogic.gdx.Application app -> a
+    long intervalMillis -> c
+    void cancel() -> a
+    boolean isScheduled() -> b
+com.badlogic.gdx.utils.Timer$TimerThread -> com.badlogic.gdx.utils.y$b:
+    com.badlogic.gdx.utils.Timer instance -> d
+    long pauseTimeMillis -> e
+    com.badlogic.gdx.utils.Array instances -> c
+    com.badlogic.gdx.Files files -> a
+    com.badlogic.gdx.Application app -> b
+    void dispose() -> a
+    void resume() -> b
+    void pause() -> c
+com.badlogic.gdx.utils.reflect.ArrayReflection -> com.badlogic.gdx.utils.z.a:
     java.lang.Object newInstance(java.lang.Class,int) -> a
-com.badlogic.gdx.utils.reflect.ClassReflection -> com.badlogic.gdx.utils.y.b:
+com.badlogic.gdx.utils.reflect.ClassReflection -> com.badlogic.gdx.utils.z.b:
     com.badlogic.gdx.utils.reflect.Constructor getConstructor(java.lang.Class,java.lang.Class[]) -> a
     java.lang.String getSimpleName(java.lang.Class) -> a
     com.badlogic.gdx.utils.reflect.Constructor getDeclaredConstructor(java.lang.Class,java.lang.Class[]) -> b
-com.badlogic.gdx.utils.reflect.Constructor -> com.badlogic.gdx.utils.y.c:
+com.badlogic.gdx.utils.reflect.Constructor -> com.badlogic.gdx.utils.z.c:
     java.lang.reflect.Constructor constructor -> a
     java.lang.Class getDeclaringClass() -> a
     java.lang.Object newInstance(java.lang.Object[]) -> a
     void setAccessible(boolean) -> a
-com.badlogic.gdx.utils.reflect.ReflectionException -> com.badlogic.gdx.utils.y.d:
-com.badlogic.gdx.utils.viewport.ScalingViewport -> com.badlogic.gdx.utils.z.a:
+com.badlogic.gdx.utils.reflect.ReflectionException -> com.badlogic.gdx.utils.z.d:
+com.badlogic.gdx.utils.viewport.ScalingViewport -> com.badlogic.gdx.utils.a0.a:
     com.badlogic.gdx.utils.Scaling scaling -> i
     void update(int,int,boolean) -> a
-com.badlogic.gdx.utils.viewport.Viewport -> com.badlogic.gdx.utils.z.b:
+com.badlogic.gdx.utils.viewport.Viewport -> com.badlogic.gdx.utils.a0.b:
     com.badlogic.gdx.graphics.Camera camera -> a
     int screenWidth -> f
     float worldHeight -> c
@@ -2529,63 +2681,118 @@ com.badlogic.gdx.utils.viewport.Viewport -> com.badlogic.gdx.utils.z.b:
     float getWorldHeight() -> f
     float getWorldWidth() -> g
 com.matias.bouncingbullets.BalaBox2D -> com.matias.bouncingbullets.a:
+    void act(float) -> a
+    void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a
+    void dispose() -> w
+    com.badlogic.gdx.physics.box2d.Body getBody() -> x
+com.matias.bouncingbullets.BaseActor -> com.matias.bouncingbullets.b:
     com.badlogic.gdx.graphics.Texture texture -> w
+    float HEIGHT -> y
+    float WIDTH -> x
     com.badlogic.gdx.physics.box2d.Body body -> u
     com.badlogic.gdx.physics.box2d.Fixture fixture -> v
     com.badlogic.gdx.physics.box2d.World world -> t
-    void act(float) -> a
-    void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a
-    com.badlogic.gdx.physics.box2d.Body getBody() -> v
-com.matias.bouncingbullets.BaseScreen -> com.matias.bouncingbullets.b:
+    void dispose() -> w
+com.matias.bouncingbullets.BaseScreen -> com.matias.bouncingbullets.c:
     void hide() -> a
     void resume() -> b
     void pause() -> c
-com.matias.bouncingbullets.JugadorBox2D -> com.matias.bouncingbullets.c:
-    com.badlogic.gdx.graphics.Texture texture -> w
-    com.badlogic.gdx.physics.box2d.Body body -> u
-    com.badlogic.gdx.physics.box2d.Fixture fixture -> v
-    com.badlogic.gdx.physics.box2d.World world -> t
+com.matias.bouncingbullets.JugadorBox2D -> com.matias.bouncingbullets.d:
+    com.matias.bouncingbullets.PowerUpObject$TipoObj powerUp -> z
+    boolean invencible -> B
+    int hp -> A
+    boolean isInvencible() -> A
     void act(float) -> a
+    void addHp(int) -> a
     void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a
-    com.badlogic.gdx.physics.box2d.Body getBody() -> v
-com.matias.bouncingbullets.Main -> com.matias.bouncingbullets.d:
+    void setPowerUp(com.matias.bouncingbullets.PowerUpObject$TipoObj) -> a
+    void setInvencible(boolean) -> b
+    com.badlogic.gdx.physics.box2d.Body getBody() -> x
+    int getHp() -> y
+    com.matias.bouncingbullets.PowerUpObject$TipoObj getPowerUp() -> z
+com.matias.bouncingbullets.Main -> com.matias.bouncingbullets.e:
     void create() -> d
-com.matias.bouncingbullets.MainGameContactListener -> com.matias.bouncingbullets.e:
+com.matias.bouncingbullets.MainGameContactListener -> com.matias.bouncingbullets.f:
+    com.matias.bouncingbullets.JugadorBox2D jugador -> a
+    void aplicarPowerUp(com.matias.bouncingbullets.PowerUpObject) -> a
     void beginContact(com.badlogic.gdx.physics.box2d.Contact) -> a
     void postSolve(com.badlogic.gdx.physics.box2d.Contact,com.badlogic.gdx.physics.box2d.ContactImpulse) -> a
     void preSolve(com.badlogic.gdx.physics.box2d.Contact,com.badlogic.gdx.physics.box2d.Manifold) -> a
     void endContact(com.badlogic.gdx.physics.box2d.Contact) -> b
-com.matias.bouncingbullets.MainGameScreen -> com.matias.bouncingbullets.f:
-    int numBalas -> o
-    long lastSpawnedBala -> l
-    com.badlogic.gdx.graphics.Texture mapa -> t
-    com.badlogic.gdx.scenes.scene2d.Stage stage -> d
-    java.lang.Float[] velocidadesX -> a
-    java.lang.Float[] velocidadesY -> b
-    com.badlogic.gdx.graphics.g2d.BitmapFont textRenderer -> n
-    com.badlogic.gdx.utils.Array paredesFixture -> k
+com.matias.bouncingbullets.MainGameScreen -> com.matias.bouncingbullets.g:
+    int lastSpawnedPowerUp -> n
+    com.badlogic.gdx.graphics.Texture mapa -> z
+    com.badlogic.gdx.utils.Array powerUps -> t
+    float WORLD_WIDTH -> B
+    java.lang.Float[] velocidadesX -> b
     com.badlogic.gdx.utils.Array paredesBody -> j
-    float WORLD_WIDTH -> v
-    float aspectRatio -> u
-    com.badlogic.gdx.physics.box2d.World world -> c
-    com.badlogic.gdx.graphics.OrthographicCamera camera -> e
+    float lastY -> w
+    com.badlogic.gdx.utils.Array borrarBalas -> C
+    com.badlogic.gdx.graphics.g2d.Batch batch -> u
+    int seg -> s
+    int numBalas -> q
+    int cronometroInvencible -> o
+    long cronometro -> l
+    int lastSpawnedBala -> m
+    java.lang.Float[] velocidadesY -> c
+    com.badlogic.gdx.scenes.scene2d.Stage stage -> e
+    com.badlogic.gdx.graphics.Texture textura -> y
+    float WORLD_HEIGHT -> A
+    com.badlogic.gdx.graphics.g2d.BitmapFont textRenderer -> p
+    com.badlogic.gdx.utils.Array paredesFixture -> k
+    float offset -> x
+    float lastX -> v
     com.matias.bouncingbullets.MainGameContactListener contactListener -> h
+    com.badlogic.gdx.physics.box2d.World world -> d
     com.badlogic.gdx.utils.Array balas -> i
-    int seg -> r
-    com.badlogic.gdx.graphics.Texture textura -> s
+    int min -> r
     com.matias.bouncingbullets.BalaBox2D bala -> f
-    long first -> m
     com.matias.bouncingbullets.JugadorBox2D jugador -> g
-    com.badlogic.gdx.graphics.g2d.Batch batch -> p
-    int min -> q
+    com.badlogic.gdx.graphics.OrthographicCamera camera -> a
+    com.matias.bouncingbullets.JugadorBox2D access$000(com.matias.bouncingbullets.MainGameScreen) -> a
+    int access$202(com.matias.bouncingbullets.MainGameScreen,int) -> a
+    float access$302(com.matias.bouncingbullets.MainGameScreen,float) -> a
     void generarParedes(com.badlogic.gdx.physics.box2d.World) -> a
     void render(float) -> a
     void resize(int,int) -> a
+    com.badlogic.gdx.utils.Array access$100(com.matias.bouncingbullets.MainGameScreen) -> b
+    float access$402(com.matias.bouncingbullets.MainGameScreen,float) -> b
+    float access$300(com.matias.bouncingbullets.MainGameScreen) -> c
+    float access$400(com.matias.bouncingbullets.MainGameScreen) -> d
     void show() -> d
-    com.matias.bouncingbullets.JugadorBox2D getJugador() -> e
-com.matias.bouncingbullets.ProcesadorInput -> com.matias.bouncingbullets.g:
-    com.matias.bouncingbullets.MainGameScreen parent -> a
-    boolean scrolled(float,float) -> a
-    boolean touchDown(int,int,int,int) -> a
-    boolean touchDragged(int,int,int) -> a
-    boolean touchUp(int,int,int,int) -> b
+    float access$500(com.matias.bouncingbullets.MainGameScreen) -> e
+    int getInstanteEnJuego() -> e
+    void eliminarBala() -> f
+    void generarBala() -> g
+    void generarPowerUp() -> h
+com.matias.bouncingbullets.MainGameScreen$1 -> com.matias.bouncingbullets.g$a:
+    com.matias.bouncingbullets.MainGameScreen this$0 -> a
+    boolean fling(float,float,int) -> a
+    boolean pan(float,float,float,float) -> a
+    boolean panStop(float,float,int,int) -> a
+    boolean pinch(com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2,com.badlogic.gdx.math.Vector2) -> a
+    void pinchStop() -> a
+    boolean zoom(float,float) -> a
+    boolean longPress(float,float) -> b
+    boolean touchDown(float,float,int,int) -> b
+    boolean tap(float,float,int,int) -> c
+com.matias.bouncingbullets.MainGameScreen$6 -> com.matias.bouncingbullets.g$b:
+    int[] $SwitchMap$com$matias$bouncingbullets$PowerUpObject$TipoObj -> a
+com.matias.bouncingbullets.PowerUpObject -> com.matias.bouncingbullets.h:
+    long segSpawn -> z
+    com.matias.bouncingbullets.PowerUpObject$TipoObj tipo -> B
+    boolean desaparecer -> A
+    void act(float) -> a
+    void dibujuar(com.badlogic.gdx.graphics.g2d.Batch) -> a
+    void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a
+    void setDesaparecer(boolean) -> b
+    com.matias.bouncingbullets.PowerUpObject$TipoObj getTipo() -> x
+    boolean isDesaparecer() -> y
+com.matias.bouncingbullets.PowerUpObject$TipoObj -> com.matias.bouncingbullets.h$a:
+    com.matias.bouncingbullets.PowerUpObject$TipoObj Boton -> b
+    com.matias.bouncingbullets.PowerUpObject$TipoObj[] $VALUES -> d
+    com.matias.bouncingbullets.PowerUpObject$TipoObj Corazon -> a
+    com.matias.bouncingbullets.PowerUpObject$TipoObj Chaleco -> c
+com.matias.bouncingbullets.RocaBox2D -> com.matias.bouncingbullets.i:
+    void act(float) -> a
+    void draw(com.badlogic.gdx.graphics.g2d.Batch,float) -> a

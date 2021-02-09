@@ -1,4 +1,4 @@
-#Wed Jan 27 16:40:35 CET 2021
+#Fri Feb 05 09:27:44 CET 2021
 base.0=/home/matias/AndroidStudioProjects/BouncingBullets/android/build/intermediates/transforms/r8/release/0/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

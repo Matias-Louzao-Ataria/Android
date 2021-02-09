@@ -60,36 +60,36 @@ public class MainGameContactListener implements ContactListener {
             bodyA.applyLinearImpulse(new Vector2(0,VELBALAY),new Vector2(0,0),true);
         }
         if(objB.getClass() == BalaBox2D.class && objA.getClass() == JugadorBox2D.class){
-            ((JugadorBox2D) objA).addHp(-1);
+            if(!this.jugador.isInvencible()){
+                ((JugadorBox2D) objA).addHp(-1);
+                MainGameScreen.borrarBalas.add((BalaBox2D) objB);
+            }
             bodyA.setLinearVelocity(0,0);
-            MainGameScreen.borrarBalas.add((BalaBox2D) objB);
-        }else if(objB.getClass() == JugadorBox2D.class && objA.getClass() == BalaBox2D.class){
-            ((JugadorBox2D) objB).addHp(-1);
-            bodyB.setLinearVelocity(0,0);
-            MainGameScreen.borrarBalas.add((BalaBox2D) objA);
-        }
-
-        if(objA.getClass() == PowerUpObject.TipoObj.class && objB.getClass() == JugadorBox2D.class){
-            aplicarPowerUp((PowerUpObject.TipoObj) objA);
-        }else if(objB.getClass() == PowerUpObject.TipoObj.class && objA.getClass() == JugadorBox2D.class){
-            aplicarPowerUp((PowerUpObject.TipoObj) objB);
-        }
-
-        if(objA.getClass() == PowerUpObject.TipoObj.class && objB.getClass() == BalaBox2D.class){
             bodyB.setLinearVelocity(bodyB.getLinearVelocity().x*-1,bodyB.getLinearVelocity().y*-1);
-        }else if(objB.getClass() == PowerUpObject.TipoObj.class && objA.getClass() == BalaBox2D.class){
+        }else if(objB.getClass() == JugadorBox2D.class && objA.getClass() == BalaBox2D.class){
+            if(!this.jugador.isInvencible()){
+                ((JugadorBox2D) objB).addHp(-1);
+                MainGameScreen.borrarBalas.add((BalaBox2D) objA);
+            }
+            bodyB.setLinearVelocity(0,0);
             bodyA.setLinearVelocity(bodyA.getLinearVelocity().x*-1,bodyA.getLinearVelocity().y*-1);
         }
 
-        if(objB.getClass() == BalaBox2D.class && objA.getClass() == Bate.class && ((Bate) objA).vecesGolpeado < 3){
-            BalaBox2D bala = ((BalaBox2D) objB);
-            bala.getBody().setLinearVelocity(bala.getBody().getLinearVelocity().x*-1,bala.getBody().getLinearVelocity().y*-1);
-            ((Bate) objA).vecesGolpeado++;
-        }else if(objA.getClass() == BalaBox2D.class && objB.getClass() == Bate.class && ((Bate) objB).vecesGolpeado < 3){
-            BalaBox2D bala = ((BalaBox2D) objA);
-            bala.getBody().setLinearVelocity(bala.getBody().getLinearVelocity().x*-1,bala.getBody().getLinearVelocity().y*-1);
-            ((Bate) objB).vecesGolpeado++;
+        if(objA.getClass() == PowerUpObject.class && objB.getClass() == JugadorBox2D.class){
+            aplicarPowerUp((PowerUpObject) objA);
+        }else if(objB.getClass() == PowerUpObject.class && objA.getClass() == JugadorBox2D.class){
+            aplicarPowerUp((PowerUpObject) objB);
         }
+
+//        if(objB.getClass() == BalaBox2D.class && objA.getClass() == Bate.class && ((Bate) objA).vecesGolpeado < 3){
+//            BalaBox2D bala = ((BalaBox2D) objB);
+//            bala.getBody().setLinearVelocity(bala.getBody().getLinearVelocity().x*-1,bala.getBody().getLinearVelocity().y*-1);
+//            ((Bate) objA).vecesGolpeado++;
+//        }else if(objA.getClass() == BalaBox2D.class && objB.getClass() == Bate.class && ((Bate) objB).vecesGolpeado < 3){
+//            BalaBox2D bala = ((BalaBox2D) objA);
+//            bala.getBody().setLinearVelocity(bala.getBody().getLinearVelocity().x*-1,bala.getBody().getLinearVelocity().y*-1);
+//            ((Bate) objB).vecesGolpeado++;
+//        }
 
                 /*if(objA.equals("bala") && objB.equals("bala")){
                     contact.getFixtureB().getBody().setLinearVelocity(contact.getFixtureB().getBody().getLinearVelocity().x*-1,contact.getFixtureB().getBody().getLinearVelocity().y*-1);
@@ -99,9 +99,9 @@ public class MainGameContactListener implements ContactListener {
         //}
     }
 
-    private void aplicarPowerUp(PowerUpObject.TipoObj powerUp) {
-        this.jugador.setPowerUp(powerUp);
-        MainGameScreen.deletePowerUp = true;
+    private void aplicarPowerUp(PowerUpObject powerUp) {
+        powerUp.setDesaparecer(true);
+        this.jugador.setPowerUp(powerUp.getTipo());
     }
 
     @Override

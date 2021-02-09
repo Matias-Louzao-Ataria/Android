@@ -1,14 +1,10 @@
-com/matias/bouncingbullets/Camara.java
- com.matias.bouncingbullets.Camara
-com/matias/bouncingbullets/AndroidLauncher.java
- com.matias.bouncingbullets.AndroidLauncher
-com/matias/bouncingbullets/BuildConfig.java
- com.matias.bouncingbullets.BuildConfig
 com/matias/bouncingbullets/R.java
  com.matias.bouncingbullets.R
  com.matias.bouncingbullets.R$color
  com.matias.bouncingbullets.R$drawable
  com.matias.bouncingbullets.R$string
  com.matias.bouncingbullets.R$style
-com/matias/bouncingbullets/CamarInterface.java
- com.matias.bouncingbullets.CamarInterface
+com/matias/bouncingbullets/BuildConfig.java
+ com.matias.bouncingbullets.BuildConfig
+com/matias/bouncingbullets/AndroidLauncher.java
+ com.matias.bouncingbullets.AndroidLauncher

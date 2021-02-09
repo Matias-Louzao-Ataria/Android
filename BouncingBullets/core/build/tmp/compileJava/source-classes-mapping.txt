@@ -5,10 +5,10 @@ com/matias/bouncingbullets/RocaBox2D.java
  com.matias.bouncingbullets.RocaBox2D
 com/matias/bouncingbullets/BaseActor.java
  com.matias.bouncingbullets.BaseActor
-com/matias/bouncingbullets/JugadorBox2D.java
- com.matias.bouncingbullets.JugadorBox2D
 com/matias/bouncingbullets/oldActors/Bate.java
  com.matias.bouncingbullets.oldActors.Bate
+com/matias/bouncingbullets/JugadorBox2D.java
+ com.matias.bouncingbullets.JugadorBox2D
 com/matias/bouncingbullets/oldActors/Bala.java
  com.matias.bouncingbullets.oldActors.Bala
 com/matias/bouncingbullets/Generators.java
@@ -26,6 +26,8 @@ com/matias/bouncingbullets/MainGameScreen.java
  com.matias.bouncingbullets.MainGameScreen$4
  com.matias.bouncingbullets.MainGameScreen$5
  com.matias.bouncingbullets.MainGameScreen$6
+com/matias/bouncingbullets/TransparentTouchpad.java
+ com.matias.bouncingbullets.TransparentTouchpad
 com/matias/bouncingbullets/MainGameContactListener.java
  com.matias.bouncingbullets.MainGameContactListener
 com/matias/bouncingbullets/CategoryBits.java
@@ -34,9 +36,16 @@ com/matias/bouncingbullets/ProcesadorInput.java
  com.matias.bouncingbullets.ProcesadorInput
 com/matias/bouncingbullets/BaseScreen.java
  com.matias.bouncingbullets.BaseScreen
-com/matias/bouncingbullets/Main.java
- com.matias.bouncingbullets.Main
 com/matias/bouncingbullets/BalaBox2D.java
  com.matias.bouncingbullets.BalaBox2D
-com/matias/bouncingbullets/TransparentTouchpad.java
- com.matias.bouncingbullets.TransparentTouchpad
+com/matias/bouncingbullets/UIBaseActor.java
+ com.matias.bouncingbullets.UIBaseActor
+com/matias/bouncingbullets/SettingsScreen.java
+ com.matias.bouncingbullets.SettingsScreen
+com/matias/bouncingbullets/MainMenuScreen.java
+ com.matias.bouncingbullets.MainMenuScreen
+ com.matias.bouncingbullets.MainMenuScreen$1
+ com.matias.bouncingbullets.MainMenuScreen$2
+ com.matias.bouncingbullets.MainMenuScreen$3
+com/matias/bouncingbullets/Main.java
+ com.matias.bouncingbullets.Main

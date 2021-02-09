@@ -8,10 +8,13 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class BalaBox2D extends BaseActor {
     public static final float RADIO_BALA = 1f;
+    private int lastChecked;
 
-    public BalaBox2D(World world, Texture texture, Vector2 posicion) {
+
+    public BalaBox2D(World world, Texture texture, Vector2 posicion,int lastChecked) {
         this.world = world;
         this.texture = texture;
+        this.lastChecked = lastChecked;
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(posicion);
@@ -44,6 +47,14 @@ public class BalaBox2D extends BaseActor {
 
     public Body getBody() {
         return body;
+    }
+
+    public int getLastChecked() {
+        return lastChecked;
+    }
+
+    public void setLastChecked(int lastChecked) {
+        this.lastChecked = lastChecked;
     }
 
     public void dispose(){

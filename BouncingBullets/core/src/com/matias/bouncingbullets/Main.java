@@ -13,6 +13,6 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
     @Override
     public void create() {
-        setScreen(new MainGameScreen(this));
+        setScreen(new MainMenuScreen(this));
     }
 }

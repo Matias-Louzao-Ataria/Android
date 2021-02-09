@@ -6,9 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 
 public class JugadorBox2D extends BaseActor {
-    public static final int maxHP = 7;
+    public static final int maxHP = 5;
     private PowerUpObject.TipoObj powerUp;
-    private int hp = 7;
+    private int hp = maxHP;
     private boolean invencible = false;
 
     public JugadorBox2D(World world, Texture texture, Vector2 posicion) {
@@ -74,6 +74,6 @@ public class JugadorBox2D extends BaseActor {
     public void dispose(){
         this.body.destroyFixture(this.fixture);
         this.world.destroyBody(this.body);
-        //this.texture.dispose();
+        this.texture.dispose();
     }
 }

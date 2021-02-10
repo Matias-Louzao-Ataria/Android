@@ -11,18 +11,18 @@
 9-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
 10
 11    <uses-feature
-11-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:5-85
+11-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:5-84
 12        android:name="android.hardware.camera"
 12-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:19-57
-13        android:required="false" />
-13-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:58-82
+13        android:required="true" />
+13-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:58-81
 14
 15    <uses-permission android:name="android.permission.CAMERA" />
 15-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:7:5-64
 15-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:7:22-62
 16
 17    <application
-17-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:8:5-25:19
+17-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:8:5-30:19
 18        android:allowBackup="true"
 18-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:9:9-35
 19        android:appCategory="game"
@@ -58,6 +58,9 @@
 34-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:22:27-74
 35            </intent-filter>
 36        </activity>
-37    </application>
-38
-39</manifest>
+37        <activity android:name="com.matias.bouncingbullets.CamaraAndroid" />
+37-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:26:9-27:70
+37-->/home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:27:13-68
+38    </application>
+39
+40</manifest>

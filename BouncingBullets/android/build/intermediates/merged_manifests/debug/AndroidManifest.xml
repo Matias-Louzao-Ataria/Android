@@ -10,7 +10,7 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="false" />
+        android:required="true" />
 
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -34,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.matias.bouncingbullets.CamaraAndroid" />
     </application>
 
 </manifest>

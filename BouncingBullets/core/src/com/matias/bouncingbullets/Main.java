@@ -11,7 +11,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
  public class Main extends Game {
 
-    @Override
+    public static PlatformSpecific platformSpecific;
+
+     public Main(PlatformSpecific platformSpecific) {
+        Main.platformSpecific = platformSpecific;
+     }
+
+     @Override
     public void create() {
         setScreen(new MainMenuScreen(this));
     }

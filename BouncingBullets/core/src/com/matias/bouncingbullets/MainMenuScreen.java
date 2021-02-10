@@ -50,7 +50,6 @@ public class MainMenuScreen extends BaseScreen{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 getParent().setScreen(new SettingsScreen(getParent()));
-
             }
         });
         this.table.add(this.btnOpciones).height(Gdx.graphics.getHeight()/3f);
@@ -60,7 +59,7 @@ public class MainMenuScreen extends BaseScreen{
         this.btnCreditos.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getParent().setScreen(new MainGameScreen(getParent()));
+                Main.platformSpecific.hacerFoto();
 
             }
         });

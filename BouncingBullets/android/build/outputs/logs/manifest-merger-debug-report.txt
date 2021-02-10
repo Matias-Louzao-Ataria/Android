@@ -1,60 +1,70 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
-INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
 	package
 		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:3:5-41
 		INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
 		INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
 		INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-24:12
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:1-27:12
 		INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:2:11-69
+uses-feature#android.hardware.camera
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:5-85
+	android:required
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:58-82
+	android:name
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:19-57
+uses-permission#android.permission.CAMERA
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:7:5-64
+	android:name
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:7:22-62
 application
-ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:5:5-22:19
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:8:5-25:19
 	android:label
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:10:9-41
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:13:9-41
 	android:appCategory
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:9:9-35
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:12:9-35
 	android:icon
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:7:9-45
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:10:9-45
 	android:allowBackup
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:6:9-35
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:11:9-40
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:14:9-40
 	android:isGame
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:8:9-30
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:11:9-30
 activity#com.matias.bouncingbullets.AndroidLauncher
-ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:12:9-21:20
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:15:9-24:20
 	android:screenOrientation
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:15:13-50
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:18:13-50
 	android:label
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:14:13-45
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:17:13-45
 	android:configChanges
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:16:13-107
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:19:13-107
 	android:name
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:13:13-70
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:16:13-70
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:17:13-20:29
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:18:17-69
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:18:25-66
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:19:17-77
+ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:19:27-74
+		ADDED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml:22:27-74
 uses-sdk
 INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/matias/AndroidStudioProjects/BouncingBullets/android/AndroidManifest.xml

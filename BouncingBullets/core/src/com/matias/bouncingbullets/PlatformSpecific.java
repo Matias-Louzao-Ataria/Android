@@ -1,8 +1,6 @@
 package com.matias.bouncingbullets;
 
-public interface CamarInterface {
-
-    Camara camara = new Camara();
+public interface PlatformSpecific {
 
     public void hacerFoto();
 

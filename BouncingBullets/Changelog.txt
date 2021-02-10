@@ -86,3 +86,6 @@ v14:
 Añadido el meú principal.
 Añadida estructura básica de la pantalla de opciones.
 Cambiada la clase "BaseScreen" a la que se le añade un "Stage".
+
+V15:
+Implementado el guardado de imágenes sacadas por la camara llamada por el juego.
